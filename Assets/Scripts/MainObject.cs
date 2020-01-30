@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class MainObject : MonoBehaviour
 {
-    public static MainObject MainObj;
-    public delegate void onSomethingHappenedDeleg(OurEvent whatHappened);
-    public event onSomethingHappenedDeleg onSomethingHappened;
+    
+    public event Action<OurEvent> onSomethingHappened;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,13 +19,22 @@ public class MainObject : MonoBehaviour
         
     }
 
-    void Awake()
+    public static MainObject Get()
     {
-        if (MainObj != null)
-            GameObject.Destroy(MainObj);
-        else
-            MainObj = this;
+        MainObject mainObject = null;
+        GameObject MO = GameObject.Find("MO");
+        if (MO != null)
+        {
+            mainObject = MO.GetComponent<MainObject>();
+        }
+        return mainObject;
+    }
 
-        DontDestroyOnLoad(this);
+    public void InvokeEvent(OurEvent eventToInvoke)
+    {
+        if (this.onSomethingHappened != null)
+        {
+            this.onSomethingHappened(eventToInvoke);
+        }
     }
 }

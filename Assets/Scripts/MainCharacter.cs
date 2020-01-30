@@ -18,5 +18,7 @@ public class MainCharacter : MonoBehaviour
             Vector3 w = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             GetComponent<NavMeshAgent2D>().destination = w;
         }
+        MainObject mainObject = MainObject.Get();
+        mainObject.InvokeEvent(OurEvent.Dishes_Start);
     }
 }
