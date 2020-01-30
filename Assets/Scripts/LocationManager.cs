@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LocationManager : MonoBehaviour
 {
+    public List<RelationToMonitor> monitors = new List<RelationToMonitor>();
 
     // Start is called before the first frame update
     void Start()
@@ -14,14 +15,18 @@ public class LocationManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        foreach (RelationToMonitor rtm in monitors)
+        {
+            rtm.Check();
+        }
     }
 }
 
-public abstract class LocationMonitorable
+
+public interface ILocationMonitorable
 {
-    public GameObject gameObj { get; set; }
-    public abstract void OnLocationAlert(string name, LocationMonitorable other);
+    void onMonitorAlertFunc(string name, ILocationMonitorable otherObj);
+    T GetComponent<T>();
 }
 
 public enum WhoToAlert
@@ -30,14 +35,14 @@ public enum WhoToAlert
     Both
 }
 
-abstract class RelationToMonitor
+public abstract class RelationToMonitor
 {
     public string Name { get; set; }
-    public LocationMonitorable First { get; set; }
-    public LocationMonitorable Second { get; set; }
+    public ILocationMonitorable First { get; set; }
+    public ILocationMonitorable Second { get; set; }
     public WhoToAlert whoToAlert { get; set; }
    
-    public RelationToMonitor(string name, LocationMonitorable first, LocationMonitorable second, WhoToAlert whoToAlert)
+    public RelationToMonitor(string name, ILocationMonitorable first, ILocationMonitorable second, WhoToAlert whoToAlert)
     {
         this.Name = name;
         this.First = first;
@@ -62,20 +67,20 @@ abstract class RelationToMonitor
     protected abstract bool IsActive();
     private void Alert()
     {
-        First.OnLocationAlert(Name, Second);
+        First.onMonitorAlertFunc(Name, Second);
         if (whoToAlert == WhoToAlert.Both)
         {
-            Second.OnLocationAlert(Name, First);
+            Second.onMonitorAlertFunc(Name, First);
         }
     }
 }
 
-class RadiusRelation : RelationToMonitor
+public class RadiusRelation : RelationToMonitor
 {
     private const int DEFAULT_RADIUS = 50;
     public int Radius { get; set; }
 
-    public RadiusRelation(string name, LocationMonitorable first, LocationMonitorable second, WhoToAlert whoToAlert):
+    public RadiusRelation(string name, ILocationMonitorable first, ILocationMonitorable second, WhoToAlert whoToAlert):
         base(name, first, second, whoToAlert)
     {
         this.Radius = DEFAULT_RADIUS;
@@ -84,8 +89,8 @@ class RadiusRelation : RelationToMonitor
     protected override bool IsActive()
     {
         float distance = Vector3.Distance(
-                   this.First.gameObj.GetComponent<Transform>().transform.position,
-                   this.Second.gameObj.GetComponent<Transform>().transform.position);
+                   this.First.GetComponent<Transform>().transform.position,
+                   this.Second.GetComponent<Transform>().transform.position);
 
         return distance <= this.Radius;
     }

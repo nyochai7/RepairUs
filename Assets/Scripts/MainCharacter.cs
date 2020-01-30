@@ -2,8 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainCharacter : MonoBehaviour
+public class MainCharacter : MonoBehaviour, ILocationMonitorable
 {
+    public void onMonitorAlertFunc(string name, ILocationMonitorable otherObj)
+    {
+        if (name == "test")
+        {
+            Debug.Log("Test!");
+            GetComponent<SpriteRenderer>().color = Color.green;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
