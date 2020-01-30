@@ -18,9 +18,10 @@ public class LocationManager : MonoBehaviour
     }
 }
 
-public abstract class LocationMonitorable : GameObject
+public abstract class LocationMonitorable
 {
-    public abstract void onLocationAlert(string name, ILocationMonitorable other);
+    public GameObject gameObj { get; set; }
+    public abstract void OnLocationAlert(string name, LocationMonitorable other);
 }
 
 public enum WhoToAlert
@@ -61,24 +62,31 @@ abstract class RelationToMonitor
     protected abstract bool IsActive();
     private void Alert()
     {
-        First.onLocationAlert(name, Second);
+        First.OnLocationAlert(Name, Second);
         if (whoToAlert == WhoToAlert.Both)
         {
-            Second.onLocationAlert(name, First);
+            Second.OnLocationAlert(Name, First);
         }
     }
 }
 
 class RadiusRelation : RelationToMonitor
 {
-    private const int MIN_RADIUS = 50;
+    private const int DEFAULT_RADIUS = 50;
+    public int Radius { get; set; }
+
+    public RadiusRelation(string name, LocationMonitorable first, LocationMonitorable second, WhoToAlert whoToAlert):
+        base(name, first, second, whoToAlert)
+    {
+        this.Radius = DEFAULT_RADIUS;
+    }
 
     protected override bool IsActive()
     {
         float distance = Vector3.Distance(
-                   this.First.GetComponent<Transform>().transform.position,
-                   this.Second.GetComponent<Transform>().transform.position);
+                   this.First.gameObj.GetComponent<Transform>().transform.position,
+                   this.Second.gameObj.GetComponent<Transform>().transform.position);
 
-        return distance <= MIN_RADIUS;
+        return distance <= this.Radius;
     }
 }
