@@ -8,6 +8,10 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
     public long timeStartedCurrTask;
     public Task? currTask;
     public SingleMove currMove;
+
+    [SerializeField]
+    DynamicFace face;
+
     public void onMonitorAlertFunc(string name, ILocationMonitorable otherObj)
     {
         if (name == "sink")
@@ -39,6 +43,8 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
                 mainObject.InvokeEvent(this.currMove.stopEvent);
             }
         }
+
+        this.face.CurrentSpriteIndex = (this.face.CurrentSpriteIndex + 1) % this.face.SpritesCount;
 
 
         if (Input.GetMouseButton(0))
