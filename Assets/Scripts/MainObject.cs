@@ -6,7 +6,7 @@ using System;
 public class MainObject : MonoBehaviour
 {
     public static int defaultDuration = 5;
-    public Dictionary<Task, SingleMove[]> allTasks = new Dictionary<Task, SingleMove[]>();
+    public Dictionary<Task, GeneralTask[]> allTasks = new Dictionary<Task, GeneralTask[]>();
     public LocationManager locationManager { get; set; }
     public event Action<OurEvent> onSomethingHappened;
     // Start is called before the first frame update
@@ -83,5 +83,10 @@ public class MainObject : MonoBehaviour
         allTasks.Add(Task.COOK, new SingleMove[]{
             new SingleMove(Utils.getPositionByName("stove"), OurEvent.COOK_START, OurEvent.COOK_STOP, defaultDuration)
         });
+
+        allTasks.Add(Task.SHOWER, new SingleMove[]{
+            new SingleMove(Utils.getPositionByName("bathroom"), OurEvent.CHECK_SHOWER, OurEvent.DO_NOTHING, defaultDuration)
+        });
+
     }
 }

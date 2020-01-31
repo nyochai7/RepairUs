@@ -7,5 +7,6 @@ public enum Task{
     RAISE_TOILET_SEAT,
     LOWER_TOILET_SEAT,
     GO_BATHROOM,
-    COOK
+    COOK,
+    SHOWER
 }

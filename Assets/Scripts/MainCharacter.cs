@@ -7,7 +7,7 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
 
     public long timeStartedCurrTask;
     public Task? currTask;
-    public SingleMove currMove;
+    public GeneralTask currMove;
     public void onMonitorAlertFunc(string name, ILocationMonitorable otherObj)
     {
         if (name == "sink")
@@ -38,8 +38,22 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
         if (this.currTask != null){
             MainObject mainObject = MainObject.Get();
             
-            if (new System.DateTimeOffset(System.DateTime.UtcNow).ToUnixTimeSeconds() - this.timeStartedCurrTask >= this.currMove.duration){
-                mainObject.InvokeEvent(this.currMove.stopEvent);
+            if (this.currMove is SingleMove){
+
+                SingleMove currSingleMove = (SingleMove)this.currMove;
+                yield return new WaitForSeconds(currSingleMove.duration);
+                mainObject.InvokeEvent(currSingleMove.stopEvent);
+                
+            } else if (this.currMove is ConditionalTask){
+                
+                ConditionalTask currConditionalTask = (ConditionalTask)this.currMove;
+                if (currConditionalTask.conditionFunc()){
+                    mainObject.InvokeEvent(currConditionalTask.trueEvent);
+                    this.DoTask(currConditionalTask.trueTask);
+                } else {
+                    mainObject.InvokeEvent(currConditionalTask.falseEvent);
+                    this.DoTask(currConditionalTask.falseTask);
+                }
             }
         }
 
@@ -52,13 +66,18 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
     }
 
     public void DoTask(Task task){
+
         this.timeStartedCurrTask = new System.DateTimeOffset(System.DateTime.UtcNow).ToUnixTimeSeconds();
         this.currTask = task;
-
         MainObject mainObject = MainObject.Get();
         this.currMove = mainObject.allTasks[task][0];
-        GetComponent<NavMeshAgent2D>().destination = currMove.goTo;
-        mainObject.InvokeEvent(currMove.startEvent);
 
+        if (this.currMove is SingleMove){
+
+            SingleMove currSingleMove = (SingleMove)this.currMove;
+            GetComponent<NavMeshAgent2D>().destination = currSingleMove.goTo;
+            mainObject.InvokeEvent(currSingleMove.startEvent);
+
+        }
     }
 }

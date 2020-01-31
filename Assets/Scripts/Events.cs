@@ -24,5 +24,6 @@ public enum OurEvent
     SAY_HAPPY,
     GO_BATHROOM_START,
     GO_BATHROOM_STOP,
+    CHECK_SHOWER,
     DO_NOTHING
 }
