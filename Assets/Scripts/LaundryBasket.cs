@@ -22,7 +22,7 @@ public class Laundry_Basket : MonoBehaviour
     {
         switch (whatHappened)
         {
-            case OurEvent.RAISE_TOILET_SEAT: //change me
+            case OurEvent.RAISE_TOILET_SEAT: //change me to TAKE_LAUNDRY_START
                 this.isFull = false;
                 break;
             default:
