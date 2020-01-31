@@ -28,17 +28,15 @@ public class Shower : MonoBehaviour
     {
         switch (whatHappened)
         {
-            case OurEvent.LOWER_TOILET_SEAT: //change me to GO_SHOWER_START
+            case OurEvent.SHOWER_IS_TAKEN: //change me to GO_SHOWER_START
                 this.isTaken = true;
                 break;
-            case OurEvent.RAISE_TOILET_SEAT: //change me to USE_SHOWER_STOP
+            case OurEvent.USE_SHOWER_STOP: //change me to USE_SHOWER_STOP
                 this.isTaken = false;
-                break;
-            case OurEvent.USE_BATHROOM_START: //change me to USE_SHOWER_START
-                this.isInUse = true;
-                break;
-            case OurEvent.USE_BATHROOM_STOP: //change me to USE_SHOWER_STOP
                 this.isInUse = false;
+                break;
+            case OurEvent.USE_SHOWER_START: //change me to USE_SHOWER_START
+                this.isInUse = true;
                 break;
             default:
                 return;
@@ -55,5 +53,9 @@ public class Shower : MonoBehaviour
         Sprite bedSprite = Resources.Load<Sprite>("Sprites/" + toLoad);
         this.GetComponent<SpriteRenderer>().sprite = bedSprite;
         this.GetComponent<SpriteRenderer>().sortingOrder = 1;
+    }
+
+    public static bool CheckShower(){
+        return GameObject.Find("shower").GetComponent<Shower>().isTaken;
     }
 }

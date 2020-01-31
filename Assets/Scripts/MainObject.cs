@@ -96,7 +96,12 @@ public class MainObject : MonoBehaviour
         });
 
         allTasks.Add(Task.SHOWER, new GeneralTask[]{
-            new SingleMove(Utils.getPositionByName("bathroom"), OurEvent.GO_TO_SHOWER, OurEvent.DO_NOTHING, defaultDuration)
+            new SingleMove(Utils.getPositionByName("bathroom"), OurEvent.GO_TO_SHOWER, OurEvent.DO_NOTHING, defaultDuration),
+            new ConditionalTask(Shower.CheckShower, Task.USE_SHOWER, null, OurEvent.SHOWER_IS_TAKEN, OurEvent.SAY_TYPICAL)
+        });
+
+        allTasks.Add(Task.USE_SHOWER, new GeneralTask[]{
+            new SingleMove(Utils.getPositionByName("shower"), OurEvent.USE_SHOWER_START, OurEvent.USE_SHOWER_STOP, defaultDuration)
         });
 
     }

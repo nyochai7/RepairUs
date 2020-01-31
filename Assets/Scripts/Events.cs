@@ -29,5 +29,7 @@ public enum OurEvent
     GO_TO_SHOWER,
     USE_SHOWER_START,
     USE_SHOWER_STOP,
+
+    SHOWER_IS_TAKEN,
     DO_NOTHING
 }

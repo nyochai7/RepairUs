@@ -22,12 +22,7 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
         }
         if (name == "bed")
         {
-            MainObject.Get().InvokeEvent(OurEvent.EAT_STOP);
-            MainObject.Get().InvokeEvent(OurEvent.EAT_STOP);
-            MainObject.Get().InvokeEvent(OurEvent.EAT_STOP);
-            MainObject.Get().InvokeEvent(OurEvent.EAT_STOP);
-
-            this.DoTask(Task.DO_DISHES);
+            this.DoTask(Task.SHOWER);
         }
     }
 
