@@ -1,5 +1,6 @@
 public enum Task{
     DO_DISHES,
+    WASH_DISHES,
     MAKE_BED,
     SLEEP,
     DO_LAUNDRY,
