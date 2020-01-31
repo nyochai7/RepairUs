@@ -602,8 +602,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 192361749}
   m_LocalRotation: {x: -0, y: -0.003275526, z: -0, w: 0.99999464}
-  m_LocalPosition: {x: -4.85, y: 3.52, z: -0}
-  m_LocalScale: {x: 0.5, y: 1, z: 1}
+  m_LocalPosition: {x: -4.71, y: 3.52, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 36
@@ -625,14 +625,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.49, y: 1.08}
+    oldSize: {x: 1.3, y: 1.08}
     newSize: {x: 2.49, y: 1.08}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.49, y: 1.08}
+  m_Size: {x: 1.3, y: 1.08}
   m_EdgeRadius: 0
 --- !u!1 &196565478
 GameObject:
@@ -1258,7 +1258,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 4532aab1a32fd97bb8ea907db65701db, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1296,6 +1296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 133af55f4f16cda4b972bbe9aec7d144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeStartedCurrTask: 0
 --- !u!114 &513704849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2083,8 +2084,9 @@ GameObject:
   m_Component:
   - component: {fileID: 778268142}
   - component: {fileID: 778268141}
+  - component: {fileID: 778268143}
   m_Layer: 0
-  m_Name: "\u200FBed"
+  m_Name: Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2154,6 +2156,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 37
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+--- !u!114 &778268143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778268140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf8e0699dc6941743bdb349e047a94dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &873671067
 GameObject:
   m_ObjectHideFlags: 0
@@ -2806,7 +2820,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 49467f9c51f3e2f49a4f78af2f8cf1d4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: df0142565805426439f12a97c9382fe9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3357,6 +3371,7 @@ GameObject:
   - component: {fileID: 1764219851}
   - component: {fileID: 1764219850}
   - component: {fileID: 1764219852}
+  - component: {fileID: 1764219853}
   m_Layer: 0
   m_Name: kitchen counter
   m_TagString: Untagged
@@ -3423,7 +3438,7 @@ Transform:
   m_GameObject: {fileID: 1764219849}
   m_LocalRotation: {x: -0, y: -0.003275526, z: -0, w: 0.99999464}
   m_LocalPosition: {x: -5.96, y: 3.52, z: -0}
-  m_LocalScale: {x: 0.5, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 35
@@ -3445,15 +3460,27 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.49, y: 1.08}
+    oldSize: {x: 1.3, y: 1.08}
     newSize: {x: 2.49, y: 1.08}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.49, y: 1.08}
+  m_Size: {x: 1.3, y: 1.08}
   m_EdgeRadius: 0
+--- !u!114 &1764219853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1764219849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b04523e5c9fcf9a408ce8f17ef35281c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1845148290
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class Sink : MonoBehaviour
 {
     // Start is called before the first frame update
-    int num_dishes = 0;
+    int numDishes = 0;
     void Start()
     {
         MainObject mainObject = MainObject.Get();
@@ -27,6 +26,28 @@ public class Sink : MonoBehaviour
         mainObject.InvokeEvent(OurEvent.EAT_STOP);
         yield return new WaitForSeconds(2);
         mainObject.InvokeEvent(OurEvent.DISHES_STOP);
+        yield return new WaitForSeconds(2);
+        mainObject.InvokeEvent(OurEvent.COOK_STOP);
+        yield return new WaitForSeconds(2);
+        mainObject.InvokeEvent(OurEvent.EAT_START);
+        yield return new WaitForSeconds(7);
+        mainObject.InvokeEvent(OurEvent.COOK_START);
+        yield return new WaitForSeconds(2);
+        mainObject.InvokeEvent(OurEvent.COOK_STOP);
+        yield return new WaitForSeconds(2);
+        mainObject.InvokeEvent(OurEvent.EAT_START);
+        yield return new WaitForSeconds(2);
+        mainObject.InvokeEvent(OurEvent.EAT_STOP);
+        yield return new WaitForSeconds(2);
+        mainObject.InvokeEvent(OurEvent.EAT_START);
+        yield return new WaitForSeconds(2);
+        mainObject.InvokeEvent(OurEvent.EAT_STOP);
+        yield return new WaitForSeconds(5);
+        mainObject.InvokeEvent(OurEvent.MAKE_BED_START);
+        yield return new WaitForSeconds(2);
+        mainObject.InvokeEvent(OurEvent.MAKE_BED_STOP);
+        yield return new WaitForSeconds(2);
+        mainObject.InvokeEvent(OurEvent.SLEEP_STOP);
     }
 
     void listener(OurEvent whatHappened)
@@ -39,20 +60,40 @@ public class Sink : MonoBehaviour
 
             case OurEvent.DISHES_STOP:
                 Debug.Log("Dishes are done");
-                this.num_dishes = 0;
+                this.numDishes = 0;
                 break;
 
             case OurEvent.EAT_STOP:
-                if(this.num_dishes != 2)
+                if(this.numDishes != 4)
                 {
-                    this.num_dishes++;
+                    this.numDishes++;
                 }
-                Debug.Log("More dirt in sink! Num is " + num_dishes.ToString());
+                Debug.Log("More dirt in sink! Num is " + numDishes.ToString());
+                break;
+            case OurEvent.COOK_STOP:
+                if (this.numDishes != 4)
+                {
+                    this.numDishes++;
+                }
+                Debug.Log("Cooking done! There are more dishes");
                 break;
             default:
                 return;
         }
-        Sprite sinkSprite = Resources.Load<Sprite>("Sprites/sink" + this.num_dishes.ToString());
+        string toLoad;
+        switch(this.numDishes)
+        {
+            case 0:
+                toLoad = "sink0";
+                break;
+            case 1:
+                toLoad = "sink1";
+                break;
+            default:
+                toLoad = "sink2";
+                break;
+        }
+        Sprite sinkSprite = Resources.Load<Sprite>("Sprites/" + toLoad);
         this.GetComponent<SpriteRenderer>().sprite = sinkSprite;
         this.GetComponent<SpriteRenderer>().sortingOrder = 1;
 
