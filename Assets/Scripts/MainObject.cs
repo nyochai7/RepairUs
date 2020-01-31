@@ -5,18 +5,23 @@ using System;
 
 public class MainObject : MonoBehaviour
 {
-    
+    public LocationManager locationManager { get; set; }
     public event Action<OurEvent> onSomethingHappened;
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log("Checking all");
+        locationManager.CheckAll();
+    }
+
+    void Awake()
+    {
+        locationManager = new LocationManager();
     }
 
     public static MainObject Get()

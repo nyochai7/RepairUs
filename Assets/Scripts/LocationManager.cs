@@ -2,18 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LocationManager : MonoBehaviour
+public class LocationManager
 {
     public List<RelationToMonitor> monitors = new List<RelationToMonitor>();
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
+    
+    public void CheckAll()
     {
         foreach (RelationToMonitor rtm in monitors)
         {
@@ -27,6 +20,25 @@ public interface ILocationMonitorable
 {
     void onMonitorAlertFunc(string name, ILocationMonitorable otherObj);
     T GetComponent<T>();
+}
+
+public class FakeILocationMonitorable : ILocationMonitorable
+{
+    public GameObject go;
+    public FakeILocationMonitorable(GameObject go)
+    {
+        this.go = go;
+    }
+
+    public T GetComponent<T>()
+    {
+        return go.GetComponent<T>();
+    }
+
+    public void onMonitorAlertFunc(string name, ILocationMonitorable otherObj)
+    {
+        throw new System.NotImplementedException();
+    }
 }
 
 public enum WhoToAlert
@@ -54,7 +66,7 @@ public abstract class RelationToMonitor
 
     public void Check()
     {
-        bool currentValue = previousValue;
+        bool currentValue = this.IsActive();
 
         if (currentValue && !previousValue)
         {
@@ -77,8 +89,8 @@ public abstract class RelationToMonitor
 
 public class RadiusRelation : RelationToMonitor
 {
-    private const int DEFAULT_RADIUS = 50;
-    public int Radius { get; set; }
+    private const float DEFAULT_RADIUS = 1.25f;
+    public float Radius { get; set; }
 
     public RadiusRelation(string name, ILocationMonitorable first, ILocationMonitorable second, WhoToAlert whoToAlert):
         base(name, first, second, whoToAlert)
@@ -91,6 +103,8 @@ public class RadiusRelation : RelationToMonitor
         float distance = Vector3.Distance(
                    this.First.GetComponent<Transform>().transform.position,
                    this.Second.GetComponent<Transform>().transform.position);
+
+        Debug.Log(distance);
 
         return distance <= this.Radius;
     }
