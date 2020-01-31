@@ -6,6 +6,7 @@ public class Toilet : MonoBehaviour
 {
     // Start is called before the first frame update
     bool isUp = false;
+    bool isTaken = false;
     void Start()
     {
         MainObject mainObject = MainObject.Get();
@@ -18,6 +19,11 @@ public class Toilet : MonoBehaviour
         
     }
 
+    public bool IsTaken()
+    {
+        return isTaken;
+    }
+
     void listener(OurEvent whatHappened)
     {
         switch (whatHappened)
@@ -25,9 +31,14 @@ public class Toilet : MonoBehaviour
             case OurEvent.LOWER_TOILET_SEAT:
                 this.isUp = false;
                 break;
-
             case OurEvent.RAISE_TOILET_SEAT:
                 this.isUp = true;
+                break;
+            case OurEvent.GO_BATHROOM_START:
+                this.isTaken = true;
+                break;
+            case OurEvent.GO_BATHROOM_STOP: // change to USE_BATHROOM_STOP
+                this.isTaken = true;
                 break;
             default:
                 return;

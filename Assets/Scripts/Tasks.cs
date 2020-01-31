@@ -1,5 +1,6 @@
 public enum Task{
     DO_DISHES,
+    WASH_DISHES,
     MAKE_BED,
     SLEEP,
     DO_LAUNDRY,
@@ -7,5 +8,6 @@ public enum Task{
     RAISE_TOILET_SEAT,
     LOWER_TOILET_SEAT,
     GO_BATHROOM,
-    COOK
+    COOK,
+    SHOWER
 }

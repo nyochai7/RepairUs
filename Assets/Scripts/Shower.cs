@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bed : MonoBehaviour
+public class Shower : MonoBehaviour
 {
-    bool isBedMade = true;
     // Start is called before the first frame update
+    bool isTaken = false;
+    bool isInUse = false;
     void Start()
     {
         MainObject mainObject = MainObject.Get();
@@ -18,32 +19,38 @@ public class Bed : MonoBehaviour
         
     }
 
+    public bool IsTaken()
+    {
+        return isTaken;
+    }
 
     void listener(OurEvent whatHappened)
     {
         switch (whatHappened)
         {
-            case OurEvent.MAKE_BED_START:
+            case OurEvent.LOWER_TOILET_SEAT: //change me to GO_SHOWER_START
+                this.isTaken = true;
                 break;
-
-            case OurEvent.MAKE_BED_STOP:
-                this.isBedMade = true;
+            case OurEvent.RAISE_TOILET_SEAT: //change me to USE_SHOWER_STOP
+                this.isTaken = false;
                 break;
-
-            case OurEvent.SLEEP_STOP:
-                this.isBedMade = false;
+            case OurEvent.GO_BATHROOM_START: //change me to USE_SHOWER_START
+                this.isInUse = true;
+                break;
+            case OurEvent.GO_BATHROOM_STOP: //change me to USE_SHOWER_STOP
+                this.isInUse = false;
                 break;
             default:
                 return;
         }
         string toLoad;
-        if (this.isBedMade)
+        if (this.isInUse)
         {
-            toLoad = "bed0";
+            toLoad = "shower1";
         }
         else
         {
-            toLoad = "bed1";
+            toLoad = "toilet0";
         }
         Sprite bedSprite = Resources.Load<Sprite>("Sprites/" + toLoad);
         this.GetComponent<SpriteRenderer>().sprite = bedSprite;

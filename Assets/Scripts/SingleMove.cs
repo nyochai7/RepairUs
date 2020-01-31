@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Threading;
 
-public class SingleMove
+public class SingleMove : GeneralTask
 {
     public Vector3 goTo;
     public OurEvent startEvent;
@@ -16,5 +16,4 @@ public class SingleMove
         this.stopEvent = stopEvent;
         this.duration = duration;
     }
-
 }

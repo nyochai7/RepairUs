@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bed : MonoBehaviour
+public class LaundryMachine : MonoBehaviour
 {
-    bool isBedMade = true;
     // Start is called before the first frame update
+    bool isFull = false;
     void Start()
     {
         MainObject mainObject = MainObject.Get();
         mainObject.onSomethingHappened += this.listener;
+
     }
 
     // Update is called once per frame
@@ -17,33 +18,27 @@ public class Bed : MonoBehaviour
     {
         
     }
-
-
     void listener(OurEvent whatHappened)
     {
         switch (whatHappened)
         {
-            case OurEvent.MAKE_BED_START:
+            case OurEvent.LAUNDRY_START: 
+                this.isFull = true;
                 break;
-
-            case OurEvent.MAKE_BED_STOP:
-                this.isBedMade = true;
-                break;
-
-            case OurEvent.SLEEP_STOP:
-                this.isBedMade = false;
+            case OurEvent.LAUNDRY_STOP:
+                this.isFull = false;
                 break;
             default:
                 return;
         }
         string toLoad;
-        if (this.isBedMade)
+        if (this.isFull)
         {
-            toLoad = "bed0";
+            toLoad = "laundry_machine1";
         }
         else
         {
-            toLoad = "bed1";
+            toLoad = "laundry_machine0";
         }
         Sprite bedSprite = Resources.Load<Sprite>("Sprites/" + toLoad);
         this.GetComponent<SpriteRenderer>().sprite = bedSprite;
