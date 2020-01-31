@@ -34,7 +34,7 @@ public class BlockObj : MonoBehaviour
                 this.transform.position = new Vector3(possiblePos.Value.x + 
                     GetComponent<SpriteRenderer>().size.x / 2.0f,
                     possiblePos.Value.y + GetComponent<SpriteRenderer>().size.y / 2.0f,
-                    possiblePos.Value.z);
+                    0);
             }
         }
     }
@@ -83,7 +83,7 @@ public class BlockObj : MonoBehaviour
             this.transform.position = new Vector3(possiblePos.Value.x +
                 GetComponent<SpriteRenderer>().size.x / 2.0f,
                 possiblePos.Value.y + GetComponent<SpriteRenderer>().size.y / 2.0f,
-                possiblePos.Value.z);
+                0);
 
             int? index = selectedList.PositionToIndex(this.transform.position);
 
