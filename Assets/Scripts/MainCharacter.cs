@@ -8,12 +8,10 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
     {
         if (name == "sink")
         {
-            Debug.Log("Test!");
             GetComponent<SpriteRenderer>().color = Color.green;
         }
         if (name == "bed")
         {
-            Debug.Log("Test!");
             GetComponent<SpriteRenderer>().color = Color.red;
         }
     }
@@ -32,8 +30,8 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
     {
         if (Input.GetMouseButton(0))
         {
-            Vector3 w = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            GetComponent<NavMeshAgent2D>().destination = w;
+            //Vector3 w = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //GetComponent<NavMeshAgent2D>().destination = w;
         }
         MainObject mainObject = MainObject.Get();
         mainObject.InvokeEvent(OurEvent.Dishes_Start);

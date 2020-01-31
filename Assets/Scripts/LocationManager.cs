@@ -15,7 +15,6 @@ public class LocationManager
     }
 }
 
-
 public interface ILocationMonitorable
 {
     void onMonitorAlertFunc(string name, ILocationMonitorable otherObj);
@@ -103,8 +102,6 @@ public class RadiusRelation : RelationToMonitor
         float distance = Vector3.Distance(
                    this.First.GetComponent<Transform>().transform.position,
                    this.Second.GetComponent<Transform>().transform.position);
-
-        Debug.Log(distance);
 
         return distance <= this.Radius;
     }

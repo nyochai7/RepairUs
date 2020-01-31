@@ -7,6 +7,9 @@ public class MainObject : MonoBehaviour
 {
     public LocationManager locationManager { get; set; }
     public event Action<OurEvent> onSomethingHappened;
+
+    public List<BlockList> AllBlockLists = new List<BlockList>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,8 +18,10 @@ public class MainObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Checking all");
-        locationManager.CheckAll();
+        if (locationManager != null)
+        {
+            locationManager.CheckAll();
+        }
     }
 
     void Awake()
