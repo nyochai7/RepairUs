@@ -33,11 +33,6 @@ public class BlockList : MonoBehaviour
         return false;
     }
 
-    public static bool PointInSprite(SpriteRenderer spriteObj, Vector3 position)
-    {
-        return SRtoRect(spriteObj).Contains(position);
-    }
-
     public Vector3? GetPossibleLocation(Vector3 position)
     {
         int? possibleIndex = this.PositionToIndex(position);
@@ -59,7 +54,7 @@ public class BlockList : MonoBehaviour
             throw new System.Exception();
         }
 
-        Rect myRect = SRtoRect(this.GetComponent<SpriteRenderer>());
+        Rect myRect = Utils.SRtoRect(this.GetComponent<SpriteRenderer>());
 
         return new Vector3(myRect.x, myRect.y +
             i * BLOCK_HEIGHT, this.transform.position.z);
@@ -67,21 +62,14 @@ public class BlockList : MonoBehaviour
 
     public int? PositionToIndex(Vector3 pos)
     {
-        if (!PointInSprite(this.GetComponent<SpriteRenderer>(), pos))
+        if (!Utils.PointInSprite(this.GetComponent<SpriteRenderer>(), pos))
         {
             return null;
         }
 
-        float myY = SRtoRect(this.GetComponent<SpriteRenderer>()).y;
-        // Debug.Log("pos y:" + pos.y.ToString());
-        Debug.Log("transform y:" + myY.ToString());
+        float myY = Utils.SRtoRect(this.GetComponent<SpriteRenderer>()).y;
 
         return (int)((pos.y - myY) / BLOCK_HEIGHT);
     }
 
-    public static Rect SRtoRect(SpriteRenderer sr)
-    {
-        return new Rect(sr.transform.position.x - sr.size.x / 2.0f, sr.transform.position.y - sr.size.y / 2.0f,
-                              sr.size.x, sr.size.y);
-    }
 }
