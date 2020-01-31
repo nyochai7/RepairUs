@@ -1506,8 +1506,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 133af55f4f16cda4b972bbe9aec7d144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  radiusToObj: 1
   timeStartedCurrTask: 0
-  face: {fileID: 823524185}
+  face: {fileID: 166544199}
 --- !u!114 &513704849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2820,8 +2821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AllBlockLists: []
-  blockObjPrefab: {fileID: 3917180599293766984, guid: 3704293bb9bb05e4aaa24363ee5a4a9b,
-    type: 3}
+  blockObjPrefab: {fileID: 0}
 --- !u!4 &1122956822
 Transform:
   m_ObjectHideFlags: 0
