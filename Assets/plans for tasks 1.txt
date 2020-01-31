@@ -1,0 +1,91 @@
+Plans for chores:
+
+	shower:
+		1. Move - go next to shower
+		2.Condition - is the shower empty
+			yes
+				1. Move - go to shower and shower (duration X)
+				Reaction - be happy?
+			no
+				Reaction - be sad (trigger - be angry at the other person for taking the shower?)
+	
+	eat:
+		1. Move - go to kitchen
+		2. Condition - is there good food on the counter
+			yes
+				1. Move - go to counter (numFood on counter - 1)
+				Reaction - be happy because of good food (trigger - if you did not cook, and you see the person who did soon - compliment them)
+				2. Move - go to table and eat (duration X)
+				Reaction - if they eat together make them happy
+				3. Move - go to sink (numDishes in sink + 1)
+			no
+				1. Move - go to fridge
+				Reaction - be sad because of bad food
+				2. Move - go to table and eat (duration X)
+				Reaction - if they eat together make them happy
+				3. Move - go to sink (numDishes in sink + 1)
+	
+	do the dishes:
+		1. Move - go to sink and do dishes (duration X) (numDishes in sink = 0)
+	
+	cook:
+		1. Move - go to counter and make food (Duration X) (numFood = 2) (numDishes + 1)
+	
+	use toilet:
+		1. Move go next to toilet
+		2. Condition - is the toilet empty
+			yes
+				1. Move - go to toilet and him put sit up (event), her put sit down (event)
+				Reaction - her: if the sit is up, be sad (trigger - be angry at him for leaving it up?)
+				Reaction - him put sit up, her put sit down
+			no
+				Reaction - be sad (trigger - be angry at the other person for taking the toilet?)
+	
+	take toilet sit down:
+		1. go to the toilet
+		2. Condition - is the toilet empty
+			yes
+				1. Move - go to toilet and put sit up (event)
+			no
+				nothing
+		
+	make bed:
+		1. Move - go to bedroom and make the bed (Duration X) (isMade in bed true)
+	
+	do the laundry:
+		1. Move - go to laundry basket and take laundry (Duration X) (isEmpty in basket true)
+		2. Move - go to machine and put it in (duration X) (isEmpty in machine false)
+	
+	---------------------------------------------------------------------------------------------
+	
+	
+	ideas for bed bed:
+		things that if they are not done each will have to do before going to bed?
+		maybe her dishes (and be sad)
+		and him laundry (and be sad)
+		maybe both have to shower if they didn't already (and be sad that it's late)
+		maybe also eat (and be sad)
+		or you just can't take the eating and the showering out of the thing
+	
+	ideas for things that make them sad:
+		1. he - has to do the dishes ("I always clean her messes!")
+		2. she - has to do the laundry ("I always have to do this!")
+		3. she - goes to the toilet and the sit is up ("He always leave it like this!")
+		4. he - sees dirty dishes ("She always makes a mess")
+		5. both - go to the shower and it is taken
+		6. both - go to the toilet and it is taken
+		7. both - eating bad food
+		8. both - go to bed and it's not made
+	
+	ideas for things that make them happy:
+		1. both - they eat together
+		2. he - sees the dishes clean after she cleaned them
+		3. she - sees the laundry done after he did it (we need to give her a reason to go there)
+		4. both - eating good food 
+		5. both - being complimented
+		6. him - reading a book?
+		7. her - watching tv?
+
+
+
+	

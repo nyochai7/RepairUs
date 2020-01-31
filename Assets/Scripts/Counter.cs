@@ -23,11 +23,9 @@ public class Counter : MonoBehaviour
         switch (whatHappened)
         {
             case OurEvent.COOK_START:
-                Debug.Log("Starting to make food");
                 break;
 
             case OurEvent.COOK_STOP:
-                Debug.Log("Food made");
                 this.numFood = 2;
                 break;
 
@@ -36,7 +34,6 @@ public class Counter : MonoBehaviour
                 {
                     this.numFood--;
                 }
-                Debug.Log("ate a food. Now there is " + numFood.ToString());
                 break;
             default:
                 return;
