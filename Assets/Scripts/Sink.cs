@@ -9,13 +9,13 @@ public class Sink : MonoBehaviour
     {
         MainObject mainObject = MainObject.Get();
         mainObject.onSomethingHappened += this.listener;
-        StartCoroutine(waiter());
+        //StartCoroutine(waiter());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     IEnumerator waiter()
     {
@@ -96,7 +96,10 @@ public class Sink : MonoBehaviour
         Sprite sinkSprite = Resources.Load<Sprite>("Sprites/" + toLoad);
         this.GetComponent<SpriteRenderer>().sprite = sinkSprite;
         this.GetComponent<SpriteRenderer>().sortingOrder = 1;
+    }
 
-
+    public static bool CheckSink(){
+        
+        return (GameObject.Find("sink").GetComponent<Sink>().numDishes > 0);
     }
 }

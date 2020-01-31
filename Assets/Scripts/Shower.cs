@@ -11,7 +11,6 @@ public class Shower : MonoBehaviour
     {
         MainObject mainObject = MainObject.Get();
         mainObject.onSomethingHappened += this.listener;
-
     }
 
     // Update is called once per frame
