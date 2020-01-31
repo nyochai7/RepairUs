@@ -5,6 +5,8 @@ using System;
 
 public class MainObject : MonoBehaviour
 {
+
+    public Dictionary<string, SingleMove[]> allTasks = new Dictionary<string, SingleMove[]>();
     public LocationManager locationManager { get; set; }
     public event Action<OurEvent> onSomethingHappened;
     // Start is called before the first frame update
@@ -42,4 +44,22 @@ public class MainObject : MonoBehaviour
             this.onSomethingHappened(eventToInvoke);
         }
     }
+
+    void InitiateAllTasks(){
+        allTasks.Add("DO_DISHES", new SingleMove[]{
+            new SingleMove(Utils.getPositionByName("sink"), OurEvent.DISHES_START, OurEvent.DISHES_STOP, 10)
+        });
+
+        allTasks.Add("MAKE_BED", new SingleMove[]{
+            new SingleMove(Utils.getPositionByName("bed"), OurEvent.MAKE_BED_START, OurEvent.MAKE_BED_STOP, 10)
+        });
+
+        allTasks.Add("SLEEP", new SingleMove[]{
+            new SingleMove(Utils.getPositionByName("bed"), OurEvent.SLEEP_START, OurEvent.SLEEP_STOP, 10)
+        });
+
+        // allTasks.Add("DO_LAUNDRY", new SingleMove(Utils.getPositionByName("laundry"), OurEvent.LAUNDRY_START, OurEvent.LAUNDRY_STOP, 10));
+        // allTasks.Add("EAT", new SingleMove(Utils.getPositionByName("stove"), OurEvent.EAT_START, OurEvent.EAT_STOP, 10));
+        // allTasks.Add
+}
 }

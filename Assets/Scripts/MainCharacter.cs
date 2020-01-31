@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MainCharacter : MonoBehaviour, ILocationMonitorable
 {
+
     public void onMonitorAlertFunc(string name, ILocationMonitorable otherObj)
     {
         if (name == "sink")
@@ -30,12 +31,13 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
     // Update is called once per frame
     void Update()
     {
+
         if (Input.GetMouseButton(0))
         {
             Vector3 w = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             GetComponent<NavMeshAgent2D>().destination = w;
         }
         MainObject mainObject = MainObject.Get();
-        mainObject.InvokeEvent(OurEvent.Dishes_Start);
+        mainObject.InvokeEvent(OurEvent.DISHES_START);
     }
 }

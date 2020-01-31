@@ -21,7 +21,7 @@ public class Sink : MonoBehaviour
     {
         switch(whatHappened)
         {
-            case OurEvent.Dishes_Start:
+            case OurEvent.DISHES_START:
                 Debug.Log("Dishes are starting");
                 break;
 
