@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -58,6 +58,15 @@ public class MainObject : MonoBehaviour
             new ConditionalTask(Sink.CheckSink, Task.WASH_DISHES, null, OurEvent.MAKE_BED_START, null)
         });
 
+        allTasks.Add(Task.SHOWER_NOW, new GeneralTask[]{
+            new SingleMove(Utils.getPositionByName("bathroom"), OurEvent.GO_TO_SHOWER, OurEvent.DO_NOTHING, defaultDuration),
+            new ConditionalTask(Shower.CheckShower, Task.USE_SHOWER, null, OurEvent.SHOWER_IS_TAKEN, OurEvent.SAY_TYPICAL)
+        });
+
+        allTasks.Add(Task.USE_SHOWER, new GeneralTask[]{
+            new SingleMove(Utils.getPositionByName("shower"), OurEvent.USE_SHOWER_START, OurEvent.USE_SHOWER_STOP, defaultDuration)
+        });
+
         allTasks.Add(Task.WASH_DISHES, new GeneralTask[]{
             new SingleMove(Utils.getPositionByName("sink"), OurEvent.DISHES_START, OurEvent.DISHES_STOP, defaultDuration)
         });
@@ -87,22 +96,12 @@ public class MainObject : MonoBehaviour
             new SingleMove(Utils.getPositionByName("toilet"), OurEvent.LOWER_TOILET_SEAT, OurEvent.DO_NOTHING, defaultDuration)
         });
 
-        allTasks.Add(Task.GO_BATHROOM, new GeneralTask[]{
+        allTasks.Add(Task.USE_TOILET, new GeneralTask[]{
             new SingleMove(Utils.getPositionByName("toilet"), OurEvent.USE_BATHROOM_START, OurEvent.USE_BATHROOM_STOP, defaultDuration)
         });
 
         allTasks.Add(Task.COOK, new GeneralTask[]{
             new SingleMove(Utils.getPositionByName("stove"), OurEvent.COOK_START, OurEvent.COOK_STOP, defaultDuration)
         });
-
-        allTasks.Add(Task.SHOWER, new GeneralTask[]{
-            new SingleMove(Utils.getPositionByName("bathroom"), OurEvent.GO_TO_SHOWER, OurEvent.DO_NOTHING, defaultDuration),
-            new ConditionalTask(Shower.CheckShower, Task.USE_SHOWER, null, OurEvent.SHOWER_IS_TAKEN, OurEvent.SAY_TYPICAL)
-        });
-
-        allTasks.Add(Task.USE_SHOWER, new GeneralTask[]{
-            new SingleMove(Utils.getPositionByName("shower"), OurEvent.USE_SHOWER_START, OurEvent.USE_SHOWER_STOP, defaultDuration)
-        });
-
     }
 }

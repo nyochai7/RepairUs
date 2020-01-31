@@ -22,7 +22,7 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
         }
         if (name == "bed")
         {
-            this.DoTask(Task.SHOWER);
+            this.DoTask(Task.SHOWER_NOW);
         }
     }
 
@@ -97,6 +97,7 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
 
         this.timeStartedCurrTask = new System.DateTimeOffset(System.DateTime.UtcNow).ToUnixTimeSeconds();
         MainObject mainObject = MainObject.Get();
+        Debug.Log("Task is " + task);
         this.currTask = mainObject.allTasks[task];
         this.currMove = this.currTask[0];
         this.moveIndex = 0;
