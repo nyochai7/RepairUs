@@ -63,11 +63,11 @@ public class MainObject : MonoBehaviour
         });
 
         allTasks.Add(Task.MAKE_BED, new GeneralTask[]{
-            new SingleMove(Utils.getPositionByName("bed"), OurEvent.MAKE_BED_START, OurEvent.MAKE_BED_STOP, defaultDuration)
+            new SingleMove(Utils.getPositionByName("Bed"), OurEvent.MAKE_BED_START, OurEvent.MAKE_BED_STOP, defaultDuration)
         });
 
         allTasks.Add(Task.SLEEP, new GeneralTask[]{
-            new SingleMove(Utils.getPositionByName("bed"), OurEvent.SLEEP_START, OurEvent.SLEEP_STOP, defaultDuration)
+            new SingleMove(Utils.getPositionByName("Bed"), OurEvent.SLEEP_START, OurEvent.SLEEP_STOP, defaultDuration)
         });
 
         allTasks.Add(Task.DO_LAUNDRY, new GeneralTask[]{

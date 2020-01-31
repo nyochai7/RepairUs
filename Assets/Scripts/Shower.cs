@@ -34,10 +34,10 @@ public class Shower : MonoBehaviour
             case OurEvent.RAISE_TOILET_SEAT: //change me to USE_SHOWER_STOP
                 this.isTaken = false;
                 break;
-            case OurEvent.GO_BATHROOM_START: //change me to USE_SHOWER_START
+            case OurEvent.USE_BATHROOM_START: //change me to USE_SHOWER_START
                 this.isInUse = true;
                 break;
-            case OurEvent.GO_BATHROOM_STOP: //change me to USE_SHOWER_STOP
+            case OurEvent.USE_BATHROOM_STOP: //change me to USE_SHOWER_STOP
                 this.isInUse = false;
                 break;
             default:
