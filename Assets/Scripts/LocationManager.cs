@@ -104,7 +104,7 @@ public class RadiusRelation : RelationToMonitor
                    this.First.GetComponent<Transform>().transform.position,
                    this.Second.GetComponent<Transform>().transform.position);
 
-        //Debug.Log(distance);
+        Debug.Log(distance);
 
         return distance <= this.Radius;
     }

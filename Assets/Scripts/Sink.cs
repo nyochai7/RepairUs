@@ -15,40 +15,40 @@ public class Sink : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(this.numDishes);
+
     }
-    // IEnumerator waiter()
-    // {
-    //     // MainObject mainObject = MainObject.Get();
-    //     // yield return new WaitForSeconds(2);
-    //     // mainObject.InvokeEvent(OurEvent.EAT_STOP);
-    //     // yield return new WaitForSeconds(2);
-    //     // mainObject.InvokeEvent(OurEvent.EAT_STOP);
-    //     // yield return new WaitForSeconds(2);
-    //     // mainObject.InvokeEvent(OurEvent.DISHES_STOP);
-    //     // yield return new WaitForSeconds(2);
-    //     // mainObject.InvokeEvent(OurEvent.COOK_STOP);
-    //     // yield return new WaitForSeconds(2);
-    //     // mainObject.InvokeEvent(OurEvent.EAT_START);
-    //     // yield return new WaitForSeconds(7);
-    //     // mainObject.InvokeEvent(OurEvent.COOK_START);
-    //     // yield return new WaitForSeconds(2);
-    //     // mainObject.InvokeEvent(OurEvent.COOK_STOP);
-    //     // yield return new WaitForSeconds(2);
-    //     // mainObject.InvokeEvent(OurEvent.EAT_START);
-    //     // yield return new WaitForSeconds(2);
-    //     // mainObject.InvokeEvent(OurEvent.EAT_STOP);
-    //     // yield return new WaitForSeconds(2);
-    //     // mainObject.InvokeEvent(OurEvent.EAT_START);
-    //     // yield return new WaitForSeconds(2);
-    //     // mainObject.InvokeEvent(OurEvent.EAT_STOP);
-    //     // yield return new WaitForSeconds(5);
-    //     // mainObject.InvokeEvent(OurEvent.MAKE_BED_START);
-    //     // yield return new WaitForSeconds(2);
-    //     // mainObject.InvokeEvent(OurEvent.MAKE_BED_STOP);
-    //     // yield return new WaitForSeconds(2);
-    //     // mainObject.InvokeEvent(OurEvent.SLEEP_STOP);
-    // }
+    IEnumerator waiter()
+    {
+        MainObject mainObject = MainObject.Get();
+        yield return new WaitForSeconds(2);
+        mainObject.InvokeEvent(OurEvent.EAT_STOP);
+        yield return new WaitForSeconds(2);
+        mainObject.InvokeEvent(OurEvent.EAT_STOP);
+        yield return new WaitForSeconds(2);
+        mainObject.InvokeEvent(OurEvent.DISHES_STOP);
+        yield return new WaitForSeconds(2);
+        mainObject.InvokeEvent(OurEvent.COOK_STOP);
+        yield return new WaitForSeconds(2);
+        mainObject.InvokeEvent(OurEvent.EAT_START);
+        yield return new WaitForSeconds(7);
+        mainObject.InvokeEvent(OurEvent.COOK_START);
+        yield return new WaitForSeconds(2);
+        mainObject.InvokeEvent(OurEvent.COOK_STOP);
+        yield return new WaitForSeconds(2);
+        mainObject.InvokeEvent(OurEvent.EAT_START);
+        yield return new WaitForSeconds(2);
+        mainObject.InvokeEvent(OurEvent.EAT_STOP);
+        yield return new WaitForSeconds(2);
+        mainObject.InvokeEvent(OurEvent.EAT_START);
+        yield return new WaitForSeconds(2);
+        mainObject.InvokeEvent(OurEvent.EAT_STOP);
+        yield return new WaitForSeconds(5);
+        mainObject.InvokeEvent(OurEvent.MAKE_BED_START);
+        yield return new WaitForSeconds(2);
+        mainObject.InvokeEvent(OurEvent.MAKE_BED_STOP);
+        yield return new WaitForSeconds(2);
+        mainObject.InvokeEvent(OurEvent.SLEEP_STOP);
+    }
 
     void listener(OurEvent whatHappened)
     {

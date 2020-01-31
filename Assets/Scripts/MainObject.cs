@@ -18,7 +18,7 @@ public class MainObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("Checking all");
+        Debug.Log("Checking all");
         locationManager.CheckAll();
     }
 
