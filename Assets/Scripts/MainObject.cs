@@ -5,13 +5,14 @@ using System;
 
 public class MainObject : MonoBehaviour
 {
-
-    public Dictionary<string, SingleMove[]> allTasks = new Dictionary<string, SingleMove[]>();
+    public static int defaultDuration = 5;
+    public Dictionary<Task, SingleMove[]> allTasks = new Dictionary<Task, SingleMove[]>();
     public LocationManager locationManager { get; set; }
     public event Action<OurEvent> onSomethingHappened;
     // Start is called before the first frame update
     void Start()
     {
+        this.InitiateAllTasks();
     }
 
     // Update is called once per frame
@@ -45,21 +46,42 @@ public class MainObject : MonoBehaviour
         }
     }
 
-    void InitiateAllTasks(){
-        allTasks.Add("DO_DISHES", new SingleMove[]{
-            new SingleMove(Utils.getPositionByName("sink"), OurEvent.DISHES_START, OurEvent.DISHES_STOP, 10)
+    public void InitiateAllTasks(){
+        allTasks.Add(Task.DO_DISHES, new SingleMove[]{
+            new SingleMove(Utils.getPositionByName("sink"), OurEvent.DISHES_START, OurEvent.DISHES_STOP, defaultDuration)
         });
 
-        allTasks.Add("MAKE_BED", new SingleMove[]{
-            new SingleMove(Utils.getPositionByName("bed"), OurEvent.MAKE_BED_START, OurEvent.MAKE_BED_STOP, 10)
+        allTasks.Add(Task.MAKE_BED, new SingleMove[]{
+            new SingleMove(Utils.getPositionByName("bed"), OurEvent.MAKE_BED_START, OurEvent.MAKE_BED_STOP, defaultDuration)
         });
 
-        allTasks.Add("SLEEP", new SingleMove[]{
-            new SingleMove(Utils.getPositionByName("bed"), OurEvent.SLEEP_START, OurEvent.SLEEP_STOP, 10)
+        allTasks.Add(Task.SLEEP, new SingleMove[]{
+            new SingleMove(Utils.getPositionByName("bed"), OurEvent.SLEEP_START, OurEvent.SLEEP_STOP, defaultDuration)
         });
 
-        // allTasks.Add("DO_LAUNDRY", new SingleMove(Utils.getPositionByName("laundry"), OurEvent.LAUNDRY_START, OurEvent.LAUNDRY_STOP, 10));
-        // allTasks.Add("EAT", new SingleMove(Utils.getPositionByName("stove"), OurEvent.EAT_START, OurEvent.EAT_STOP, 10));
-        // allTasks.Add
-}
+        allTasks.Add(Task.DO_LAUNDRY, new SingleMove[]{
+            new SingleMove(Utils.getPositionByName("laundry"), OurEvent.LAUNDRY_START, OurEvent.LAUNDRY_STOP, defaultDuration)
+        });
+
+        allTasks.Add(Task.EAT, new SingleMove[]{
+            new SingleMove(Utils.getPositionByName("stove"), OurEvent.GET_FOOD_START, OurEvent.GET_FOOD_STOP, defaultDuration),
+            new SingleMove(Utils.getPositionByName("table"), OurEvent.EAT_START, OurEvent.EAT_STOP, defaultDuration)
+        });
+
+        allTasks.Add(Task.RAISE_TOILET_SEAT, new SingleMove[]{
+            new SingleMove(Utils.getPositionByName("toilet"), OurEvent.RAISE_TOILET_SEAT, OurEvent.DO_NOTHING, defaultDuration)
+        });
+
+        allTasks.Add(Task.LOWER_TOILET_SEAT, new SingleMove[]{
+            new SingleMove(Utils.getPositionByName("toilet"), OurEvent.LOWER_TOILET_SEAT, OurEvent.DO_NOTHING, defaultDuration)
+        });
+
+        allTasks.Add(Task.GO_BATHROOM, new SingleMove[]{
+            new SingleMove(Utils.getPositionByName("toilet"), OurEvent.GO_BATHROOM_START, OurEvent.GO_BATHROOM_STOP, defaultDuration)
+        });
+
+        allTasks.Add(Task.COOK, new SingleMove[]{
+            new SingleMove(Utils.getPositionByName("stove"), OurEvent.COOK_START, OurEvent.COOK_STOP, defaultDuration)
+        });
+    }
 }

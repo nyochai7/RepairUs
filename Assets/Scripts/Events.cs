@@ -12,6 +12,8 @@ public enum OurEvent
     LAUNDRY_STOP,
     EAT_START,
     EAT_STOP,
+    GET_FOOD_START,
+    GET_FOOD_STOP,
     COOK_START,
     COOK_STOP,
     MAKE_BED_START,
@@ -19,5 +21,8 @@ public enum OurEvent
     SLEEP_START,
     SLEEP_STOP,
     SAY_TYPICAL,
-    SAY_HAPPY
+    SAY_HAPPY,
+    GO_BATHROOM_START,
+    GO_BATHROOM_STOP,
+    DO_NOTHING
 }
