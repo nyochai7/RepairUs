@@ -57,14 +57,14 @@ public class MainObject : MonoBehaviour
         });
 
         allTasks.Add(Task.MAKE_BED, new SingleMove[]{
-            new SingleMove(Utils.getPositionByName("bed"), OurEvent.MAKE_BED_START, OurEvent.MAKE_BED_STOP, defaultDuration)
+            new SingleMove(Utils.getPositionByName("Bed"), OurEvent.MAKE_BED_START, OurEvent.MAKE_BED_STOP, defaultDuration)
         });
 
         allTasks.Add(Task.SLEEP, new SingleMove[]{
-            new SingleMove(Utils.getPositionByName("bed"), OurEvent.SLEEP_START, OurEvent.SLEEP_STOP, defaultDuration)
+            new SingleMove(Utils.getPositionByName("Bed"), OurEvent.SLEEP_START, OurEvent.SLEEP_STOP, defaultDuration)
         });
 
-        allTasks.Add(Task.DO_LAUNDRY, new SingleMove[]{
+        /*allTasks.Add(Task.DO_LAUNDRY, new SingleMove[]{
             new SingleMove(Utils.getPositionByName("laundry"), OurEvent.LAUNDRY_START, OurEvent.LAUNDRY_STOP, defaultDuration)
         });
 
@@ -87,6 +87,6 @@ public class MainObject : MonoBehaviour
 
         allTasks.Add(Task.COOK, new SingleMove[]{
             new SingleMove(Utils.getPositionByName("stove"), OurEvent.COOK_START, OurEvent.COOK_STOP, defaultDuration)
-        });
+        });*/
     }
 }
