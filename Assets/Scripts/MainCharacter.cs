@@ -43,8 +43,8 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
 
         if (Input.GetMouseButton(0))
         {
-            //Vector3 w = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            //GetComponent<NavMeshAgent2D>().destination = w;
+            Vector3 w = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            GetComponent<NavMeshAgent2D>().destination = w;
         }
     }
 
