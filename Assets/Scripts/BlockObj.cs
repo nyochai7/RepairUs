@@ -6,6 +6,7 @@ public class BlockObj : MonoBehaviour
 {
     public BlockList myList;
     public bool IsDragged { get; set; }
+    public Task task { get; set; }
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +17,11 @@ public class BlockObj : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (IsDragged && !Input.GetMouseButton(0))
+        {
+            OnMouseUp();
+        }
+
         if (IsDragged)
         {
             Vector3 w = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -30,12 +36,17 @@ public class BlockObj : MonoBehaviour
 
             if (possiblePos != null)
             {
-                this.transform.position = new Vector3(possiblePos.Value.x + 
-                    GetComponent<SpriteRenderer>().size.x / 2.0f,
-                    possiblePos.Value.y + GetComponent<SpriteRenderer>().size.y / 2.0f,
-                    0);
+                this.transform.position = centerPos(possiblePos.Value);
             }
         }
+    }
+
+    public Vector3 centerPos(Vector3 orig)
+    {
+        return new Vector3(orig.x +
+                    GetComponent<SpriteRenderer>().size.x / 2.0f,
+                    orig.y + GetComponent<SpriteRenderer>().size.y / 2.0f,
+                    0);
     }
 
     Vector3? findLocationInAllLists(ref BlockList outList)
@@ -73,11 +84,7 @@ public class BlockObj : MonoBehaviour
 
         if (possiblePos != null)
         {
-
-            this.transform.position = new Vector3(possiblePos.Value.x +
-                GetComponent<SpriteRenderer>().size.x / 2.0f,
-                possiblePos.Value.y + GetComponent<SpriteRenderer>().size.y / 2.0f,
-                0);
+            this.transform.position = centerPos(possiblePos.Value);
 
             int? index = selectedList.PositionToIndex(this.transform.position);
 

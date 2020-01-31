@@ -12,6 +12,9 @@ public class MainObject : MonoBehaviour
 
     public List<BlockList> AllBlockLists = new List<BlockList>();
 
+    [SerializeField]
+    public GameObject blockObjPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
