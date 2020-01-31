@@ -25,8 +25,7 @@ public class BlockObj : MonoBehaviour
 
             Vector3? possiblePos = null;
             BlockList selectedList = null;
-
-            Debug.Log("Dragging to " + w.ToString());
+            
             possiblePos = findLocationInAllLists(ref selectedList);
 
             if (possiblePos != null)
@@ -46,7 +45,6 @@ public class BlockObj : MonoBehaviour
             Vector3? possiblePos = list.GetPossibleLocation(this.transform.position);
             if (possiblePos != null)
             {
-                //Debug.Log("PossiblePos=" + possiblePos.ToString());
                 outList = list;
                 return possiblePos;
             }
@@ -57,7 +55,6 @@ public class BlockObj : MonoBehaviour
 
     void OnMouseDown()
     {
-        Debug.Log("IsDragged=true!");
         this.IsDragged = true;
         if (this.myList != null)
         {
@@ -72,13 +69,10 @@ public class BlockObj : MonoBehaviour
 
         Vector3? possiblePos = null;
         BlockList selectedList = null;
-        Debug.Log("Releasing...");
         possiblePos = findLocationInAllLists(ref selectedList);
 
         if (possiblePos != null)
         {
-            
-            Debug.Log("adding");
 
             this.transform.position = new Vector3(possiblePos.Value.x +
                 GetComponent<SpriteRenderer>().size.x / 2.0f,
@@ -94,11 +88,10 @@ public class BlockObj : MonoBehaviour
             myList = selectedList;
         } else
         {
-            Debug.Log("Not adding");
             this.myList = null;
 
             // Goodbye Yellow BlockObj
-            // Destroy(this.gameObject);
+            Destroy(this.gameObject);
         }
     }
 }
