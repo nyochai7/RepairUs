@@ -82,7 +82,7 @@ public class MainObject : MonoBehaviour
 
         //Sleep
         allTasks.Add(Task.SLEEP, new GeneralTask[]{
-            new SingleMove(Utils.getPositionByName("Bed"), OurEvent.SLEEP_START, OurEvent.SLEEP_STOP, defaultDuration)
+            new SingleMove(Utils.getPositionByName("Bed"), OurEvent.SLEEP_START, OurEvent.SLEEP_STOP, 0)
         });
 
         //Laundry

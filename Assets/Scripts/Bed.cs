@@ -36,6 +36,8 @@ public class Bed : MonoBehaviour
 
             case OurEvent.SLEEP_STOP:
                 this.isBedMade = false;
+                Debug.Log("QUITTING!");
+                Application.Quit();
                 break;
             default:
                 return;
