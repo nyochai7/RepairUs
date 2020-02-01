@@ -131,8 +131,12 @@ public class BlockList : MonoBehaviour
         Debug.Log("task index = " + this.CurrentRunningTaskIndex);
         if (this.CurrentRunningTaskIndex > 0){
             this.CurrentRunningTaskIndex--;
-            Debug.Log("Next Task is " + this.blocks[this.CurrentRunningTaskIndex].task + ", index=" + this.CurrentRunningTaskIndex);
-            return this.blocks[this.CurrentRunningTaskIndex].task;
+            BlockObj nextTask = this.blocks[this.CurrentRunningTaskIndex];
+            if (nextTask != null){
+                Debug.Log("Next Task is " + nextTask.task + ", index=" + this.CurrentRunningTaskIndex);
+                return this.blocks[this.CurrentRunningTaskIndex].task;
+            }
+            return null;
         } else {
             return Task.SLEEP;
         }
