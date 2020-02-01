@@ -18,7 +18,7 @@ public class LaundryBasket : MonoBehaviour
     {
         
     }
-    void listener(OurEvent whatHappened)
+    void listener(OurEvent whatHappened, GameObject invoker)
     {
         switch (whatHappened)
         {

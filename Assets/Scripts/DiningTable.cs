@@ -24,7 +24,7 @@ public class DiningTable : MonoBehaviour
         return GameObject.Find("table").GetComponent<DiningTable>().isClean;
     }
 
-    void listener(OurEvent whatHappened)
+    void listener(OurEvent whatHappened, GameObject invoker)
     {
         switch (whatHappened)
         {

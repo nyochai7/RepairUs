@@ -8,7 +8,7 @@ public class MainObject : MonoBehaviour
     public static int defaultDuration = 2;
     public Dictionary<Task, GeneralTask[]> allTasks = new Dictionary<Task, GeneralTask[]>();
     public LocationManager locationManager { get; set; }
-    public event Action<OurEvent> onSomethingHappened;
+    public event Action<OurEvent, GameObject> onSomethingHappened;
 
     public List<BlockList> AllBlockLists = new List<BlockList>();
 
@@ -46,11 +46,11 @@ public class MainObject : MonoBehaviour
         return mainObject;
     }
 
-    public void InvokeEvent(OurEvent? eventToInvoke)
+    public void InvokeEvent(OurEvent? eventToInvoke, GameObject invoker)
     {
         if (this.onSomethingHappened != null && eventToInvoke != null)
         {
-            this.onSomethingHappened(eventToInvoke.Value);
+            this.onSomethingHappened(eventToInvoke.Value, invoker);
         }
     }
 

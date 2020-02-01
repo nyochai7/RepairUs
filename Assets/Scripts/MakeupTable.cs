@@ -24,7 +24,7 @@ public class MakeupTable : MonoBehaviour
         return GameObject.Find("makeup_table").GetComponent<MakeupTable>().isClean;
     }
 
-    void listener(OurEvent whatHappened)
+    void listener(OurEvent whatHappened, GameObject invoker)
     {
         switch (whatHappened)
         {

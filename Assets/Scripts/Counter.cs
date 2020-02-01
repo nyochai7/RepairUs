@@ -18,7 +18,7 @@ public class Counter : MonoBehaviour
         
     }
 
-    void listener(OurEvent whatHappened)
+    void listener(OurEvent whatHappened, GameObject invoker)
     {
         switch (whatHappened)
         {
@@ -30,7 +30,7 @@ public class Counter : MonoBehaviour
                 break;
 
             case OurEvent.EAT_COUNTER_FOOD:
-                MainObject.Get().InvokeEvent(OurEvent.SAY_HAPPY);
+                MainObject.Get().InvokeEvent(OurEvent.SAY_HAPPY, invoker);
                 if(this.numFood != 0) //if this is 0 some other action needs to happen (eat cornflakes?)
                 {
                     this.numFood--;

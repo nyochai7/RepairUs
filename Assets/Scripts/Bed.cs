@@ -23,7 +23,7 @@ public class Bed : MonoBehaviour
         return GameObject.Find("Bed").GetComponent<Bed>().isBedMade;
     }
 
-    void listener(OurEvent whatHappened)
+    void listener(OurEvent whatHappened, GameObject invoker)
     {
         switch (whatHappened)
         {

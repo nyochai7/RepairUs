@@ -24,7 +24,7 @@ public class Shoes : MonoBehaviour
         return GameObject.Find("shoes").GetComponent<Shoes>().isClean;
     }
 
-    void listener(OurEvent whatHappened)
+    void listener(OurEvent whatHappened, GameObject invoker)
     {
         switch (whatHappened)
         {

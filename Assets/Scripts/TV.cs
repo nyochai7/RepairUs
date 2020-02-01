@@ -24,7 +24,7 @@ public class TV : MonoBehaviour
         return GameObject.Find("tv").GetComponent<TV>().isInUse;
     }
 
-    void listener(OurEvent whatHappened)
+    void listener(OurEvent whatHappened, GameObject invoker)
     {
         switch (whatHappened)
         {

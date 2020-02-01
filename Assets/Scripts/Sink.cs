@@ -21,12 +21,12 @@ public class Sink : MonoBehaviour
     {
         MainObject mainObject = MainObject.Get();
         yield return new WaitForSeconds(2);
-        mainObject.InvokeEvent(OurEvent.LAUNDRY_START);
+        mainObject.InvokeEvent(OurEvent.LAUNDRY_START, null);
         yield return new WaitForSeconds(8);
-        mainObject.InvokeEvent(OurEvent.LAUNDRY_STOP);
+        mainObject.InvokeEvent(OurEvent.LAUNDRY_STOP, null);
     }
 
-    void listener(OurEvent whatHappened)
+    void listener(OurEvent whatHappened, GameObject invoker)
     {
         switch(whatHappened)
         {
