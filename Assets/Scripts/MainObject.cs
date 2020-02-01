@@ -6,7 +6,7 @@ using TMPro;
 
 public class MainObject : MonoBehaviour
 {
-    public static int defaultDuration = 2;
+    public static int defaultDuration = 3;
     public Dictionary<Task, GeneralTask[]> allTasks = new Dictionary<Task, GeneralTask[]>();
     public LocationManager locationManager { get; set; }
     public event Action<OurEvent, GameObject> onSomethingHappened;
@@ -62,15 +62,20 @@ public class MainObject : MonoBehaviour
         Debug.Log("Happines1:" + char1.Happiness.ToString());
         Debug.Log("Happines2:" + char2.Happiness.ToString());
 
-        if (char1.Happiness > 80 && char2.Happiness > 80)
+        if (char1.Happiness > 90 && char2.Happiness > 90)
         {
             title.SetText("Good job!");
-            desc.SetText("deeeeesc");
+            desc.SetText("They're in love!");
+        }
+        else if (char1.Happiness > 70 && char2.Happiness > 70)
+        {
+            title.SetText("Not bad...");
+            desc.SetText("They're not super happy... But it's managable. You can do better!");
         }
         else
         {
-            title.SetText("Not good enough");
-            desc.SetText("You need to put more effore in this relationship buddy");
+            title.SetText("Ouch...");
+            desc.SetText("You need to put more effort in this relationship buddy");
         } // TODO
 
     }
