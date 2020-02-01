@@ -40,6 +40,7 @@ public class Shower : MonoBehaviour
         if (this.isInUse)
         {
             toLoad = "Shower_Occupied";
+            this.GetComponent<SpriteRenderer>().sortingOrder = 1;
         }
         else
         {
@@ -47,7 +48,7 @@ public class Shower : MonoBehaviour
         }
         Sprite bedSprite = Resources.Load<Sprite>("ScottsSprites/" + toLoad);
         this.GetComponent<SpriteRenderer>().sprite = bedSprite;
-        this.GetComponent<SpriteRenderer>().sortingOrder = 1;
+        this.GetComponent<SpriteRenderer>().sortingOrder = 15;
     }
 
     public static bool IsTaken(){

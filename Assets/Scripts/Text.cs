@@ -54,6 +54,8 @@ public class Text : MonoBehaviour
             }
 
             Destroy(gameObject.transform.parent.gameObject);
+
+            MainObject.Get().showedEndResult = false;
            
         }
     }

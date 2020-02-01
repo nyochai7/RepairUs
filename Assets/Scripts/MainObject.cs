@@ -19,6 +19,8 @@ public class MainObject : MonoBehaviour
     [SerializeField]
     public GameObject resultDialogPrefab;
 
+    public bool showedEndResult = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +53,11 @@ public class MainObject : MonoBehaviour
 
     void ShowResultDialog()
     {
+        if (showedEndResult)
+        {
+            return;
+        }
+
         GameObject obj = Instantiate(resultDialogPrefab);
         TextMeshPro title = obj.transform.Find("Title").GetComponent<TextMeshPro>();
         TextMeshPro desc = obj.transform.Find("Desc").GetComponent<TextMeshPro>();
@@ -78,6 +85,8 @@ public class MainObject : MonoBehaviour
             desc.SetText("You need to put more effort in this relationship buddy");
         } // TODO
 
+
+        showedEndResult = true;
     }
 
     void Awake()
