@@ -50,8 +50,7 @@ public class BlockList : MonoBehaviour
     {
         MainObject.Get().AllBlockLists.Add(this);
         blocks = new BlockObj[MAX_BLOCKS];
-        this.CurrentRunningTaskIndex = blocks.Length;
-
+       
         /*blocks[0] = Instantiate(MainObject.Get().blockObjPrefab,
                    Vector3.zero,
                    Quaternion.identity).GetComponent<BlockObj>();
@@ -73,6 +72,13 @@ public class BlockList : MonoBehaviour
                 block.ResetPosByIndex();
             }
         }
+
+        StartRunning();
+    }
+
+    public void StartRunning()
+    {
+        this.CurrentRunningTaskIndex = blocks.Length;
     }
 
     BlockObj CreateUndeletableBlock(Task task)
@@ -106,6 +112,11 @@ public class BlockList : MonoBehaviour
         //Debug.Log("bounds" + this.GetComponent<SpriteRenderer>().bounds);
         //Debug.Log("w" + this.GetComponent<SpriteRenderer>().bounds.size.x);
         //Debug.Log("h" + this.GetComponent<SpriteRenderer>().bounds.size.y);
+    }
+
+    public bool IsFinished()
+    {
+        return currentRunningTaskIndex <= 0;
     }
 
     public Task? GetNextTask(){

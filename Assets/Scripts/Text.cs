@@ -10,6 +10,7 @@ public class Text : MonoBehaviour
     Color color = new Color(0.1f, 0.7f, 0.2f);
     public bool isStart;
     public bool isQuit;
+    public bool isRestart;
     void Start()
     {
         gameObject.GetComponent<TextMeshPro>().color = Color.white;
@@ -40,6 +41,18 @@ public class Text : MonoBehaviour
         if (isQuit)
         {
             Application.Quit();
+        }
+        if (isRestart)
+        {
+
+            MainObject.Get().InvokeEvent(OurEvent.RESET_ALL, null);
+            foreach (BlockList list in MainObject.Get().AllBlockLists)
+            {
+                list.StartRunning();
+            }
+
+            Destroy(gameObject.transform.parent.gameObject);
+           
         }
     }
 
