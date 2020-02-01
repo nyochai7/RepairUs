@@ -166,7 +166,7 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
             else if (whatHappened == OurEvent.SAY_HAPPY)
             {
                 this.Speak(RandomString(HAPPY_WORDS));
-                this.Happiness += 4;
+                this.Happiness += 10;
             }
             else if (whatHappened == OurEvent.SAY_TYPICAL)
             {
