@@ -8,6 +8,20 @@ public class BlockObj : MonoBehaviour
     public bool IsDragged { get; set; }
     public Task task { get; set; }
 
+    private bool isUndeletable = false;
+    public bool IsUndeletable
+    {
+        get
+        {
+            return this.isUndeletable;
+        }
+        set
+        {
+            this.isUndeletable = value;
+            GetComponent<SpriteRenderer>().color = value ? Color.red : Color.green;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,48 +40,51 @@ public class BlockObj : MonoBehaviour
         {
             Vector3 w = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             w = new Vector3(w.x, w.y, 0);
-            Debug.Log(this.transform.position);
             this.transform.position = w;
 
             Vector3? possiblePos = null;
             BlockList selectedList = null;
-            
+
             possiblePos = findLocationInAllLists(ref selectedList);
 
-            if (possiblePos != null)
+            if (possiblePos != null && (!IsUndeletable || selectedList == myList))
             {
-                this.transform.position = centerPos(possiblePos.Value);
+                this.transform.position = possiblePos.Value;
             }
         }
     }
 
-    public Vector3 centerPos(Vector3 orig)
+    /*public Vector3 centerPos(Vector3 orig)
     {
         return new Vector3(orig.x +
                     GetComponent<SpriteRenderer>().size.x / 2.0f,
                     orig.y + GetComponent<SpriteRenderer>().size.y / 2.0f,
                     0);
-    }
+    }*/
 
     Vector3? findLocationInAllLists(ref BlockList outList)
     {
+        Debug.Log("findLocationInAllLists(" + this.transform.position);
         foreach (BlockList list in MainObject.Get().AllBlockLists)
         {
             Vector3? possiblePos = list.GetPossibleLocation(this.transform.position);
             if (possiblePos != null)
             {
                 outList = list;
+                Debug.Log("Looks good: " + possiblePos.ToString());
                 return possiblePos;
             }
         }
 
+
+        Debug.Log("Nope");
         return null;
     }
 
     void OnMouseDown()
     {
         this.IsDragged = true;
-        if (this.myList != null)
+        if (this.myList != null && !isUndeletable)
         {
             this.myList.RemoveBlock(this);
             this.myList = null;
@@ -82,23 +99,39 @@ public class BlockObj : MonoBehaviour
         BlockList selectedList = null;
         possiblePos = findLocationInAllLists(ref selectedList);
 
-        if (possiblePos != null)
+        if (possiblePos != null && (!IsUndeletable || selectedList == myList))
         {
-            this.transform.position = centerPos(possiblePos.Value);
+            Debug.Log("A");
+            this.transform.position = possiblePos.Value;
 
             int? index = selectedList.PositionToIndex(this.transform.position);
 
-            Debug.Log("Index=" + index.ToString());
+            selectedList.RemoveBlock(this);
             // We know index is not null because we just checked location is valid using findLocationInAllLists
-            selectedList.blocks[index.Value] = this;
+            selectedList.SetBlock(index.Value, this);
 
             myList = selectedList;
-        } else
-        {
-            this.myList = null;
-
-            // Goodbye Yellow BlockObj
-            Destroy(this.gameObject);
         }
+        else
+        {
+            Debug.Log("B" + possiblePos.ToString());
+            if (IsUndeletable)
+            {
+                ResetPosByIndex();
+            }
+            else
+            {
+                this.myList = null;
+
+                // Goodbye Yellow BlockObj
+                Destroy(this.gameObject);
+            }
+        }
+    }
+
+    public void ResetPosByIndex()
+    {
+        //this.transform.position = centerPos(myList.IndexToPosition(myList.IndexOf(this)));
+        this.transform.position = myList.IndexToPosition(myList.IndexOf(this));
     }
 }

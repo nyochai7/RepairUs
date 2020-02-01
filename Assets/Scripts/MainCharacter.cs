@@ -16,8 +16,36 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
     [SerializeField]
     DynamicFace face;
 
+    CharacterProps charProps;
+
+    private int happiness = 50;
+
+    public int Happiness
+    {
+        get
+        {
+            return happiness;
+        }
+
+        set
+        {
+            happiness = value;
+            if (happiness < 0)
+            {
+                happiness = 0;
+            }
+            if (happiness > 99)
+            {
+                happiness = 99;
+            }
+            face.CurrentSpriteIndex = happiness / 20;
+        }
+    }
+
     public void onMonitorAlertFunc(string name, ILocationMonitorable otherObj)
     {
+        charProps.onMonitorAlertFunc(name, otherObj);
+
         if (name == "sink")
         {
             GetComponent<SpriteRenderer>().color = Color.green;
@@ -43,21 +71,26 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
     // Update is called once per frame
     void Update()
     {
-        if (this.currTask != null && this.currMove != null){
+        if (this.currTask != null && this.currMove != null)
+        {
             MainObject mainObject = MainObject.Get();
-            
-            if (this.currMove is SingleMove){
+
+            if (this.currMove is SingleMove)
+            {
                 SingleMove currSingleMove = (SingleMove)this.currMove;
 
                 if (Vector3.Distance(this.gameObject.transform.position, currSingleMove.goTo) < radiusToObj)
                 {
-                    if (!this.sentStartForMove){
+                    if (!this.sentStartForMove)
+                    {
                         this.sentStartForMove = true;
                         mainObject.InvokeEvent(currSingleMove.startEvent);
-                    }                 
+                    }
 
-                    if (new System.DateTimeOffset(System.DateTime.UtcNow).ToUnixTimeSeconds() - this.timeStartedCurrTask > currSingleMove.duration){
-                        if (!this.sentStopForMove){
+                    if (new System.DateTimeOffset(System.DateTime.UtcNow).ToUnixTimeSeconds() - this.timeStartedCurrTask > currSingleMove.duration)
+                    {
+                        if (!this.sentStopForMove)
+                        {
                             this.sentStopForMove = true;
                             mainObject.InvokeEvent(currSingleMove.stopEvent);
                             this.GetNextMove();
@@ -65,25 +98,36 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
                     }
 
 
-                } 
-            } else if (this.currMove is ConditionalTask){
+                }
+            }
+            else if (this.currMove is ConditionalTask)
+            {
                 ConditionalTask currConditionalTask = (ConditionalTask)this.currMove;
-                if (currConditionalTask.conditionFunc()){
+                if (currConditionalTask.conditionFunc())
+                {
                     Debug.Log("Condition was true");
                     mainObject.InvokeEvent(currConditionalTask.trueEvent);
-                    if (currConditionalTask.trueTask != null){
+                    if (currConditionalTask.trueTask != null)
+                    {
                         this.DoTask(currConditionalTask.trueTask.Value);
-                    } else {
+                    }
+                    else
+                    {
                         this.currTask = null;
                         this.currMove = null;
                     }
-                    
-                } else {
-                    
+
+                }
+                else
+                {
+
                     mainObject.InvokeEvent(currConditionalTask.falseEvent);
-                    if (currConditionalTask.falseTask!= null){
+                    if (currConditionalTask.falseTask != null)
+                    {
                         this.DoTask(currConditionalTask.falseTask.Value);
-                    } else {
+                    }
+                    else
+                    {
                         this.currTask = null;
                         this.currMove = null;
                     }
@@ -101,7 +145,8 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
         }
     }
 
-    public void DoTask(Task task){
+    public void DoTask(Task task)
+    {
 
         this.timeStartedCurrTask = new System.DateTimeOffset(System.DateTime.UtcNow).ToUnixTimeSeconds();
         MainObject mainObject = MainObject.Get();
@@ -109,19 +154,24 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
         this.currTask = mainObject.allTasks[task];
         this.currMove = this.currTask[0];
         this.moveIndex = 0;
-        if (this.currMove is SingleMove){
+        if (this.currMove is SingleMove)
+        {
             SingleMove currSingleMove = (SingleMove)this.currMove;
             GetComponent<NavMeshAgent2D>().destination = currSingleMove.goTo;
         }
     }
 
-    void GetNextMove(){
-        if (this.moveIndex < this.currTask.Length - 1){
+    void GetNextMove()
+    {
+        if (this.moveIndex < this.currTask.Length - 1)
+        {
             this.sentStartForMove = false;
             this.sentStopForMove = false;
             this.moveIndex++;
             this.currMove = this.currTask[moveIndex];
-        } else {
+        }
+        else
+        {
             this.sentStartForMove = false;
             this.sentStopForMove = false;
             this.currMove = null;
