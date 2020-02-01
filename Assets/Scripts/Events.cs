@@ -63,5 +63,7 @@ public enum OurEvent
     SHOWER_IS_TAKEN,
     FRIDGE_START,
     FRIDGE_STOP,
-    DO_NOTHING
+    DO_NOTHING,
+
+    RESET_ALL
 }

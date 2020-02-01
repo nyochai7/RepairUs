@@ -1,7 +1,8 @@
-﻿﻿using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using TMPro;
 
 public class MainObject : MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class MainObject : MonoBehaviour
     [SerializeField]
     public GameObject blockObjPrefab;
 
+    [SerializeField]
+    public GameObject resultDialogPrefab;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,10 +29,50 @@ public class MainObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (locationManager != null){
+        if (locationManager != null)
+        {
             locationManager.CheckAll();
         }
-        
+
+        bool allListsFinished = true;
+        foreach (BlockList list in AllBlockLists)
+        {
+            if (!list.IsFinished())
+            {
+                allListsFinished = false;
+            }
+        }
+
+        if (allListsFinished)
+        {
+            ShowResultDialog();
+        }
+    }
+
+    void ShowResultDialog()
+    {
+        GameObject obj = Instantiate(resultDialogPrefab);
+        TextMeshPro title = obj.transform.Find("Title").GetComponent<TextMeshPro>();
+        TextMeshPro desc = obj.transform.Find("Desc").GetComponent<TextMeshPro>();
+
+        UnityEngine.Object[] chars = GameObject.FindObjectsOfType(typeof(MainCharacter));
+        MainCharacter char1 = (MainCharacter)chars[0];
+        MainCharacter char2 = (MainCharacter)chars[1];
+
+        Debug.Log("Happines1:" + char1.Happiness.ToString());
+        Debug.Log("Happines2:" + char2.Happiness.ToString());
+
+        if (char1.Happiness > 80 && char2.Happiness > 80)
+        {
+            title.SetText("Good job!");
+            desc.SetText("deeeeesc");
+        }
+        else
+        {
+            title.SetText("Not good enough");
+            desc.SetText("You need to put more effore in this relationship buddy");
+        } // TODO
+
     }
 
     void Awake()
@@ -54,7 +99,8 @@ public class MainObject : MonoBehaviour
         }
     }
 
-    public void InitiateAllTasks(){
+    public void InitiateAllTasks()
+    {
         //Dishes
         allTasks.Add(Task.DO_DISHES, new GeneralTask[]{
             new SingleMove(Utils.getPositionByName("sink"), OurEvent.GO_TO_SINK, OurEvent.DO_NOTHING, defaultDuration),
