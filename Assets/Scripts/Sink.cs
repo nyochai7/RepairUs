@@ -7,6 +7,7 @@ public class Sink : MonoBehaviour
     public int numDishes = 0;
     void Start()
     {
+        this.numDishes = 1;
         MainObject mainObject = MainObject.Get();
         mainObject.onSomethingHappened += this.listener;
         //StartCoroutine(waiter());
@@ -60,16 +61,16 @@ public class Sink : MonoBehaviour
         switch(this.numDishes)
         {
             case 0:
-                toLoad = "sink0";
+                toLoad = "KitchenSink_Clean";
                 break;
             case 1:
-                toLoad = "sink1";
+                toLoad = "KitchenSink_Dirty1";
                 break;
             default:
-                toLoad = "sink2";
+                toLoad = "KitchenSink_Dirty2";
                 break;
         }
-        Sprite sinkSprite = Resources.Load<Sprite>("Sprites/" + toLoad);
+        Sprite sinkSprite = Resources.Load<Sprite>("ScottsSprites/" + toLoad);
         this.GetComponent<SpriteRenderer>().sprite = sinkSprite;
         this.GetComponent<SpriteRenderer>().sortingOrder = 1;
     }

@@ -40,13 +40,13 @@ public class Flower : MonoBehaviour
         string toLoad;
         if (this.isClean)
         {
-            toLoad = "flowers0";
+            toLoad = "Plant_Tomatoes_Live";
         }
         else
         {
-            toLoad = "flowers1";
+            toLoad = "Plant_Tomatoes_Dry";
         }
-        Sprite sprite = Resources.Load<Sprite>("Sprites/" + toLoad);
+        Sprite sprite = Resources.Load<Sprite>("ScottsSprites/" + toLoad);
         this.GetComponent<SpriteRenderer>().sprite = sprite;
         this.GetComponent<SpriteRenderer>().sortingOrder = 1;
     }

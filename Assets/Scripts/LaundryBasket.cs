@@ -33,10 +33,14 @@ public class LaundryBasket : MonoBehaviour
         }
         if (!this.hasClothes)
         {
-            Sprite basketSprite = Resources.Load<Sprite>("Sprites/laundry_basket0");
+            Sprite basketSprite = Resources.Load<Sprite>("");
             this.GetComponent<SpriteRenderer>().sprite = basketSprite;
             this.GetComponent<SpriteRenderer>().sortingOrder = 1;
-        } 
+        } else {
+            Sprite basketSprite = Resources.Load<Sprite>("ScottsSprites/ClothesPile");
+            this.GetComponent<SpriteRenderer>().sprite = basketSprite;
+            this.GetComponent<SpriteRenderer>().sortingOrder = 1;
+        }
     }
 
     public static bool HasClothes(){

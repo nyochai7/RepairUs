@@ -1,4 +1,4 @@
-﻿﻿﻿using System.Collections;
+﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -58,7 +58,7 @@ public class MainObject : MonoBehaviour
         //Dishes
         allTasks.Add(Task.DO_DISHES, new GeneralTask[]{
             new SingleMove(Utils.getPositionByName("sink"), OurEvent.GO_TO_SINK, OurEvent.DO_NOTHING, defaultDuration),
-            new ConditionalTask(Sink.CheckSink, Task.WASH_DISHES, null, OurEvent.MAKE_BED_START, null)
+            new ConditionalTask(Sink.CheckSink, Task.WASH_DISHES, null, null, null)
         });
 
         allTasks.Add(Task.WASH_DISHES, new GeneralTask[]{
@@ -92,7 +92,7 @@ public class MainObject : MonoBehaviour
         });
 
         allTasks.Add(Task.LAUNDER, new GeneralTask[]{
-            new SingleMove(Utils.getPositionByName("laundry_machine"), OurEvent.LAUNDRY_START, OurEvent.LAUNDRY_STOP, defaultDuration)
+            new SingleMove(Utils.getPositionByName("laundry_machine"), OurEvent.LAUNDRY_START, OurEvent.LAUNDRY_STOP, 10)
         });
 
         //Eat
@@ -149,7 +149,7 @@ public class MainObject : MonoBehaviour
         });
         // Water Plant
         allTasks.Add(Task.WATER_PLANT, new GeneralTask[]{
-            new SingleMove(Utils.getPositionByName("flowers"), OurEvent.WATER_PLANT_START, OurEvent.WATER_PLANT_STOP, defaultDuration)
+            new SingleMove(Utils.getPositionByName("plant"), OurEvent.WATER_PLANT_START, OurEvent.WATER_PLANT_STOP, defaultDuration)
         });
 
         // Clean Shoes

@@ -45,13 +45,13 @@ public class Toilet : MonoBehaviour
         string toLoad;
         if (this.isUp)
         {
-            toLoad = "toilet1";
+            toLoad = "Toilet_Up";
         }
         else
         {
-            toLoad = "toilet0";
+            toLoad = "Toilet_Seat";
         }
-        Sprite bedSprite = Resources.Load<Sprite>("Sprites/" + toLoad);
+        Sprite bedSprite = Resources.Load<Sprite>("ScottsSprites/" + toLoad);
         this.GetComponent<SpriteRenderer>().sprite = bedSprite;
         this.GetComponent<SpriteRenderer>().sortingOrder = 1;
     }

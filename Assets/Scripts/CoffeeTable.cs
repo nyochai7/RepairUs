@@ -29,6 +29,7 @@ public class CoffeeTable : MonoBehaviour
         switch (whatHappened)
         {
             case OurEvent.CLEAN_COFFEE_TABLE_START:
+                this.isClean = true;
                 GetComponent<AudioSource>().Play();
                 break;
 
@@ -42,13 +43,13 @@ public class CoffeeTable : MonoBehaviour
         string toLoad;
         if (this.isClean)
         {
-            toLoad = "coffee_table0";
+            toLoad = "CoffeeTable_Clean";
         }
         else
         {
-            toLoad = "coffee_table1";
+            toLoad = "CoffeeTable_Messy";
         }
-        Sprite sprite = Resources.Load<Sprite>("Sprites/" + toLoad);
+        Sprite sprite = Resources.Load<Sprite>("ScottsSprites/" + toLoad);
         this.GetComponent<SpriteRenderer>().sprite = sprite;
         this.GetComponent<SpriteRenderer>().sortingOrder = 1;
     }

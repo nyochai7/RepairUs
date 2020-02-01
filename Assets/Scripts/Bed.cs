@@ -45,11 +45,11 @@ public class Bed : MonoBehaviour
         string toLoad;
         if (this.isBedMade)
         {
-            toLoad = "Bed_Unmade";
+            toLoad = "Bed_Made";
         }
         else
         {
-            toLoad = "Bed_Made";
+            toLoad = "Bed_Unmade";
         }
         Sprite bedSprite = Resources.Load<Sprite>("ScottsSprites/" + toLoad);
         this.GetComponent<SpriteRenderer>().sprite = bedSprite;
