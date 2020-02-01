@@ -54,6 +54,8 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
     // Update is called once per frame
     void Update()
     {
+        Happiness++;
+
         if (this.currTask != null && this.currMove != null){
             MainObject mainObject = MainObject.Get();
             

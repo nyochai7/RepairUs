@@ -30,7 +30,7 @@ public class CharacterProps : MonoBehaviour, ILocationMonitorable
     {
         if (name == "sink")
         {
-            mc.GetComponent<SpriteRenderer>().color = Color.green;
+            //GetComponent<SpriteRenderer>().color = Color.green;
         }
         if (name == "bed")
         {

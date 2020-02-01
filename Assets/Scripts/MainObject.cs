@@ -24,8 +24,10 @@ public class MainObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Checking all");
-        locationManager.CheckAll();
+        if (locationManager != null)
+        {
+            locationManager.CheckAll();
+        }
     }
 
     void Awake()
@@ -52,7 +54,8 @@ public class MainObject : MonoBehaviour
         }
     }
 
-    public void InitiateAllTasks(){
+    public void InitiateAllTasks()
+    {
         allTasks.Add(Task.DO_DISHES, new GeneralTask[]{
             new SingleMove(Utils.getPositionByName("sink"), OurEvent.GO_TO_SINK, OurEvent.DO_NOTHING, defaultDuration),
             new ConditionalTask(Sink.CheckSink, Task.WASH_DISHES, null, OurEvent.MAKE_BED_START, null)

@@ -49,31 +49,35 @@ public class BlockObj : MonoBehaviour
 
             if (possiblePos != null && (!IsUndeletable || selectedList == myList))
             {
-                this.transform.position = centerPos(possiblePos.Value);
+                this.transform.position = possiblePos.Value;
             }
         }
     }
 
-    public Vector3 centerPos(Vector3 orig)
+    /*public Vector3 centerPos(Vector3 orig)
     {
         return new Vector3(orig.x +
                     GetComponent<SpriteRenderer>().size.x / 2.0f,
                     orig.y + GetComponent<SpriteRenderer>().size.y / 2.0f,
                     0);
-    }
+    }*/
 
     Vector3? findLocationInAllLists(ref BlockList outList)
     {
+        Debug.Log("findLocationInAllLists(" + this.transform.position);
         foreach (BlockList list in MainObject.Get().AllBlockLists)
         {
             Vector3? possiblePos = list.GetPossibleLocation(this.transform.position);
             if (possiblePos != null)
             {
                 outList = list;
+                Debug.Log("Looks good: " + possiblePos.ToString());
                 return possiblePos;
             }
         }
 
+
+        Debug.Log("Nope");
         return null;
     }
 
@@ -97,17 +101,20 @@ public class BlockObj : MonoBehaviour
 
         if (possiblePos != null && (!IsUndeletable || selectedList == myList))
         {
-            this.transform.position = centerPos(possiblePos.Value);
+            Debug.Log("A");
+            this.transform.position = possiblePos.Value;
 
             int? index = selectedList.PositionToIndex(this.transform.position);
 
+            selectedList.RemoveBlock(this);
             // We know index is not null because we just checked location is valid using findLocationInAllLists
-            selectedList.blocks[index.Value] = this;
+            selectedList.SetBlock(index.Value, this);
 
             myList = selectedList;
         }
         else
         {
+            Debug.Log("B" + possiblePos.ToString());
             if (IsUndeletable)
             {
                 ResetPosByIndex();
@@ -124,6 +131,7 @@ public class BlockObj : MonoBehaviour
 
     public void ResetPosByIndex()
     {
-        this.transform.position = centerPos(myList.IndexToPosition(myList.IndexOf(this)));
+        //this.transform.position = centerPos(myList.IndexToPosition(myList.IndexOf(this)));
+        this.transform.position = myList.IndexToPosition(myList.IndexOf(this));
     }
 }
