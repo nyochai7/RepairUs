@@ -24,7 +24,7 @@ public class Flower : MonoBehaviour
         return GameObject.Find("flower").GetComponent<Flower>().isClean;
     }
 
-    void listener(OurEvent whatHappened)
+    void listener(OurEvent whatHappened, GameObject invoker)
     {
         switch (whatHappened)
         {

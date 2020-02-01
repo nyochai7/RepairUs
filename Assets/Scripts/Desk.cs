@@ -24,7 +24,7 @@ public class Desk : MonoBehaviour
         return GameObject.Find("book").GetComponent<Desk>().isInUse;
     }
 
-    void listener(OurEvent whatHappened)
+    void listener(OurEvent whatHappened, GameObject invoker)
     {
         switch (whatHappened)
         {

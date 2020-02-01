@@ -23,7 +23,7 @@ public class Toilet : MonoBehaviour
         return !GameObject.Find("Toilet_Down").GetComponent<Toilet>().isTaken;
     }
 
-    void listener(OurEvent whatHappened)
+    void listener(OurEvent whatHappened, GameObject invoker)
     {
         switch (whatHappened)
         {

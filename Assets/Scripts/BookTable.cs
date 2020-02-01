@@ -24,7 +24,7 @@ public class BookTable : MonoBehaviour
         return GameObject.Find("book").GetComponent<BookTable>().isBook;
     }
 
-    void listener(OurEvent whatHappened)
+    void listener(OurEvent whatHappened, GameObject invoker)
     {
         switch (whatHappened)
         {

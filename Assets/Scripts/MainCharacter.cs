@@ -108,7 +108,7 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
     // Start is called before the first frame update
     void Start()
     {
-        MainObject.Get().InvokeEvent(OurEvent.ADD_CLOTHES_TO_BASKET);
+        // MainObject.Get().InvokeEvent(OurEvent.ADD_CLOTHES_TO_BASKET, this);
         charProps = GetComponent<CharacterProps>();
 
         MainObject.Get().locationManager.monitors.Add(new RadiusRelation(
@@ -138,7 +138,7 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
                     {
                         this.sentStartForMove = true;
                         Debug.Log("Seding Start");
-                        mainObject.InvokeEvent(currSingleMove.startEvent);
+                        mainObject.InvokeEvent(currSingleMove.startEvent, this.gameObject);
                     }
 
                     if (new System.DateTimeOffset(System.DateTime.UtcNow).ToUnixTimeSeconds() - this.timeStartedCurrTask > currSingleMove.duration)
@@ -147,7 +147,7 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
                         {
                             this.sentStopForMove = true;
                             Debug.Log("Seding Stop");
-                            mainObject.InvokeEvent(currSingleMove.stopEvent);
+                            mainObject.InvokeEvent(currSingleMove.stopEvent, this.gameObject);
                             this.GetNextMove();
                         }
                     }
@@ -159,7 +159,7 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
                 if (currConditionalTask.conditionFunc())
                 {
                     Debug.Log("Condition was true");
-                    mainObject.InvokeEvent(currConditionalTask.trueEvent);
+                    mainObject.InvokeEvent(currConditionalTask.trueEvent, this.gameObject);
                     if (currConditionalTask.trueTask != null)
                     {
                         this.SetCurrTask(currConditionalTask.trueTask.Value);
@@ -173,7 +173,7 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
                 }
                 else
                 {
-                    mainObject.InvokeEvent(currConditionalTask.falseEvent);
+                    mainObject.InvokeEvent(currConditionalTask.falseEvent, this.gameObject);
                     if (currConditionalTask.falseTask != null)
                     {
                         this.SetCurrTask(currConditionalTask.falseTask.Value);
