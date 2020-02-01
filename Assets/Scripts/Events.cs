@@ -23,6 +23,7 @@ public enum OurEvent
     SLEEP_STOP,
     SAY_TYPICAL,
     SAY_HAPPY,
+    SAY_ANGRY,
     GO_TO_BATHROOM,
     USE_BATHROOM_START,
     USE_BATHROOM_STOP,

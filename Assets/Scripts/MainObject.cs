@@ -24,8 +24,10 @@ public class MainObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Checking all");
-        locationManager.CheckAll();
+        if (locationManager != null){
+            locationManager.CheckAll();
+        }
+        
     }
 
     void Awake()
@@ -97,11 +99,12 @@ public class MainObject : MonoBehaviour
         });
 
         allTasks.Add(Task.USE_TOILET, new GeneralTask[]{
-            new SingleMove(Utils.getPositionByName("toilet"), OurEvent.USE_BATHROOM_START, OurEvent.USE_BATHROOM_STOP, defaultDuration)
+            new SingleMove(Utils.getPositionByName("bathroom_door"), OurEvent.GO_TO_BATHROOM, OurEvent.DO_NOTHING, defaultDuration),
+            new ConditionalTask(Toilet.IsTaken, Task.ACTUALLY_USE_TOILET, null, null, OurEvent.SAY_ANGRY)
         });
 
         allTasks.Add(Task.COOK, new GeneralTask[]{
-            new SingleMove(Utils.getPositionByName("stove"), OurEvent.COOK_START, OurEvent.COOK_STOP, defaultDuration)
+            new SingleMove(Utils.getPositionByName("kitchen_counter"), OurEvent.COOK_START, OurEvent.COOK_STOP, defaultDuration)
         });
     }
 }
