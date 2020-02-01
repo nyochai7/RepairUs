@@ -25,7 +25,7 @@ public class Counter : MonoBehaviour
             case OurEvent.COOK_START:
                 break;
 
-            case OurEvent.COOK_STOP:
+            case OurEvent.PUT_FOOD_DOWN_START:
                 this.numFood = 2;
                 break;
 

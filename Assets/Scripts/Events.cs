@@ -13,6 +13,7 @@ public enum OurEvent
     LAUNDRY_STOP,
     EAT_START,
     EAT_STOP,
+    PUT_FOOD_DOWN_START,
     EAT_COUNTER_FOOD,
     GET_FOOD_START,
     GET_FOOD_STOP,

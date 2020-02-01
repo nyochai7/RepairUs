@@ -217,7 +217,8 @@ public class MainObject : MonoBehaviour
 
         //Cook
         allTasks.Add(Task.COOK, new GeneralTask[]{
-            new SingleMove(Utils.getPositionByName("kitchen_counter"), OurEvent.COOK_START, OurEvent.COOK_STOP, defaultDuration)
+            new SingleMove(Utils.getPositionByName("Stove"), OurEvent.COOK_START, OurEvent.COOK_STOP, defaultDuration),
+            new SingleMove(Utils.getPositionByName("kitchen_counter"), OurEvent.PUT_FOOD_DOWN_START, OurEvent.DO_NOTHING, defaultDuration)
         });
 
         //Water Flower
