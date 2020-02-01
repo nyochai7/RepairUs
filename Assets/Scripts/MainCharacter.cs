@@ -6,6 +6,7 @@ using TMPro;
 
 public class MainCharacter : MonoBehaviour, ILocationMonitorable
 {
+    System.Random rnd = new System.Random();
 
     public float radiusToObj = 3f;
     public long timeStartedCurrTask;
@@ -115,6 +116,58 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
             "sink", this, new FakeILocationMonitorable(GameObject.Find("sink")), WhoToAlert.OnlyFirst));
         MainObject.Get().locationManager.monitors.Add(new RadiusRelation(
                 "bed", this, new FakeILocationMonitorable(GameObject.Find("Bed")), WhoToAlert.OnlyFirst));
+
+        MainObject.Get().onSomethingHappened += MainCharacter_onSomethingHappened;
+    }
+
+    private string RandomString(String[] words)
+    {
+        return words[rnd.Next(words.Length)];
+    }
+
+    private void MainCharacter_onSomethingHappened(OurEvent whatHappened, GameObject invoker)
+    {
+        string[] ANGRY_WORDS = new string[]
+        {
+            "WTF!",
+            "This sucks",
+            "Screw him"
+        };
+
+        string[] HAPPY_WORDS = new string[]
+        {
+            "Beautiful",
+            "Yay",
+            "Woohoo",
+            "Love this"
+        };
+
+        string[] TYPICAL_WORDS = new string[]
+        {
+            "Typical",
+            "Bah",
+            "Meh",
+            "Man.."
+        };
+
+        if (invoker.gameObject.GetInstanceID() == this.gameObject.GetInstanceID())
+        {
+            if (whatHappened == OurEvent.SAY_ANGRY)
+            {
+                this.Speak(RandomString(ANGRY_WORDS));
+                this.happiness -= 8;
+            }
+            else if (whatHappened == OurEvent.SAY_HAPPY)
+            {
+                this.Speak(RandomString(HAPPY_WORDS));
+                this.happiness += 4;
+            }
+            else if (whatHappened == OurEvent.SAY_TYPICAL)
+            {
+                this.Speak(RandomString(TYPICAL_WORDS));
+                this.happiness -= 4;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -186,13 +239,16 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
                     }
                 }
             }
-        } else if (this.currTask == null){
+        }
+        else if (this.currTask == null)
+        {
 
             Debug.Log("Getting next Task");
             Task? nextTask = blockList.GetNextTask();
-            if (nextTask != null){
+            if (nextTask != null)
+            {
                 this.SetCurrTask(nextTask.Value);
-                Debug.Log("Next task is not null");    
+                Debug.Log("Next task is not null");
                 Debug.Log("Task is " + nextTask.Value);
                 this.DoTask();
             }
@@ -234,11 +290,13 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
         }
     }
 
-    public void SetCurrTask(GeneralTask[] gt){
+    public void SetCurrTask(GeneralTask[] gt)
+    {
         this.currTask = gt;
     }
 
-    public void SetCurrTask(Task task){
+    public void SetCurrTask(Task task)
+    {
         this.currTask = MainObject.Get().allTasks[task];
     }
 }
