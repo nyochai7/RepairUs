@@ -20,7 +20,7 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
     [SerializeField]
     public GameObject happyFacesPrefab;
 
-    public CharacterProps charProps;
+    CharacterProps charProps;
 
     private int happiness = 50;
 
@@ -45,7 +45,7 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
 
             if (newValue > happiness)
             {
-
+                ShowSmallFaces(true);
             }
 
             happiness = newValue;
@@ -56,9 +56,10 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
 
     private void ShowSmallFaces(bool isHappy)
     {
-        Instantiate(isHappy ? happyFacesPrefab : happyFacesPrefab,
+        GameObject obj = Instantiate(isHappy ? happyFacesPrefab : happyFacesPrefab,
                            transform.position,
                            Quaternion.identity);
+        obj.transform.parent = this.transform;
     }
 
     public void onMonitorAlertFunc(string name, ILocationMonitorable otherObj)
