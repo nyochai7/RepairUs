@@ -318,6 +318,35 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
 
     public void SetCurrTask(Task task)
     {
-        this.currTask = MainObject.Get().allTasks[task];
+
+        bool isHer = (gameObject.name == "Sabrina");
+        Task actualTask;
+        switch (task)
+        {
+            case Task.USE_TOILET:
+                if (isHer)
+                    actualTask = Task.USE_TOILET_HER;
+                else
+                    actualTask = Task.USE_TOILET_HIM;
+                break;
+            case Task.EAT_GOOD_FOOD:
+                if (isHer)
+                    actualTask = Task.EAT_GOOD_FOOD_HER;
+                else
+                    actualTask = Task.EAT_GOOD_FOOD_HIM;
+                break;
+
+            case Task.EAT_BAD_FOOD:
+                if (isHer)
+                    actualTask = Task.EAT_BAD_FOOD_HER;
+                else
+                    actualTask = Task.EAT_BAD_FOOD_HIM;
+                break;
+            default:
+                actualTask = task;
+                break;
+        }
+
+        this.currTask = MainObject.Get().allTasks[actualTask];
     }
 }
