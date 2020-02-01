@@ -7,7 +7,33 @@ public class BlockList : MonoBehaviour
     private const int MAX_BLOCKS = 10;
     private const float BLOCK_HEIGHT = 0.5f;
     BlockObj[] blocks;
-    public int currentRunningTaskIndex;
+
+    private int currentRunningTaskIndex;
+
+    public int CurrentRunningTaskIndex
+    {
+        get
+        {
+            return currentRunningTaskIndex;
+        }
+
+        set
+        {
+            if (blocks[currentRunningTaskIndex] != null)
+            {
+                blocks[currentRunningTaskIndex].IsActive = false;
+            }
+
+            currentRunningTaskIndex = value;
+
+            if (blocks[currentRunningTaskIndex] != null)
+            {
+                blocks[currentRunningTaskIndex].IsActive = true;
+            }
+        }
+    }
+
+
 
     void Awake()
     {
@@ -20,7 +46,7 @@ public class BlockList : MonoBehaviour
     {
         MainObject.Get().AllBlockLists.Add(this);
         blocks = new BlockObj[MAX_BLOCKS];
-        this.currentRunningTaskIndex = 0;
+        this.CurrentRunningTaskIndex = 0;
 
         /*blocks[0] = Instantiate(MainObject.Get().blockObjPrefab,
                    Vector3.zero,
@@ -66,15 +92,14 @@ public class BlockList : MonoBehaviour
     }
 
     public Task? GetNextTask(){
-        Debug.Log("task index = " + this.currentRunningTaskIndex);
-        if (this.currentRunningTaskIndex < this.blocks.Length - 1){
-            this.currentRunningTaskIndex++;
-            Debug.Log("Next Task is " + this.blocks[this.currentRunningTaskIndex].task + ", index=" + this.currentRunningTaskIndex);
-            return this.blocks[this.currentRunningTaskIndex].task;
+        Debug.Log("task index = " + this.CurrentRunningTaskIndex);
+        if (this.CurrentRunningTaskIndex < this.blocks.Length - 1){
+            this.CurrentRunningTaskIndex++;
+            Debug.Log("Next Task is " + this.blocks[this.CurrentRunningTaskIndex].task + ", index=" + this.CurrentRunningTaskIndex);
+            return this.blocks[this.CurrentRunningTaskIndex].task;
         } else {
             return Task.SLEEP;
         }
-        
     }
 
     public void SetBlock(int index, BlockObj block)
