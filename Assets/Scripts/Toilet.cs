@@ -36,8 +36,11 @@ public class Toilet : MonoBehaviour
             case OurEvent.USE_BATHROOM_START:
                 this.isTaken = true;
                 break;
-            case OurEvent.USE_BATHROOM_STOP: // change to USE_BATHROOM_STOP
+            case OurEvent.USE_BATHROOM_STOP:
                 this.isTaken = false;
+                break;
+            case OurEvent.RESET_ALL:
+                this.isUp = false;
                 break;
             default:
                 return;

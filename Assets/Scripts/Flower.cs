@@ -34,6 +34,9 @@ public class Flower : MonoBehaviour
             case OurEvent.WATER_FLOWER_STOP:
                 this.isClean = true;
                 break;
+            case OurEvent.RESET_ALL:
+                this.isClean = false;
+                break;
             default:
                 return;
         }

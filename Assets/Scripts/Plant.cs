@@ -34,6 +34,9 @@ public class Plant : MonoBehaviour
             case OurEvent.WATER_PLANT_STOP:
                 this.isClean = true;
                 break;
+            case OurEvent.RESET_ALL:
+                this.isClean = false;
+                break;
             default:
                 return;
         }
