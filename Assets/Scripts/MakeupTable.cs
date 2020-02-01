@@ -10,6 +10,7 @@ public class MakeupTable : MonoBehaviour
     void Start()
     {
         MainObject mainObject = MainObject.Get();
+        this.isClean = false;
         mainObject.onSomethingHappened += this.listener;
     }
 
@@ -49,7 +50,7 @@ public class MakeupTable : MonoBehaviour
         }
         else
         {
-            toLoad = "BathroomSink_Dirty";
+            toLoad = "BathroomSink_Messy";
         }
         Sprite sprite = Resources.Load<Sprite>("ScottsSprites/" + toLoad);
         this.GetComponent<SpriteRenderer>().sprite = sprite;

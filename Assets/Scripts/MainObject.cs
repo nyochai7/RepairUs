@@ -235,10 +235,10 @@ public class MainObject : MonoBehaviour
             new SingleMove(Utils.getPositionByName("shoes"), OurEvent.CLEAN_SHOES_START, OurEvent.CLEAN_SHOES_STOP, defaultDuration)
         });
         // Read Book
-        allTasks.Add(Task.READ_BOOK, new GeneralTask[]{
-            new SingleMove(Utils.getPositionByName("book"), OurEvent.TAKE_BOOK_START, OurEvent.TAKE_BOOK_STOP, 0),
-            new SingleMove(Utils.getPositionByName("desk"), OurEvent.READ_BOOK_START, OurEvent.READ_BOOK_STOP, defaultDuration)
-        });
+        // allTasks.Add(Task.READ_BOOK, new GeneralTask[]{
+        //     new SingleMove(Utils.getPositionByName("book"), OurEvent.TAKE_BOOK_START, OurEvent.TAKE_BOOK_STOP, 0),
+        //     new SingleMove(Utils.getPositionByName("desk"), OurEvent.READ_BOOK_START, OurEvent.READ_BOOK_STOP, defaultDuration)
+        // });
 
         // Watch TV
         allTasks.Add(Task.WATCH_TV, new GeneralTask[]{

@@ -30,11 +30,9 @@ public class CoffeeTable : MonoBehaviour
         {
             case OurEvent.CLEAN_COFFEE_TABLE_START:
                 this.isClean = true;
-                GetComponent<AudioSource>().Play();
                 break;
 
             case OurEvent.CLEAN_COFFEE_TABLE_STOP:
-                GetComponent<AudioSource>().Stop();
                 this.isClean = true;
                 break;
             case OurEvent.RESET_ALL:

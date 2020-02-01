@@ -16,7 +16,6 @@ public class HisCharacterProps : CharacterProps
     }
     public override void onMonitorAlertFunc(string name, ILocationMonitorable otherObj)
     {
-        Debug.Log("Alert name=" + name);
         base.onMonitorAlertFunc(name, otherObj);
         if (name == "laundry_basket"){
             if (LaundryBasket.HasClothes()){

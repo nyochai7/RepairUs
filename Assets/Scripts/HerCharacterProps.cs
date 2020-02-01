@@ -18,7 +18,6 @@ public class HerCharacterProps : CharacterProps
     public override void onMonitorAlertFunc(string name, ILocationMonitorable otherObj)
     {
         base.onMonitorAlertFunc(name, otherObj);
-        Debug.Log("Alert name=" + name);
         if (name =="sink"){
             if (!Sink.CheckSink()){
                 Debug.Log("SINK DIRTY");
