@@ -9,7 +9,7 @@ public class Sink : MonoBehaviour
     {
         MainObject mainObject = MainObject.Get();
         mainObject.onSomethingHappened += this.listener;
-        StartCoroutine(waiter());
+        //StartCoroutine(waiter());
     }
 
     // Update is called once per frame

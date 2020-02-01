@@ -49,18 +49,13 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
             if (this.currMove is SingleMove){
                 SingleMove currSingleMove = (SingleMove)this.currMove;
 
-                Debug.Log("Doing single move");
                 if (Vector3.Distance(this.gameObject.transform.position, currSingleMove.goTo) < radiusToObj)
                 {
-                    Debug.Log("IN RADIUS");
                     if (!this.sentStartForMove){
                         this.sentStartForMove = true;
                         mainObject.InvokeEvent(currSingleMove.startEvent);
                         Debug.Log("Sent Start Event");
-                    } else {
-                        Debug.Log("ALREADY SENT");
-                    }
-                    
+                    }                 
 
                     if (new System.DateTimeOffset(System.DateTime.UtcNow).ToUnixTimeSeconds() - this.timeStartedCurrTask > currSingleMove.duration){
                         if (!this.sentStopForMove){
@@ -69,12 +64,10 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
                             Debug.Log("Sent Stop Event for move index " + this.moveIndex);
                             this.GetNextMove();
                         }
-                        
                     }
 
-                } else {
-                    Debug.Log("Not Close enough yet");
-                }
+
+                } 
             } else if (this.currMove is ConditionalTask){
                 Debug.Log("Doing condition");
                 ConditionalTask currConditionalTask = (ConditionalTask)this.currMove;

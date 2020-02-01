@@ -95,7 +95,7 @@ public class MainObject : MonoBehaviour
         });
 
         allTasks.Add(Task.EAT_BAD_FOOD, new GeneralTask[]{
-            new SingleMove(Utils.getPositionByName("sink"), OurEvent.FRIDGE_START, OurEvent.FRIDGE_STOP, defaultDuration), //need to change to fridge
+            new SingleMove(Utils.getPositionByName("table"), OurEvent.FRIDGE_START, OurEvent.FRIDGE_STOP, defaultDuration), //need to change to fridge
             new SingleMove(Utils.getPositionByName("table"), OurEvent.EAT_START, OurEvent.EAT_STOP, defaultDuration)
 
         });
