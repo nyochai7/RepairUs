@@ -16,7 +16,10 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
     [SerializeField]
     DynamicFace face;
 
-    CharacterProps charProps;
+    [SerializeField]
+    public GameObject happyFacesPrefab;
+
+    public CharacterProps charProps;
 
     private int happiness = 50;
 
@@ -29,17 +32,32 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
 
         set
         {
-            happiness = value;
-            if (happiness < 0)
+            int newValue = value;
+            if (newValue < 0)
             {
-                happiness = 0;
+                newValue = 0;
             }
-            if (happiness > 99)
+            if (newValue > 99)
             {
-                happiness = 99;
+                newValue = 99;
             }
+
+            if (newValue > happiness)
+            {
+
+            }
+
+            happiness = newValue;
+
             face.CurrentSpriteIndex = happiness / 20;
         }
+    }
+
+    private void ShowSmallFaces(bool isHappy)
+    {
+        Instantiate(isHappy ? happyFacesPrefab : happyFacesPrefab,
+                           transform.position,
+                           Quaternion.identity);
     }
 
     public void onMonitorAlertFunc(string name, ILocationMonitorable otherObj)
@@ -62,6 +80,8 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
     // Start is called before the first frame update
     void Start()
     {
+        charProps = GetComponent<CharacterProps>();
+
         MainObject.Get().locationManager.monitors.Add(new RadiusRelation(
             "sink", this, new FakeILocationMonitorable(GameObject.Find("sink")), WhoToAlert.OnlyFirst));
         MainObject.Get().locationManager.monitors.Add(new RadiusRelation(

@@ -138,9 +138,9 @@ public class BlockList : MonoBehaviour
 
         Rect myRect = Utils.SRtoRect(this.GetComponent<SpriteRenderer>());
 
-        Debug.Log("Index=" + i);
-        Debug.Log("myRect=" + myRect);
-        Debug.Log("newY=" + (myRect.y + i * BLOCK_HEIGHT));
+        //Debug.Log("Index=" + i);
+        //Debug.Log("myRect=" + myRect);
+        //Debug.Log("newY=" + (myRect.y + i * BLOCK_HEIGHT));
 
         return new Vector3(myRect.x, myRect.y +
             i * BLOCK_HEIGHT, this.transform.position.z);
