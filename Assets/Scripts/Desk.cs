@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MakeupTable : MonoBehaviour
+public class Desk : MonoBehaviour
 {
     // Start is called before the first frame update
-
-    bool isClean = false;
+    bool isInUse = false;
     void Start()
     {
+
         MainObject mainObject = MainObject.Get();
         mainObject.onSomethingHappened += this.listener;
     }
@@ -16,37 +16,35 @@ public class MakeupTable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public static bool IsClean()
+    public static bool IsInUse()
     {
-        return GameObject.Find("makeup_table").GetComponent<MakeupTable>().isClean;
+        return GameObject.Find("book").GetComponent<Desk>().isInUse;
     }
 
     void listener(OurEvent whatHappened)
     {
         switch (whatHappened)
         {
-            case OurEvent.CLEAN_MAKEUP_TABLE_START:
-                GetComponent<AudioSource>().Play();
+            case OurEvent.READ_BOOK_START:
+                this.isInUse = true;
                 break;
-
-            case OurEvent.CLEAN_MAKEUP_TABLE_STOP:
-                GetComponent<AudioSource>().Stop();
-                this.isClean = true;
+            case OurEvent.READ_BOOK_STOP:
+                this.isInUse = false;
                 break;
             default:
                 return;
         }
         string toLoad;
-        if (this.isClean)
+        if (this.isInUse)
         {
-            toLoad = "makeup_table0";
+            toLoad = "desk1";
         }
         else
         {
-            toLoad = "makeup_table1";
+            toLoad = "desk0";
         }
         Sprite sprite = Resources.Load<Sprite>("Sprites/" + toLoad);
         this.GetComponent<SpriteRenderer>().sprite = sprite;
