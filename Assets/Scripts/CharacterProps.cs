@@ -35,6 +35,7 @@ public class CharacterProps : MonoBehaviour, ILocationMonitorable
         {
             //GetComponent<SpriteRenderer>().color = Color.green;
             mc.Happiness--;
+            mc.Speak("Fuck shoes");
         }
         if (name == "plant")
         {

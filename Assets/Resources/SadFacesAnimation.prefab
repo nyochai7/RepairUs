@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5109674314499356218}
   - component: {fileID: 5109674314499356219}
-  - component: {fileID: 6681668219098485814}
   m_Layer: 0
   m_Name: face4 (2)
   m_TagString: Untagged
@@ -82,20 +81,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6681668219098485814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5109674314499356216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a11453f854d78643b71db2425e46387, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseColor: {r: 1, g: 1, b: 1, a: 1}
-  fadeSpeed: 0.55
 --- !u!1 &5109674315268887955
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,7 +91,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5109674315268887965}
   - component: {fileID: 5109674315268887954}
-  - component: {fileID: 5735023133936802358}
   m_Layer: 0
   m_Name: face4
   m_TagString: Untagged
@@ -178,20 +162,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5735023133936802358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5109674315268887955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a11453f854d78643b71db2425e46387, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseColor: {r: 1, g: 1, b: 1, a: 1}
-  fadeSpeed: 0.55
 --- !u!1 &5109674315549267816
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,7 +172,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5109674315549267818}
   - component: {fileID: 5109674315549267819}
-  - component: {fileID: 6532104574062981384}
   m_Layer: 0
   m_Name: face4 (1)
   m_TagString: Untagged
@@ -274,20 +243,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6532104574062981384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5109674315549267816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a11453f854d78643b71db2425e46387, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseColor: {r: 1, g: 1, b: 1, a: 1}
-  fadeSpeed: 0.55
 --- !u!1 &6503305992230203467
 GameObject:
   m_ObjectHideFlags: 0

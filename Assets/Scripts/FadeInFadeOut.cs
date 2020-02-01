@@ -5,9 +5,6 @@ using UnityEngine;
 public class FadeInFadeOut : MonoBehaviour
 {
     [SerializeField]
-    private Color baseColor = Color.white;
-
-    [SerializeField]
     private float fadeSpeed = 0.05f;
 
     public float CurrentAlpha
@@ -18,7 +15,9 @@ public class FadeInFadeOut : MonoBehaviour
         }
         set
         {
-            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, value);
+            Color c = spriteRenderer.color;
+            c.a = value;
+            spriteRenderer.color = c;
         }
     }
 

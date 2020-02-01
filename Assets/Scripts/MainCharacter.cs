@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using TMPro;
+
 public class MainCharacter : MonoBehaviour, ILocationMonitorable
 {
 
@@ -22,6 +24,9 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
 
     [SerializeField]
     public GameObject sadFacesPrefab;
+
+    [SerializeField]
+    public GameObject speechBubblePrefab;
 
     CharacterProps charProps;
 
@@ -59,15 +64,43 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
 
     private void ShowSmallFaces(bool isHappy)
     {
+        const float SMILE_FACE_TIME = 2;
+
+        Vector3 pos = transform.position;
+        pos.z = -4;
+
         GameObject obj = Instantiate(isHappy ? happyFacesPrefab : sadFacesPrefab,
-                           transform.position,
+                          pos,
                            Quaternion.identity);
         obj.transform.parent = this.transform;
+
+        Destroy(obj, SMILE_FACE_TIME);
     }
 
     public void onMonitorAlertFunc(string name, ILocationMonitorable otherObj)
     {
         charProps.onMonitorAlertFunc(name, otherObj);
+    }
+
+    public void Speak(string text)
+    {
+        const float SPEECH_BUBBLE_TIME = 4;
+
+        GameObject obj = Instantiate(speechBubblePrefab,
+                           transform.position,
+                           Quaternion.identity);
+
+        obj.transform.parent = this.transform;
+        Vector3 pos = obj.transform.position;
+        pos.y += 0.5f;
+        pos.x += 0.35f;
+        pos.z = -4;
+        obj.transform.position = pos;
+        //obj.transform.position.y -= 1;
+        TextMeshPro tm = obj.transform.Find("A/SpeechText").GetComponent<TextMeshPro>();
+        tm.SetText(text);
+
+        Destroy(obj, SPEECH_BUBBLE_TIME);
     }
 
     // Start is called before the first frame update
@@ -92,7 +125,8 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
             if (this.currMove is SingleMove)
             {
                 SingleMove currSingleMove = (SingleMove)this.currMove;
-                if (!this.alreadyMoved){
+                if (!this.alreadyMoved)
+                {
                     GetComponent<NavMeshAgent2D>().destination = currSingleMove.goTo;
                     this.alreadyMoved = true;
                 }
@@ -171,17 +205,21 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
         this.moveIndex = 0;
     }
 
-    void GetNextMove(){
+    void GetNextMove()
+    {
         Debug.Log("getting next move");
         this.sentStartForMove = false;
         this.sentStopForMove = false;
         this.alreadyMoved = false;
-        if (this.moveIndex < this.currTask.Length - 1){
+        if (this.moveIndex < this.currTask.Length - 1)
+        {
             Debug.Log("Got next!");
 
             this.moveIndex++;
             this.currMove = this.currTask[moveIndex];
-        } else {
+        }
+        else
+        {
             Debug.Log("No more moves");
             this.currMove = null;
             this.currTask = null;
