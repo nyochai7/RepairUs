@@ -117,6 +117,7 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
         charProps = GetComponent<CharacterProps>();
         navMeshAgent = GetComponent<NavMeshAgent2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        MainObject.Get().onSomethingHappened+= MainCharacter_onSomethingHappened;
 
     }
 
