@@ -58,12 +58,12 @@ public class BlockList : MonoBehaviour
         blocks[1] = Instantiate(MainObject.Get().blockObjPrefab,
                            Vector3.zero,
                            Quaternion.identity).GetComponent<BlockObj>();*/
-        blocks[9] = Instantiate(MainObject.Get().blockObjPrefab,
-                           Vector3.zero,
-                           Quaternion.identity).GetComponent<BlockObj>();
 
-        blocks[9].IsUndeletable = true;
-        blocks[9].task = Task.EAT;
+
+        blocks[blocks.Length - 1] = CreateUndeletableBlock(Task.SHOWER);
+        blocks[blocks.Length - 2] = CreateUndeletableBlock(Task.EAT);
+        blocks[blocks.Length - 4] = CreateUndeletableBlock(Task.USE_TOILET_HER);
+
 
         foreach (BlockObj block in blocks)
         {
@@ -73,6 +73,18 @@ public class BlockList : MonoBehaviour
                 block.ResetPosByIndex();
             }
         }
+    }
+
+    BlockObj CreateUndeletableBlock(Task task)
+    {
+        BlockObj obj = Instantiate(MainObject.Get().blockObjPrefab,
+                           Vector3.zero,
+                           Quaternion.identity).GetComponent<BlockObj>();
+
+        obj.IsUndeletable = true;
+        obj.task = task;
+
+        return obj;
     }
 
     // Update is called once per frame
