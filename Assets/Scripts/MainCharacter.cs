@@ -26,7 +26,7 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
         }
         if (name == "bed")
         {
-            this.DoTask(Task.COOK);
+            this.DoTask(Task.USE_TOILET);
 
         }
     }
