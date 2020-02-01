@@ -65,7 +65,7 @@ public class MainObject : MonoBehaviour
         });
 
         allTasks.Add(Task.SHOWER, new GeneralTask[]{
-            new SingleMove(Utils.getPositionByName("makeup_table0"), OurEvent.GO_TO_SHOWER, OurEvent.DO_NOTHING, defaultDuration),
+            new SingleMove(Utils.getPositionByName("shower_entrance"), OurEvent.GO_TO_SHOWER, OurEvent.DO_NOTHING, defaultDuration),
             new ConditionalTask(Shower.IsTaken, Task.USE_SHOWER, null, OurEvent.SHOWER_IS_TAKEN, OurEvent.SAY_TYPICAL)
         });
 
@@ -82,7 +82,7 @@ public class MainObject : MonoBehaviour
         });
 
         allTasks.Add(Task.DO_LAUNDRY, new GeneralTask[]{
-            new SingleMove(Utils.getPositionByName("laundry_machine0"), OurEvent.LAUNDRY_START, OurEvent.LAUNDRY_STOP, defaultDuration)
+            new SingleMove(Utils.getPositionByName("laundry_machine"), OurEvent.LAUNDRY_START, OurEvent.LAUNDRY_STOP, defaultDuration)
         });
 
         allTasks.Add(Task.EAT, new GeneralTask[]{
@@ -95,7 +95,7 @@ public class MainObject : MonoBehaviour
         });
 
         allTasks.Add(Task.EAT_BAD_FOOD, new GeneralTask[]{
-            new SingleMove(Utils.getPositionByName("table"), OurEvent.FRIDGE_START, OurEvent.FRIDGE_STOP, defaultDuration), //need to change to fridge
+            new SingleMove(Utils.getPositionByName("fridge"), OurEvent.FRIDGE_START, OurEvent.FRIDGE_STOP, defaultDuration), //need to change to fridge
             new SingleMove(Utils.getPositionByName("table"), OurEvent.EAT_START, OurEvent.EAT_STOP, defaultDuration)
 
         });
@@ -107,9 +107,22 @@ public class MainObject : MonoBehaviour
             new SingleMove(Utils.getPositionByName("Toilet_Down"), OurEvent.LOWER_TOILET_SEAT, OurEvent.DO_NOTHING, defaultDuration)
         });
 
-        allTasks.Add(Task.USE_TOILET, new GeneralTask[]{
-            new SingleMove(Utils.getPositionByName("makeup_table0"), OurEvent.GO_TO_BATHROOM, OurEvent.DO_NOTHING, defaultDuration),
-            new ConditionalTask(Toilet.IsTaken, Task.ACTUALLY_USE_TOILET, null, null, OurEvent.SAY_ANGRY)
+        allTasks.Add(Task.USE_TOILET_HER, new GeneralTask[]{
+            new SingleMove(Utils.getPositionByName("bathroom_entrance"), OurEvent.GO_TO_BATHROOM, OurEvent.DO_NOTHING, defaultDuration),
+            new ConditionalTask(Toilet.IsTaken, Task.ACTUALLY_USE_TOILET_HER, null, null, OurEvent.SAY_ANGRY)
+        });
+
+        allTasks.Add(Task.USE_TOILET_HIM, new GeneralTask[]{
+            new SingleMove(Utils.getPositionByName("bathroom_entrance"), OurEvent.GO_TO_BATHROOM, OurEvent.DO_NOTHING, defaultDuration),
+            new ConditionalTask(Toilet.IsTaken, Task.ACTUALLY_USE_TOILET_HIM, null, null, OurEvent.SAY_ANGRY)
+        });
+
+        allTasks.Add(Task.ACTUALLY_USE_TOILET_HER, new GeneralTask[]{
+            new SingleMove(Utils.getPositionByName("Toilet_Down"), OurEvent.USE_BATHROOM_START, OurEvent.USE_BATHROOM_STOP, defaultDuration)
+        });
+
+        allTasks.Add(Task.ACTUALLY_USE_TOILET_HIM, new GeneralTask[]{
+            new SingleMove(Utils.getPositionByName("Toilet_Down"), OurEvent.USE_BATHROOM_START, OurEvent.USE_BATHROOM_STOP, defaultDuration)
         });
 
         allTasks.Add(Task.COOK, new GeneralTask[]{

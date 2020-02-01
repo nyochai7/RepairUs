@@ -12,6 +12,7 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
     int moveIndex;
     bool sentStartForMove = false;
     bool sentStopForMove = false;
+    bool alreadyMoved = false;
 
     [SerializeField]
     DynamicFace face;
@@ -26,7 +27,7 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
         }
         if (name == "bed")
         {
-            this.DoTask(Task.USE_TOILET);
+            this.DoTask(Task.USE_TOILET_HER);
 
         }
     }
@@ -48,25 +49,29 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
             
             if (this.currMove is SingleMove){
                 SingleMove currSingleMove = (SingleMove)this.currMove;
-
+                if (!this.alreadyMoved){
+                    GetComponent<NavMeshAgent2D>().destination = currSingleMove.goTo;
+                    this.alreadyMoved = true;
+                }
                 if (Vector3.Distance(this.gameObject.transform.position, currSingleMove.goTo) < radiusToObj)
                 {
                     if (!this.sentStartForMove){
                         this.sentStartForMove = true;
+                        Debug.Log("Seding Start");
                         mainObject.InvokeEvent(currSingleMove.startEvent);
                     }                 
 
                     if (new System.DateTimeOffset(System.DateTime.UtcNow).ToUnixTimeSeconds() - this.timeStartedCurrTask > currSingleMove.duration){
                         if (!this.sentStopForMove){
                             this.sentStopForMove = true;
+                            Debug.Log("Seding Stop");
                             mainObject.InvokeEvent(currSingleMove.stopEvent);
                             this.GetNextMove();
                         }
                     }
-
-
                 } 
             } else if (this.currMove is ConditionalTask){
+                Debug.Log("In Condition");
                 ConditionalTask currConditionalTask = (ConditionalTask)this.currMove;
                 if (currConditionalTask.conditionFunc()){
                     Debug.Log("Condition was true");
@@ -79,7 +84,7 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
                     }
                     
                 } else {
-                    
+                    Debug.Log("Condition was false");
                     mainObject.InvokeEvent(currConditionalTask.falseEvent);
                     if (currConditionalTask.falseTask!= null){
                         this.DoTask(currConditionalTask.falseTask.Value);
@@ -109,21 +114,22 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
         this.currTask = mainObject.allTasks[task];
         this.currMove = this.currTask[0];
         this.moveIndex = 0;
-        if (this.currMove is SingleMove){
-            SingleMove currSingleMove = (SingleMove)this.currMove;
-            GetComponent<NavMeshAgent2D>().destination = currSingleMove.goTo;
-        }
     }
 
     void GetNextMove(){
+        Debug.Log("getting next move");
         if (this.moveIndex < this.currTask.Length - 1){
+            Debug.Log("Got next!");
             this.sentStartForMove = false;
             this.sentStopForMove = false;
+            this.alreadyMoved = false;
             this.moveIndex++;
             this.currMove = this.currTask[moveIndex];
         } else {
+            Debug.Log("No more moves");
             this.sentStartForMove = false;
             this.sentStopForMove = false;
+            this.alreadyMoved = false;
             this.currMove = null;
             this.currTask = null;
         }

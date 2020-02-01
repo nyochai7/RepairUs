@@ -5,8 +5,8 @@ using UnityEngine;
 public class Toilet : MonoBehaviour
 {
     // Start is called before the first frame update
-    bool isUp = false;
-    bool isTaken = false;
+    public bool isUp = false;
+    public bool isTaken = false;
     void Start()
     {
         MainObject mainObject = MainObject.Get();
@@ -20,7 +20,7 @@ public class Toilet : MonoBehaviour
     }
 
     public static bool IsTaken(){
-        return GameObject.Find("Toilet_Down").GetComponent<Toilet>().isTaken;
+        return !GameObject.Find("Toilet_Down").GetComponent<Toilet>().isTaken;
     }
 
     void listener(OurEvent whatHappened)
@@ -37,7 +37,7 @@ public class Toilet : MonoBehaviour
                 this.isTaken = true;
                 break;
             case OurEvent.USE_BATHROOM_STOP: // change to USE_BATHROOM_STOP
-                this.isTaken = true;
+                this.isTaken = false;
                 break;
             default:
                 return;
