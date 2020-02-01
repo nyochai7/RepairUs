@@ -30,8 +30,8 @@ public class CharacterProps : MonoBehaviour, ILocationMonitorable
     }
     public virtual void onMonitorAlertFunc(string name, ILocationMonitorable otherObj)
     {
-        Debug.Log(name);
-        if (name == "table")
+        //Debug.Log(name);
+        /*if (name == "table")
         {
             //GetComponent<SpriteRenderer>().color = Color.green;
             mc.Happiness--;
@@ -43,6 +43,6 @@ public class CharacterProps : MonoBehaviour, ILocationMonitorable
             mc.Happiness--;
         }
         if (name == "bed"){
-        }
+        }*/
     }
 }
