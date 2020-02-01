@@ -64,18 +64,6 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
     public void onMonitorAlertFunc(string name, ILocationMonitorable otherObj)
     {
         charProps.onMonitorAlertFunc(name, otherObj);
-
-        if (name == "sink")
-        {
-            GetComponent<SpriteRenderer>().color = Color.green;
-            this.DoTask(Task.EAT);
-
-        }
-        if (name == "bed")
-        {
-            this.DoTask(Task.DO_LAUNDRY);
-
-        }
     }
 
     // Start is called before the first frame update
