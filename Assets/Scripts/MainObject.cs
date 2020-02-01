@@ -206,21 +206,21 @@ public class MainObject : MonoBehaviour
         });
 
         allTasks.Add(Task.USE_TOILET_HER, new GeneralTask[]{
-            new SingleMove(Utils.getPositionByName("bathroom_entrance"), OurEvent.GO_TO_BATHROOM, OurEvent.DO_NOTHING, defaultDuration),
-            new ConditionalTask(Toilet.IsTaken, Task.ACTUALLY_USE_TOILET_HER, null, null, OurEvent.SAY_ANGRY)
+            new SingleMove(Utils.getPositionByName("bathroom_entrance"), OurEvent.GO_TO_BATHROOM, OurEvent.DO_NOTHING, 1),
+            new ConditionalTask(Toilet.IsTaken, Task.ACTUALLY_USE_TOILET_HER, null, OurEvent.GO_TO_TOILET, OurEvent.SAY_ANGRY)
         });
 
         allTasks.Add(Task.USE_TOILET_HIM, new GeneralTask[]{
-            new SingleMove(Utils.getPositionByName("bathroom_entrance"), OurEvent.GO_TO_BATHROOM, OurEvent.DO_NOTHING, defaultDuration),
-            new ConditionalTask(Toilet.IsTaken, Task.ACTUALLY_USE_TOILET_HIM, null, null, OurEvent.SAY_ANGRY)
+            new SingleMove(Utils.getPositionByName("bathroom_entrance"), OurEvent.GO_TO_BATHROOM, OurEvent.DO_NOTHING, 1),
+            new ConditionalTask(Toilet.IsTaken, Task.ACTUALLY_USE_TOILET_HIM, null, OurEvent.GO_TO_TOILET, OurEvent.SAY_ANGRY)
         });
 
         allTasks.Add(Task.ACTUALLY_USE_TOILET_HER, new GeneralTask[]{
-            new SingleMove(Utils.getPositionByName("Toilet_Down"), OurEvent.USE_BATHROOM_START_HER, OurEvent.USE_BATHROOM_STOP, defaultDuration)
+            new SingleMove(Utils.getPositionByName("Toilet_Down"), OurEvent.USE_BATHROOM_START_HER, OurEvent.USE_BATHROOM_STOP, 5)
         });
 
         allTasks.Add(Task.ACTUALLY_USE_TOILET_HIM, new GeneralTask[]{
-            new SingleMove(Utils.getPositionByName("Toilet_Down"), OurEvent.USE_BATHROOM_START_HIM, OurEvent.USE_BATHROOM_STOP, defaultDuration)
+            new SingleMove(Utils.getPositionByName("Toilet_Down"), OurEvent.USE_BATHROOM_START_HIM, OurEvent.USE_BATHROOM_STOP, 5)
         });
 
 
