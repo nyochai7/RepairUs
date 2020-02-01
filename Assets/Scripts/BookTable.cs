@@ -33,6 +33,9 @@ public class BookTable : MonoBehaviour
             case OurEvent.TAKE_BOOK_STOP:
                 this.isBook = false;
                 break;
+            case OurEvent.RESET_ALL:
+                this.isBook = true;
+                break;
             default:
                 return;
         }

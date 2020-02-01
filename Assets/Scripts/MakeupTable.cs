@@ -36,6 +36,9 @@ public class MakeupTable : MonoBehaviour
                 GetComponent<AudioSource>().Stop();
                 this.isClean = true;
                 break;
+            case OurEvent.RESET_ALL:
+                this.isClean = false;
+                break;
             default:
                 return;
         }

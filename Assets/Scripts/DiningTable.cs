@@ -34,6 +34,9 @@ public class DiningTable : MonoBehaviour
             case OurEvent.CLEAN_DINING_TABLE_STOP:
                 this.isClean = true;
                 break;
+            case OurEvent.RESET_ALL:
+                this.isClean = false;
+                break;
             default:
                 return;
         }

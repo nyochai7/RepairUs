@@ -36,6 +36,9 @@ public class Counter : MonoBehaviour
                     this.numFood--;
                 }
                 break;
+            case OurEvent.RESET_ALL:
+                this.numFood = 0;
+                break;
             default:
                 return;
         }

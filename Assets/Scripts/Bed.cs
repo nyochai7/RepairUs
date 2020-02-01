@@ -39,6 +39,9 @@ public class Bed : MonoBehaviour
                 Debug.Log("QUITTING!");
                 Application.Quit();
                 break;
+            case OurEvent.RESET_ALL:
+                this.isBedMade = false;
+                break;
             default:
                 return;
         }
