@@ -1760,6 +1760,8 @@ MonoBehaviour:
     type: 3}
   sadFacesPrefab: {fileID: 6503305992230203467, guid: df56a59794d3a4142878519783cd7fcb,
     type: 3}
+  speechBubblePrefab: {fileID: 352697978133358555, guid: 0376a4adf41e1534c95258c6e4fd433d,
+    type: 3}
 --- !u!114 &513704848
 MonoBehaviour:
   m_ObjectHideFlags: 0

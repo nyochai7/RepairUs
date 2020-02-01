@@ -22,7 +22,7 @@ public class CharacterProps : MonoBehaviour, ILocationMonitorable
     public virtual void InitiateLocationListeners()
     {
         MainObject.Get().locationManager.monitors.Add(new RadiusRelation(
-            "shoes", this, new FakeILocationMonitorable(GameObject.Find("shoes")), WhoToAlert.OnlyFirst));
+            "table", this, new FakeILocationMonitorable(GameObject.Find("table")), WhoToAlert.OnlyFirst));
         MainObject.Get().locationManager.monitors.Add(new RadiusRelation(
             "plant", this, new FakeILocationMonitorable(GameObject.Find("plant")), WhoToAlert.OnlyFirst));
         MainObject.Get().locationManager.monitors.Add(new RadiusRelation(
@@ -31,11 +31,11 @@ public class CharacterProps : MonoBehaviour, ILocationMonitorable
     public virtual void onMonitorAlertFunc(string name, ILocationMonitorable otherObj)
     {
         Debug.Log(name);
-        if (name == "shoes")
+        if (name == "table")
         {
             //GetComponent<SpriteRenderer>().color = Color.green;
             mc.Happiness--;
-            mc.Speak("Fuck shoes");
+            mc.Speak("Fuck tables");
         }
         if (name == "plant")
         {
