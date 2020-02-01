@@ -10,6 +10,6 @@ public enum Task{
     USE_TOILET,
     ACTUALLY_USE_TOILET,
     COOK,
-    SHOWER_NOW,
+    SHOWER,
     USE_SHOWER
 }

@@ -22,7 +22,7 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
         }
         if (name == "bed")
         {
-            this.DoTask(Task.SHOWER_NOW);
+            this.DoTask(Task.SHOWER);
         }
     }
 
