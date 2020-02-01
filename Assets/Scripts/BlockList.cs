@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BlockList : MonoBehaviour
 {
-    private const int MAX_BLOCKS = 3;
-    private const int BLOCK_HEIGHT = 1;
+    private const int MAX_BLOCKS = 10;
+    private const float BLOCK_HEIGHT = 0.5f;
     BlockObj[] blocks;
 
 
