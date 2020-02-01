@@ -151,6 +151,10 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
             "Man.."
         };
 
+        if (invoker == null) {
+            return;
+        }
+
         if (invoker.gameObject.GetInstanceID() == this.gameObject.GetInstanceID())
         {
             if (whatHappened == OurEvent.SAY_ANGRY)

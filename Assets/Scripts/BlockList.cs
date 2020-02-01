@@ -12,10 +12,13 @@ public class BlockList : MonoBehaviour
     int blockListType;
     public Task? CurrTask{
         get{
-            BlockObj thisBlock = this.blocks[this.currentRunningTaskIndex];
-            if (thisBlock!= null){
-                return thisBlock.task;
+            if (this.currentRunningTaskIndex >=0){
+                BlockObj thisBlock = this.blocks[this.currentRunningTaskIndex];
+                if (thisBlock!= null){
+                    return thisBlock.task;
+                }
             }
+
             return null;
         }
     }
