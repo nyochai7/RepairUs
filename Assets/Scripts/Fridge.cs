@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaundryBasket : MonoBehaviour
+public class Fridge : MonoBehaviour
 {
     // Start is called before the first frame update
-    public bool isTaken = false;
+    public int numFood = 0;
     void Start()
     {
         MainObject mainObject = MainObject.Get();
         mainObject.onSomethingHappened += this.listener;
-
     }
 
     // Update is called once per frame
@@ -18,23 +17,18 @@ public class LaundryBasket : MonoBehaviour
     {
         
     }
+
     void listener(OurEvent whatHappened)
     {
         switch (whatHappened)
         {
-            case OurEvent.TAKE_CLOTHES_STOP:
-                this.isTaken = true;
+            case OurEvent.FRIDGE_START:
                 break;
-            case OurEvent.ADD_CLOTHES_TO_BASKET:
-                this.
+
+            case OurEvent.FRIDGE_STOP:
+                break;
             default:
                 return;
-        }
-        if (this.isTaken)
-        {
-            Sprite basketSprite = Resources.Load<Sprite>("Sprites/laundry_basket1");
-            this.GetComponent<SpriteRenderer>().sprite = basketSprite;
-            this.GetComponent<SpriteRenderer>().sortingOrder = 1;
         }
     }
 }

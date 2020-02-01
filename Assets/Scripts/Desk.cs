@@ -5,7 +5,7 @@ using UnityEngine;
 public class Desk : MonoBehaviour
 {
     // Start is called before the first frame update
-    bool isInUse = false;
+    public bool isInUse = false;
     void Start()
     {
 

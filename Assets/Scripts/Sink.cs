@@ -4,7 +4,7 @@ using UnityEngine;
 public class Sink : MonoBehaviour
 {
     // Start is called before the first frame update
-    int numDishes = 0;
+    public int numDishes = 0;
     void Start()
     {
         MainObject mainObject = MainObject.Get();

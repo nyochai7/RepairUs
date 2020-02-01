@@ -5,7 +5,7 @@ using UnityEngine;
 public class BookTable : MonoBehaviour
 {
     // Start is called before the first frame update
-    bool isBook = true;
+    public bool isBook = true;
     void Start()
     {
 
