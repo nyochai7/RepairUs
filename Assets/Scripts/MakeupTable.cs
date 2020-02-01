@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bed : MonoBehaviour
+public class MakeupTable : MonoBehaviour
 {
-    bool isBedMade = true;
     // Start is called before the first frame update
+
+    bool isClean = false;
     void Start()
     {
         MainObject mainObject = MainObject.Get();
@@ -18,39 +19,35 @@ public class Bed : MonoBehaviour
         
     }
 
-    public static bool IsMade()
+    public static bool IsClean()
     {
-        return GameObject.Find("Bed").GetComponent<Bed>().isBedMade;
+        return GameObject.Find("makeup_table").GetComponent<MakeupTable>().isClean;
     }
 
     void listener(OurEvent whatHappened)
     {
         switch (whatHappened)
         {
-            case OurEvent.MAKE_BED_START:
+            case OurEvent.CLEAN_MAKEUP_TABLE_START:
                 break;
 
-            case OurEvent.MAKE_BED_STOP:
-                this.isBedMade = true;
-                break;
-
-            case OurEvent.SLEEP_STOP:
-                this.isBedMade = false;
+            case OurEvent.CLEAN_MAKEUP_TABLE_STOP:
+                this.isClean = true;
                 break;
             default:
                 return;
         }
         string toLoad;
-        if (this.isBedMade)
+        if (this.isClean)
         {
-            toLoad = "bed0";
+            toLoad = "makeup_table0";
         }
         else
         {
-            toLoad = "bed1";
+            toLoad = "makeup_table1";
         }
-        Sprite bedSprite = Resources.Load<Sprite>("Sprites/" + toLoad);
-        this.GetComponent<SpriteRenderer>().sprite = bedSprite;
+        Sprite sprite = Resources.Load<Sprite>("Sprites/" + toLoad);
+        this.GetComponent<SpriteRenderer>().sprite = sprite;
         this.GetComponent<SpriteRenderer>().sortingOrder = 1;
     }
 }
