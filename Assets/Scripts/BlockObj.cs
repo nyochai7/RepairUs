@@ -13,12 +13,28 @@ public class BlockObj : MonoBehaviour
     {
         get
         {
-            return this.isUndeletable;
+            return this.isUndeletable || this.IsActive;
         }
         set
         {
             this.isUndeletable = value;
-            GetComponent<SpriteRenderer>().color = value ? Color.red : Color.green;
+        }
+    }
+
+    private bool isActive = false;
+
+    public bool IsActive
+    {
+
+        get
+        {
+            return isActive;
+        }
+
+        set
+        {
+            isActive = value;
+            GetComponent<SpriteRenderer>().color = isActive ? Color.red : Color.green;
         }
     }
 
@@ -84,7 +100,7 @@ public class BlockObj : MonoBehaviour
     void OnMouseDown()
     {
         this.IsDragged = true;
-        if (this.myList != null && !isUndeletable)
+        if (this.myList != null && !IsUndeletable)
         {
             this.myList.RemoveBlock(this);
             this.myList = null;
