@@ -402,6 +402,7 @@ GameObject:
   - component: {fileID: 97993412}
   - component: {fileID: 97993411}
   - component: {fileID: 97993413}
+  - component: {fileID: 97993414}
   m_Layer: 0
   m_Name: table
   m_TagString: Untagged
@@ -499,6 +500,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.78, y: 1.78}
   m_EdgeRadius: 0
+--- !u!114 &97993414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97993410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f9c652d071766d419444fa311a1270d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &102330447
 GameObject:
   m_ObjectHideFlags: 0
@@ -1230,6 +1243,7 @@ GameObject:
   m_Component:
   - component: {fileID: 247293924}
   - component: {fileID: 247293923}
+  - component: {fileID: 247293925}
   m_Layer: 0
   m_Name: laundry_basket
   m_TagString: Untagged
@@ -1301,6 +1315,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 42
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &247293925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247293922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40a74e24f7d1b3c4a9c431be6e6d5fb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &414757730
 GameObject:
   m_ObjectHideFlags: 0
@@ -1392,6 +1418,7 @@ GameObject:
   m_Component:
   - component: {fileID: 487739053}
   - component: {fileID: 487739052}
+  - component: {fileID: 487739054}
   m_Layer: 0
   m_Name: coffee_table
   m_TagString: Untagged
@@ -1463,6 +1490,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 54
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &487739054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487739051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5af735bb64a9a05498baa8ad52126bc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &489992177
 GameObject:
   m_ObjectHideFlags: 0
@@ -1554,6 +1593,7 @@ GameObject:
   m_Component:
   - component: {fileID: 513704846}
   - component: {fileID: 513704845}
+  - component: {fileID: 513704848}
   - component: {fileID: 513704847}
   - component: {fileID: 513704849}
   m_Layer: 0
@@ -1642,6 +1682,18 @@ MonoBehaviour:
   radiusToObj: 1
   timeStartedCurrTask: 0
   face: {fileID: 166544199}
+--- !u!114 &513704848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 513704844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a31b8c8009e5e7648b124837dba92d5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &513704849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3305,6 +3357,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1028734790}
   - component: {fileID: 1028734789}
+  - component: {fileID: 1028734791}
   m_Layer: 0
   m_Name: flowers
   m_TagString: Untagged
@@ -3376,6 +3429,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 44
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1028734791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1028734788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c141395d8af2b474aabb727cce18115f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1046947925
 GameObject:
   m_ObjectHideFlags: 0
@@ -3909,6 +3974,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1317733439}
   - component: {fileID: 1317733438}
+  - component: {fileID: 1317733440}
   m_Layer: 0
   m_Name: plant
   m_TagString: Untagged
@@ -3980,6 +4046,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 45
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1317733440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317733437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4341d365eb46f74790a3a94008fee62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1335762018
 GameObject:
   m_ObjectHideFlags: 0
@@ -4321,6 +4399,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1422191260}
   - component: {fileID: 1422191259}
+  - component: {fileID: 1422191261}
   m_Layer: 0
   m_Name: tv
   m_TagString: Untagged
@@ -4392,6 +4471,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 53
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
+--- !u!114 &1422191261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422191258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9175bbea567bfb84fbcab051683d2f4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1470322593
 GameObject:
   m_ObjectHideFlags: 0
@@ -4510,6 +4601,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1503363694}
   - component: {fileID: 1503363693}
+  - component: {fileID: 1503363695}
   m_Layer: 0
   m_Name: shoes
   m_TagString: Untagged
@@ -4581,6 +4673,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 48
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1503363695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1503363692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e0876172bd339748a49e0d90afbd771, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1516652177
 GameObject:
   m_ObjectHideFlags: 0
@@ -5783,6 +5887,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2106553834}
   - component: {fileID: 2106553833}
+  - component: {fileID: 2106553835}
   m_Layer: 0
   m_Name: laundry_machine
   m_TagString: Untagged
@@ -5854,6 +5959,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 43
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2106553835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106553832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a82c047c51850a4abecf1aed4dc72cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2125893776
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Laundry_Basket : MonoBehaviour
+public class LaundryBasket : MonoBehaviour
 {
     // Start is called before the first frame update
     bool isTaken = false;
