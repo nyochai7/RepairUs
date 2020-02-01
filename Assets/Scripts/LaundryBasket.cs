@@ -31,12 +31,12 @@ public class LaundryBasket : MonoBehaviour
             default:
                 return;
         }
-        if (this.hasClothes)
+        if (!this.hasClothes)
         {
-            Sprite basketSprite = Resources.Load<Sprite>("Sprites/laundry_basket1");
+            Sprite basketSprite = Resources.Load<Sprite>("Sprites/laundry_basket0");
             this.GetComponent<SpriteRenderer>().sprite = basketSprite;
             this.GetComponent<SpriteRenderer>().sortingOrder = 1;
-        }
+        } 
     }
 
     public static bool HasClothes(){
