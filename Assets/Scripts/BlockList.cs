@@ -7,16 +7,59 @@ public class BlockList : MonoBehaviour
     private const int MAX_BLOCKS = 3;
     private const int BLOCK_HEIGHT = 1;
     public BlockObj[] blocks = new BlockObj[MAX_BLOCKS];
+
+
+    void Awake()
+    {
+
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         MainObject.Get().AllBlockLists.Add(this);
+
+        /*blocks[0] = Instantiate(MainObject.Get().blockObjPrefab,
+                   Vector3.zero,
+                   Quaternion.identity).GetComponent<BlockObj>();*/
+        blocks[3] = Instantiate(MainObject.Get().blockObjPrefab,
+                           Vector3.zero,
+                           Quaternion.identity).GetComponent<BlockObj>();
+        blocks[4] = Instantiate(MainObject.Get().blockObjPrefab,
+                           Vector3.zero,
+                           Quaternion.identity).GetComponent<BlockObj>();
+
+
+        blocks[3].IsUndeletable = true;
+
+        foreach (BlockObj block in blocks)
+        {
+            if (block != null)
+            {
+                block.myList = this;
+                block.ResetPosByIndex();
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+    public int IndexOf(BlockObj block)
+    {
+        for (int i = 0; i < blocks.Length; i++)
+        {
+            if (blocks[i] == block)
+            {
+                return i;
+            }
+        }
+
+        return -1;
     }
 
     public bool RemoveBlock(BlockObj block)

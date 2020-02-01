@@ -8,6 +8,20 @@ public class BlockObj : MonoBehaviour
     public bool IsDragged { get; set; }
     public Task task { get; set; }
 
+    private bool isUndeletable = false;
+    public bool IsUndeletable
+    {
+        get
+        {
+            return this.isUndeletable;
+        }
+        set
+        {
+            this.isUndeletable = value;
+            GetComponent<SpriteRenderer>().color = value ? Color.red : Color.green;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,15 +40,14 @@ public class BlockObj : MonoBehaviour
         {
             Vector3 w = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             w = new Vector3(w.x, w.y, 0);
-            Debug.Log(this.transform.position);
             this.transform.position = w;
 
             Vector3? possiblePos = null;
             BlockList selectedList = null;
-            
+
             possiblePos = findLocationInAllLists(ref selectedList);
 
-            if (possiblePos != null)
+            if (possiblePos != null && (!IsUndeletable || selectedList == myList))
             {
                 this.transform.position = centerPos(possiblePos.Value);
             }
@@ -67,7 +80,7 @@ public class BlockObj : MonoBehaviour
     void OnMouseDown()
     {
         this.IsDragged = true;
-        if (this.myList != null)
+        if (this.myList != null && !isUndeletable)
         {
             this.myList.RemoveBlock(this);
             this.myList = null;
@@ -82,23 +95,35 @@ public class BlockObj : MonoBehaviour
         BlockList selectedList = null;
         possiblePos = findLocationInAllLists(ref selectedList);
 
-        if (possiblePos != null)
+        if (possiblePos != null && (!IsUndeletable || selectedList == myList))
         {
             this.transform.position = centerPos(possiblePos.Value);
 
             int? index = selectedList.PositionToIndex(this.transform.position);
 
-            Debug.Log("Index=" + index.ToString());
             // We know index is not null because we just checked location is valid using findLocationInAllLists
             selectedList.blocks[index.Value] = this;
 
             myList = selectedList;
-        } else
-        {
-            this.myList = null;
-
-            // Goodbye Yellow BlockObj
-            Destroy(this.gameObject);
         }
+        else
+        {
+            if (IsUndeletable)
+            {
+                ResetPosByIndex();
+            }
+            else
+            {
+                this.myList = null;
+
+                // Goodbye Yellow BlockObj
+                Destroy(this.gameObject);
+            }
+        }
+    }
+
+    public void ResetPosByIndex()
+    {
+        this.transform.position = centerPos(myList.IndexToPosition(myList.IndexOf(this)));
     }
 }
