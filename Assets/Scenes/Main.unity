@@ -1740,7 +1740,10 @@ MonoBehaviour:
   radiusToObj: 1
   timeStartedCurrTask: 0
   face: {fileID: 166544199}
-  happyFacesPrefab: {fileID: 0}
+  happyFacesPrefab: {fileID: 6503305992230203467, guid: fb4b44c3efa41854987391c54531cd53,
+    type: 3}
+  sadFacesPrefab: {fileID: 6503305992230203467, guid: df56a59794d3a4142878519783cd7fcb,
+    type: 3}
 --- !u!114 &513704848
 MonoBehaviour:
   m_ObjectHideFlags: 0
