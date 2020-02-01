@@ -5,8 +5,8 @@ using UnityEngine;
 public class Shower : MonoBehaviour
 {
     // Start is called before the first frame update
-    bool isTaken = false;
-    bool isInUse = false;
+    public bool isTaken = false;
+    public bool isInUse = false;
     void Start()
     {
         MainObject mainObject = MainObject.Get();
@@ -19,23 +19,18 @@ public class Shower : MonoBehaviour
         
     }
 
-    public bool IsTaken()
-    {
-        return isTaken;
-    }
-
     void listener(OurEvent whatHappened)
     {
         switch (whatHappened)
         {
-            case OurEvent.SHOWER_IS_TAKEN: //change me to GO_SHOWER_START
+            case OurEvent.SHOWER_IS_TAKEN: 
                 this.isTaken = true;
                 break;
-            case OurEvent.USE_SHOWER_STOP: //change me to USE_SHOWER_STOP
+            case OurEvent.USE_SHOWER_STOP: 
                 this.isTaken = false;
                 this.isInUse = false;
                 break;
-            case OurEvent.USE_SHOWER_START: //change me to USE_SHOWER_START
+            case OurEvent.USE_SHOWER_START: 
                 this.isInUse = true;
                 break;
             default:
@@ -48,14 +43,15 @@ public class Shower : MonoBehaviour
         }
         else
         {
-            toLoad = "toilet0";
+            toLoad = "shower0";
         }
         Sprite bedSprite = Resources.Load<Sprite>("Sprites/" + toLoad);
         this.GetComponent<SpriteRenderer>().sprite = bedSprite;
         this.GetComponent<SpriteRenderer>().sortingOrder = 1;
     }
 
-    public static bool CheckShower(){
-        return GameObject.Find("shower").GetComponent<Shower>().isTaken;
+    public static bool IsTaken(){
+
+        return !GameObject.Find("shower").GetComponent<Shower>().isTaken;
     }
 }

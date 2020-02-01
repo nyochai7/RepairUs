@@ -5,11 +5,13 @@ using System;
 public class MainCharacter : MonoBehaviour, ILocationMonitorable
 {
 
-    public float radiusToObj = 1;
+    public float radiusToObj = 3f;
     public long timeStartedCurrTask;
     public GeneralTask[] currTask;
     public GeneralTask currMove;
     int moveIndex;
+    bool sentStartForMove = false;
+    bool sentStopForMove = false;
 
     [SerializeField]
     DynamicFace face;
@@ -19,10 +21,13 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
         if (name == "sink")
         {
             GetComponent<SpriteRenderer>().color = Color.green;
+            this.DoTask(Task.EAT);
+
         }
         if (name == "bed")
         {
-            this.DoTask(Task.SHOWER);
+            this.DoTask(Task.COOK);
+
         }
     }
 
@@ -44,20 +49,34 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
             if (this.currMove is SingleMove){
                 SingleMove currSingleMove = (SingleMove)this.currMove;
 
+                Debug.Log("Doing single move");
                 if (Vector3.Distance(this.gameObject.transform.position, currSingleMove.goTo) < radiusToObj)
                 {
-                    mainObject.InvokeEvent(currSingleMove.startEvent);
-                    Debug.Log("Sent Start Event");
+                    Debug.Log("IN RADIUS");
+                    if (!this.sentStartForMove){
+                        this.sentStartForMove = true;
+                        mainObject.InvokeEvent(currSingleMove.startEvent);
+                        Debug.Log("Sent Start Event");
+                    } else {
+                        Debug.Log("ALREADY SENT");
+                    }
+                    
 
                     if (new System.DateTimeOffset(System.DateTime.UtcNow).ToUnixTimeSeconds() - this.timeStartedCurrTask > currSingleMove.duration){
-                        mainObject.InvokeEvent(currSingleMove.stopEvent);
-                        Debug.Log("Sent Stop Event for move index " + this.moveIndex);
-                        this.GetNextMove();
+                        if (!this.sentStopForMove){
+                            this.sentStopForMove = true;
+                            mainObject.InvokeEvent(currSingleMove.stopEvent);
+                            Debug.Log("Sent Stop Event for move index " + this.moveIndex);
+                            this.GetNextMove();
+                        }
+                        
                     }
 
+                } else {
+                    Debug.Log("Not Close enough yet");
                 }
             } else if (this.currMove is ConditionalTask){
-                
+                Debug.Log("Doing condition");
                 ConditionalTask currConditionalTask = (ConditionalTask)this.currMove;
                 if (currConditionalTask.conditionFunc()){
                     Debug.Log("Condition was true");
@@ -102,17 +121,24 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
         this.currMove = this.currTask[0];
         this.moveIndex = 0;
         if (this.currMove is SingleMove){
-
+            Debug.Log("starting to move");
             SingleMove currSingleMove = (SingleMove)this.currMove;
             GetComponent<NavMeshAgent2D>().destination = currSingleMove.goTo;
+            Debug.Log("stoping move");
         }
     }
 
     void GetNextMove(){
         if (this.moveIndex < this.currTask.Length - 1){
+            Debug.Log("Goind to next move, index=" + this.moveIndex);
+            this.sentStartForMove = false;
+            this.sentStopForMove = false;
             this.moveIndex++;
             this.currMove = this.currTask[moveIndex];
         } else {
+            Debug.Log("No more moves");
+            this.sentStartForMove = false;
+            this.sentStopForMove = false;
             this.currMove = null;
             this.currTask = null;
         }

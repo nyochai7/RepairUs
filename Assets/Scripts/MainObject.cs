@@ -5,7 +5,7 @@ using System;
 
 public class MainObject : MonoBehaviour
 {
-    public static int defaultDuration = 5;
+    public static int defaultDuration = 2;
     public Dictionary<Task, GeneralTask[]> allTasks = new Dictionary<Task, GeneralTask[]>();
     public LocationManager locationManager { get; set; }
     public event Action<OurEvent> onSomethingHappened;
@@ -60,17 +60,17 @@ public class MainObject : MonoBehaviour
             new ConditionalTask(Sink.CheckSink, Task.WASH_DISHES, null, OurEvent.MAKE_BED_START, null)
         });
 
+        allTasks.Add(Task.WASH_DISHES, new GeneralTask[]{
+            new SingleMove(Utils.getPositionByName("sink"), OurEvent.DISHES_START, OurEvent.DISHES_STOP, defaultDuration)
+        });
+
         allTasks.Add(Task.SHOWER, new GeneralTask[]{
             new SingleMove(Utils.getPositionByName("makeup_table0"), OurEvent.GO_TO_SHOWER, OurEvent.DO_NOTHING, defaultDuration),
-            new ConditionalTask(Shower.CheckShower, Task.USE_SHOWER, null, OurEvent.SHOWER_IS_TAKEN, OurEvent.SAY_TYPICAL)
+            new ConditionalTask(Shower.IsTaken, Task.USE_SHOWER, null, OurEvent.SHOWER_IS_TAKEN, OurEvent.SAY_TYPICAL)
         });
 
         allTasks.Add(Task.USE_SHOWER, new GeneralTask[]{
             new SingleMove(Utils.getPositionByName("shower"), OurEvent.USE_SHOWER_START, OurEvent.USE_SHOWER_STOP, defaultDuration)
-        });
-
-        allTasks.Add(Task.WASH_DISHES, new GeneralTask[]{
-            new SingleMove(Utils.getPositionByName("sink"), OurEvent.DISHES_START, OurEvent.DISHES_STOP, defaultDuration)
         });
 
         allTasks.Add(Task.MAKE_BED, new GeneralTask[]{
@@ -87,9 +87,18 @@ public class MainObject : MonoBehaviour
 
         allTasks.Add(Task.EAT, new GeneralTask[]{
             new SingleMove(Utils.getPositionByName("kitchen_counter"), OurEvent.GET_FOOD_START, OurEvent.GET_FOOD_STOP, defaultDuration),
+            new ConditionalTask(Counter.hasCookedFood, Task.EAT_GOOD_FOOD, Task.EAT_BAD_FOOD, OurEvent.EAT_COUNTER_FOOD, OurEvent.SAY_ANGRY)
+        });
+
+        allTasks.Add(Task.EAT_GOOD_FOOD, new GeneralTask[]{
             new SingleMove(Utils.getPositionByName("table"), OurEvent.EAT_START, OurEvent.EAT_STOP, defaultDuration)
         });
 
+        allTasks.Add(Task.EAT_BAD_FOOD, new GeneralTask[]{
+            new SingleMove(Utils.getPositionByName("sink"), OurEvent.FRIDGE_START, OurEvent.FRIDGE_STOP, defaultDuration), //need to change to fridge
+            new SingleMove(Utils.getPositionByName("table"), OurEvent.EAT_START, OurEvent.EAT_STOP, defaultDuration)
+
+        });
         allTasks.Add(Task.RAISE_TOILET_SEAT, new GeneralTask[]{
             new SingleMove(Utils.getPositionByName("Toilet_Down"), OurEvent.RAISE_TOILET_SEAT, OurEvent.DO_NOTHING, defaultDuration)
         });

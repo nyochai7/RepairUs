@@ -13,6 +13,7 @@ public enum OurEvent
     LAUNDRY_STOP,
     EAT_START,
     EAT_STOP,
+    EAT_COUNTER_FOOD,
     GET_FOOD_START,
     GET_FOOD_STOP,
     COOK_START,
@@ -32,5 +33,7 @@ public enum OurEvent
     USE_SHOWER_STOP,
 
     SHOWER_IS_TAKEN,
+    FRIDGE_START,
+    FRIDGE_STOP,
     DO_NOTHING
 }

@@ -20,7 +20,7 @@ public class Toilet : MonoBehaviour
     }
 
     public static bool IsTaken(){
-        return GameObject.Find("toilet").GetComponent<Toilet>().isTaken;
+        return GameObject.Find("Toilet_Down").GetComponent<Toilet>().isTaken;
     }
 
     void listener(OurEvent whatHappened)
