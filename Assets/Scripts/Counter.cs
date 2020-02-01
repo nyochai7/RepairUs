@@ -42,7 +42,7 @@ public class Counter : MonoBehaviour
             default:
                 return;
         }
-        Sprite counterSprite = Resources.Load<Sprite>("Sprites/counter" + this.numFood.ToString());
+        Sprite counterSprite = Resources.Load<Sprite>("ScottsSprites/kitchen_counter" + this.numFood.ToString());
         this.GetComponent<SpriteRenderer>().sprite = counterSprite;
         this.GetComponent<SpriteRenderer>().sortingOrder = 1;
     }
