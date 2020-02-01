@@ -34,14 +34,8 @@ public class CharacterProps : MonoBehaviour, ILocationMonitorable
             //GetComponent<SpriteRenderer>().color = Color.green;
             mc.Happiness++;
         }
-        if (name == "bed")
-        {
-            MainObject.Get().InvokeEvent(OurEvent.EAT_STOP);
-            MainObject.Get().InvokeEvent(OurEvent.EAT_STOP);
-            MainObject.Get().InvokeEvent(OurEvent.EAT_STOP);
-            MainObject.Get().InvokeEvent(OurEvent.EAT_STOP);
-
-            mc.DoTask(Task.DO_DISHES);
+        if (name == "bed"){
+            mc.DoTask(Task.DO_LAUNDRY);
         }
     }
 }
