@@ -401,6 +401,7 @@ GameObject:
   m_Component:
   - component: {fileID: 97993412}
   - component: {fileID: 97993411}
+  - component: {fileID: 97993415}
   - component: {fileID: 97993413}
   - component: {fileID: 97993414}
   m_Layer: 0
@@ -484,7 +485,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -513,6 +514,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isClean: 0
+--- !u!114 &97993415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97993410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07bf96d814c48254780d98aa2be477bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  task: 6
 --- !u!1 &102330447
 GameObject:
   m_ObjectHideFlags: 0
@@ -1515,6 +1529,8 @@ GameObject:
   m_Component:
   - component: {fileID: 489992179}
   - component: {fileID: 489992178}
+  - component: {fileID: 489992181}
+  - component: {fileID: 489992180}
   m_Layer: 0
   m_Name: shower
   m_TagString: Untagged
@@ -1586,6 +1602,45 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 36
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &489992180
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489992177}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.42, y: 1.57}
+    newSize: {x: 1.42, y: 1.57}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.42, y: 1.57}
+  m_EdgeRadius: 0
+--- !u!114 &489992181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489992177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07bf96d814c48254780d98aa2be477bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  task: 16
 --- !u!1 &513704844
 GameObject:
   m_ObjectHideFlags: 0
@@ -1686,7 +1741,6 @@ MonoBehaviour:
   timeStartedCurrTask: 0
   face: {fileID: 166544199}
   happyFacesPrefab: {fileID: 0}
-  charProps: {fileID: 0}
 --- !u!114 &513704848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2779,7 +2833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07bf96d814c48254780d98aa2be477bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  task: 1
+  task: 2
 --- !u!61 &778268145
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4314,6 +4368,8 @@ GameObject:
   - component: {fileID: 1385379800}
   - component: {fileID: 1385379799}
   - component: {fileID: 1385379801}
+  - component: {fileID: 1385379803}
+  - component: {fileID: 1385379802}
   m_Layer: 0
   m_Name: Toilet_Down
   m_TagString: Untagged
@@ -4399,6 +4455,45 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isUp: 0
   isTaken: 0
+--- !u!61 &1385379802
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385379798}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.77, y: 5.56}
+    newSize: {x: 3.77, y: 5.56}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.77, y: 5.56}
+  m_EdgeRadius: 0
+--- !u!114 &1385379803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385379798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07bf96d814c48254780d98aa2be477bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  task: 11
 --- !u!1 &1422191258
 GameObject:
   m_ObjectHideFlags: 0
@@ -5292,6 +5387,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1764219851}
   - component: {fileID: 1764219850}
+  - component: {fileID: 1764219854}
   - component: {fileID: 1764219852}
   - component: {fileID: 1764219853}
   m_Layer: 0
@@ -5375,7 +5471,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -5404,6 +5500,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numFood: 0
+--- !u!114 &1764219854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1764219849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07bf96d814c48254780d98aa2be477bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  task: 15
 --- !u!1 &1799687880
 GameObject:
   m_ObjectHideFlags: 0
@@ -5902,6 +6011,8 @@ GameObject:
   - component: {fileID: 2106553833}
   - component: {fileID: 2106553835}
   - component: {fileID: 2106553836}
+  - component: {fileID: 2106553838}
+  - component: {fileID: 2106553837}
   m_Layer: 0
   m_Name: laundry_machine
   m_TagString: Untagged
@@ -6082,6 +6193,45 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!61 &2106553837
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106553832}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.42, y: 1.57}
+    newSize: {x: 1.42, y: 1.57}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.42, y: 1.57}
+  m_EdgeRadius: 0
+--- !u!114 &2106553838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106553832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07bf96d814c48254780d98aa2be477bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  task: 4
 --- !u!1 &2125893776
 GameObject:
   m_ObjectHideFlags: 0
