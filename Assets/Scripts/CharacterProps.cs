@@ -24,6 +24,8 @@ public class CharacterProps : MonoBehaviour, ILocationMonitorable
         MainObject.Get().locationManager.monitors.Add(new RadiusRelation(
             "shoes", this, new FakeILocationMonitorable(GameObject.Find("shoes")), WhoToAlert.OnlyFirst));
         MainObject.Get().locationManager.monitors.Add(new RadiusRelation(
+            "plant", this, new FakeILocationMonitorable(GameObject.Find("plant")), WhoToAlert.OnlyFirst));
+        MainObject.Get().locationManager.monitors.Add(new RadiusRelation(
             "bed", this, new FakeILocationMonitorable(GameObject.Find("Bed")), WhoToAlert.OnlyFirst));
     }
     public virtual void onMonitorAlertFunc(string name, ILocationMonitorable otherObj)
@@ -32,7 +34,12 @@ public class CharacterProps : MonoBehaviour, ILocationMonitorable
         if (name == "shoes")
         {
             //GetComponent<SpriteRenderer>().color = Color.green;
-            mc.Happiness++;
+            mc.Happiness--;
+        }
+        if (name == "plant")
+        {
+            //GetComponent<SpriteRenderer>().color = Color.green;
+            mc.Happiness--;
         }
         if (name == "bed"){
         }
