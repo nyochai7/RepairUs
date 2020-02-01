@@ -7,6 +7,9 @@ public class BlockList : MonoBehaviour
     private const int MAX_BLOCKS = 10;
     private const float BLOCK_HEIGHT = 0.5f;
     BlockObj[] blocks;
+    
+    [SerializeField]
+    int blockListType;
     public Task? CurrTask{
         get{
             BlockObj thisBlock = this.blocks[this.currentRunningTaskIndex];
@@ -66,10 +69,16 @@ public class BlockList : MonoBehaviour
                            Vector3.zero,
                            Quaternion.identity).GetComponent<BlockObj>();*/
 
-
-        blocks[blocks.Length - 1] = CreateUndeletableBlock(Task.SHOWER);
-        blocks[blocks.Length - 2] = CreateUndeletableBlock(Task.EAT);
-        blocks[blocks.Length - 4] = CreateUndeletableBlock(Task.USE_TOILET_HER);
+        if(this.blockListType == 1){
+            blocks[blocks.Length - 1] = CreateUndeletableBlock(Task.SHOWER);
+            blocks[blocks.Length - 2] = CreateUndeletableBlock(Task.EAT);
+            blocks[blocks.Length - 4] = CreateUndeletableBlock(Task.USE_TOILET);
+        }
+        if(this.blockListType == 2){
+            blocks[blocks.Length - 1] = CreateUndeletableBlock(Task.DO_LAUNDRY);
+            blocks[blocks.Length - 4] = CreateUndeletableBlock(Task.USE_TOILET);
+            blocks[blocks.Length - 7] = CreateUndeletableBlock(Task.EAT);
+        }
 
 
         foreach (BlockObj block in blocks)
