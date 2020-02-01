@@ -118,7 +118,6 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
         navMeshAgent = GetComponent<NavMeshAgent2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         MainObject.Get().onSomethingHappened+= MainCharacter_onSomethingHappened;
-
         Happiness = 50;
     }
 
@@ -188,7 +187,6 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
         angle += (float)Math.PI / 2.0f;
         //angle += 3f * (float)Math.PI / 4.0f;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        
         prevPos = transform.position;
 
 

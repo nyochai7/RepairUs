@@ -42,9 +42,9 @@ public class CharacterProps : MonoBehaviour, ILocationMonitorable
 
             MainCharacter sab = GameObject.Find("Sabrina").GetComponent<MainCharacter>();
             MainCharacter chad = GameObject.Find("Chad").GetComponent<MainCharacter>();
-            if ((sab.blockList.CurrTask == Task.EAT || sab.blockList.CurrTask == Task.EAT_GOOD_FOOD || sab.blockList.CurrTask == Task.EAT_BAD_FOOD) && 
-                (chad.blockList.CurrTask == Task.EAT || chad.blockList.CurrTask == Task.EAT_GOOD_FOOD || chad.blockList.CurrTask == Task.EAT_BAD_FOOD)){
-                
+            if ((sab.blockList.CurrTask == Task.EAT_GOOD_FOOD || sab.blockList.CurrTask == Task.EAT_BAD_FOOD) && 
+                (chad.blockList.CurrTask == Task.EAT_GOOD_FOOD || chad.blockList.CurrTask == Task.EAT_BAD_FOOD)){
+                Debug.Log("EATING TOGETHER1");
                 MainObject.Get().InvokeEvent(OurEvent.SAY_HAPPY, this.gameObject);
             }
         }

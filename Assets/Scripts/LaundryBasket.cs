@@ -8,6 +8,7 @@ public class LaundryBasket : MonoBehaviour
     public bool hasClothes = false;
     void Start()
     {
+        this.hasClothes = true;
         MainObject mainObject = MainObject.Get();
         mainObject.onSomethingHappened += this.listener;
 

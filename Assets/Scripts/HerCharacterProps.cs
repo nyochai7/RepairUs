@@ -18,16 +18,19 @@ public class HerCharacterProps : CharacterProps
     public override void onMonitorAlertFunc(string name, ILocationMonitorable otherObj)
     {
         base.onMonitorAlertFunc(name, otherObj);
-
+        Debug.Log("Alert name=" + name);
         if (name =="sink"){
             if (!Sink.CheckSink()){
+                Debug.Log("SINK DIRTY");
                 MainObject.Get().InvokeEvent(OurEvent.SAY_ANGRY, this.gameObject);
             } else {
+                Debug.Log("SINK CLEAN");
                 MainObject.Get().InvokeEvent(OurEvent.SAY_HAPPY, this.gameObject);
             }
         }
         if (name == "bed"){
             if (Bed.IsMade()){
+                Debug.Log("BED MADE");
                 MainObject.Get().InvokeEvent(OurEvent.SAY_HAPPY, this.gameObject);
             }
         }
