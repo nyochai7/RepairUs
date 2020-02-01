@@ -54,14 +54,12 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
                     if (!this.sentStartForMove){
                         this.sentStartForMove = true;
                         mainObject.InvokeEvent(currSingleMove.startEvent);
-                        Debug.Log("Sent Start Event");
                     }                 
 
                     if (new System.DateTimeOffset(System.DateTime.UtcNow).ToUnixTimeSeconds() - this.timeStartedCurrTask > currSingleMove.duration){
                         if (!this.sentStopForMove){
                             this.sentStopForMove = true;
                             mainObject.InvokeEvent(currSingleMove.stopEvent);
-                            Debug.Log("Sent Stop Event for move index " + this.moveIndex);
                             this.GetNextMove();
                         }
                     }
@@ -69,7 +67,6 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
 
                 } 
             } else if (this.currMove is ConditionalTask){
-                Debug.Log("Doing condition");
                 ConditionalTask currConditionalTask = (ConditionalTask)this.currMove;
                 if (currConditionalTask.conditionFunc()){
                     Debug.Log("Condition was true");
@@ -82,7 +79,6 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
                     }
                     
                 } else {
-                    Debug.Log("Condition was FALSE");
                     
                     mainObject.InvokeEvent(currConditionalTask.falseEvent);
                     if (currConditionalTask.falseTask!= null){
@@ -114,22 +110,18 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
         this.currMove = this.currTask[0];
         this.moveIndex = 0;
         if (this.currMove is SingleMove){
-            Debug.Log("starting to move");
             SingleMove currSingleMove = (SingleMove)this.currMove;
             GetComponent<NavMeshAgent2D>().destination = currSingleMove.goTo;
-            Debug.Log("stoping move");
         }
     }
 
     void GetNextMove(){
         if (this.moveIndex < this.currTask.Length - 1){
-            Debug.Log("Goind to next move, index=" + this.moveIndex);
             this.sentStartForMove = false;
             this.sentStopForMove = false;
             this.moveIndex++;
             this.currMove = this.currTask[moveIndex];
         } else {
-            Debug.Log("No more moves");
             this.sentStartForMove = false;
             this.sentStopForMove = false;
             this.currMove = null;
