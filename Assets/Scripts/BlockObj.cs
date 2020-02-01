@@ -36,7 +36,7 @@ public class BlockObj : MonoBehaviour
         set
         {
             isActive = value;
-            GetComponent<SpriteRenderer>().color = isActive ? Color.red : Color.green;
+            GetComponent<SpriteRenderer>().color = isActive ? Color.red : new Color(0x8B / 255f, 0xE5 / 255f, 0x38 / 255f);
         }
     }
 
