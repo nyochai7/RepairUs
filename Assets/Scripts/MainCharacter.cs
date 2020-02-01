@@ -33,6 +33,9 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
 
     CharacterProps charProps;
     NavMeshAgent2D navMeshAgent;
+    SpriteRenderer spriteRenderer;
+
+    Vector3 prevPos;
 
     private int happiness = 50;
 
@@ -113,6 +116,8 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
         // MainObject.Get().InvokeEvent(OurEvent.ADD_CLOTHES_TO_BASKET, this);
         charProps = GetComponent<CharacterProps>();
         navMeshAgent = GetComponent<NavMeshAgent2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
     }
 
     private string RandomString(String[] words)
@@ -174,6 +179,17 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
         navMeshAgent.speed = Utils.IsFastForward() ? FAST_SPEED : NORMAL_SPEED;
         navMeshAgent.angularSpeed = Utils.IsFastForward() ? 200 : 120;
         navMeshAgent.acceleration = Utils.IsFastForward() ? 25 : 8;
+
+
+        Vector3 relativePos = transform.position - prevPos;
+        float angle = Mathf.Atan2(relativePos.y, relativePos.x) * Mathf.Rad2Deg;
+        angle += (float)Math.PI / 2.0f;
+        //angle += 3f * (float)Math.PI / 4.0f;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        Debug.Log("Rotation:" + angle.ToString());
+        prevPos = transform.position;
+
 
         if (this.currTask != null && this.currMove != null)
         {

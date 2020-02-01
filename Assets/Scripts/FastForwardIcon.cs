@@ -31,6 +31,5 @@ public class FastForwardIcon : MonoBehaviour
     void Update()
     {
         this.Visible = Utils.IsFastForward();
-        Debug.Log("ColorA:" + spriteRenderer.color.a.ToString());
     }
 }
