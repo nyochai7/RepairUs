@@ -63,6 +63,8 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
     // Start is called before the first frame update
     void Start()
     {
+        charProps = GetComponent<CharacterProps>();
+
         MainObject.Get().locationManager.monitors.Add(new RadiusRelation(
             "sink", this, new FakeILocationMonitorable(GameObject.Find("sink")), WhoToAlert.OnlyFirst));
         MainObject.Get().locationManager.monitors.Add(new RadiusRelation(

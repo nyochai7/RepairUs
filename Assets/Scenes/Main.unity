@@ -2096,6 +2096,7 @@ GameObject:
   m_Component:
   - component: {fileID: 699766870}
   - component: {fileID: 699766869}
+  - component: {fileID: 699766871}
   m_Layer: 0
   m_Name: fridge
   m_TagString: Untagged
@@ -2167,6 +2168,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 55
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &699766871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 699766868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb589b2d6b7afffd4b9bb1a53ea5310b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &700478501
 GameObject:
   m_ObjectHideFlags: 0
@@ -4212,6 +4225,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1385379800}
   - component: {fileID: 1385379799}
+  - component: {fileID: 1385379801}
   m_Layer: 0
   m_Name: Toilet_Down
   m_TagString: Untagged
@@ -4283,6 +4297,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+--- !u!114 &1385379801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385379798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 466b83e479c149a4f8ffed7ae0f3cd5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isUp: 0
+  isTaken: 0
 --- !u!1 &1422191258
 GameObject:
   m_ObjectHideFlags: 0
