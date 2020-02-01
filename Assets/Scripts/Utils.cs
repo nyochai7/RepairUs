@@ -30,4 +30,18 @@ public class Utils{
         return Utils.SRtoRect(spriteObj).Contains(position);
     }
 
+    public static string GetTaskTitle(Task task)
+    {
+        string original = Enum.GetName(typeof(Task), task);
+
+        string[] words = original.Split('_');
+
+        for (int i = 0; i < words.Length; i++)
+        {
+            words[i] = char.ToUpper(words[i][0]) + words[i].Substring(1).ToLower();
+        }
+
+        return String.Join(" ", words);
+    }
+
 }

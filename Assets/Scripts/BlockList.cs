@@ -59,6 +59,7 @@ public class BlockList : MonoBehaviour
                            Quaternion.identity).GetComponent<BlockObj>();
 
         blocks[2].IsUndeletable = true;
+        blocks[2].task = Task.EAT;
 
         foreach (BlockObj block in blocks)
         {

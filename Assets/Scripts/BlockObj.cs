@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class BlockObj : MonoBehaviour
@@ -41,7 +43,8 @@ public class BlockObj : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        TextMeshPro tm = transform.Find("A/Title").GetComponent<TextMeshPro>();
+        tm.SetText(Utils.GetTaskTitle(task));
     }
 
     // Update is called once per frame
