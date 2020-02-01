@@ -37,7 +37,7 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
 
     Vector3 prevPos;
 
-    private int happiness = 50;
+    private int happiness;
 
     public int Happiness
     {
@@ -119,6 +119,7 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
         spriteRenderer = GetComponent<SpriteRenderer>();
         MainObject.Get().onSomethingHappened+= MainCharacter_onSomethingHappened;
 
+        Happiness = 50;
     }
 
     private string RandomString(String[] words)
@@ -156,17 +157,17 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
             if (whatHappened == OurEvent.SAY_ANGRY)
             {
                 this.Speak(RandomString(ANGRY_WORDS));
-                this.happiness -= 8;
+                this.Happiness -= 8;
             }
             else if (whatHappened == OurEvent.SAY_HAPPY)
             {
                 this.Speak(RandomString(HAPPY_WORDS));
-                this.happiness += 4;
+                this.Happiness += 4;
             }
             else if (whatHappened == OurEvent.SAY_TYPICAL)
             {
                 this.Speak(RandomString(TYPICAL_WORDS));
-                this.happiness -= 4;
+                this.Happiness -= 4;
             }
         }
     }
@@ -187,8 +188,7 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
         angle += (float)Math.PI / 2.0f;
         //angle += 3f * (float)Math.PI / 4.0f;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-
-        Debug.Log("Rotation:" + angle.ToString());
+        
         prevPos = transform.position;
 
 
