@@ -7,7 +7,15 @@ public class BlockList : MonoBehaviour
     private const int MAX_BLOCKS = 10;
     private const float BLOCK_HEIGHT = 0.5f;
     BlockObj[] blocks;
-
+    public Task? CurrTask{
+        get{
+            BlockObj thisBlock = this.blocks[this.currentRunningTaskIndex];
+            if (thisBlock!= null){
+                return thisBlock.task;
+            }
+            return null;
+        }
+    }
     private int currentRunningTaskIndex;
 
     public int CurrentRunningTaskIndex
