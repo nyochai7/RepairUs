@@ -32,6 +32,7 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
     public GameObject speechBubblePrefab;
 
     CharacterProps charProps;
+    NavMeshAgent2D navMeshAgent;
 
     private int happiness = 50;
 
@@ -111,6 +112,7 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
     {
         // MainObject.Get().InvokeEvent(OurEvent.ADD_CLOTHES_TO_BASKET, this);
         charProps = GetComponent<CharacterProps>();
+        navMeshAgent = GetComponent<NavMeshAgent2D>();
 
         MainObject.Get().locationManager.monitors.Add(new RadiusRelation(
             "sink", this, new FakeILocationMonitorable(GameObject.Find("sink")), WhoToAlert.OnlyFirst));
@@ -173,6 +175,13 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
     // Update is called once per frame
     void Update()
     {
+        const float FAST_SPEED = 10;
+        const float NORMAL_SPEED = 2.5f;
+
+        navMeshAgent.speed = Utils.IsFastForward() ? FAST_SPEED : NORMAL_SPEED;
+        navMeshAgent.angularSpeed = Utils.IsFastForward() ? 200 : 120;
+        navMeshAgent.acceleration = Utils.IsFastForward() ? 25 : 8;
+
         if (this.currTask != null && this.currMove != null)
         {
             MainObject mainObject = MainObject.Get();
@@ -194,7 +203,9 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
                         mainObject.InvokeEvent(currSingleMove.startEvent, this.gameObject);
                     }
 
-                    if (new System.DateTimeOffset(System.DateTime.UtcNow).ToUnixTimeSeconds() - this.timeStartedCurrTask > currSingleMove.duration)
+                    float duration = Utils.IsFastForward() ? currSingleMove.duration / 4.0f : currSingleMove.duration;
+
+                    if (new System.DateTimeOffset(System.DateTime.UtcNow).ToUnixTimeSeconds() - this.timeStartedCurrTask > duration)
                     {
                         if (!this.sentStopForMove)
                         {
