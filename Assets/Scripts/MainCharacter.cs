@@ -37,7 +37,7 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
 
     Vector3 prevPos;
 
-    private int happiness = 50;
+    private int happiness;
 
     public int Happiness
     {
@@ -118,6 +118,7 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
         navMeshAgent = GetComponent<NavMeshAgent2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         MainObject.Get().onSomethingHappened+= MainCharacter_onSomethingHappened;
+        Happiness = 50;
     }
 
     private string RandomString(String[] words)
@@ -155,17 +156,17 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
             if (whatHappened == OurEvent.SAY_ANGRY)
             {
                 this.Speak(RandomString(ANGRY_WORDS));
-                this.happiness -= 8;
+                this.Happiness -= 8;
             }
             else if (whatHappened == OurEvent.SAY_HAPPY)
             {
                 this.Speak(RandomString(HAPPY_WORDS));
-                this.happiness += 4;
+                this.Happiness += 4;
             }
             else if (whatHappened == OurEvent.SAY_TYPICAL)
             {
                 this.Speak(RandomString(TYPICAL_WORDS));
-                this.happiness -= 4;
+                this.Happiness -= 4;
             }
         }
     }
@@ -186,7 +187,6 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
         angle += (float)Math.PI / 2.0f;
         //angle += 3f * (float)Math.PI / 4.0f;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-
         prevPos = transform.position;
 
 
@@ -316,6 +316,35 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
 
     public void SetCurrTask(Task task)
     {
-        this.currTask = MainObject.Get().allTasks[task];
+
+        bool isHer = (gameObject.name == "Sabrina");
+        Task actualTask;
+        switch (task)
+        {
+            case Task.USE_TOILET:
+                if (isHer)
+                    actualTask = Task.USE_TOILET_HER;
+                else
+                    actualTask = Task.USE_TOILET_HIM;
+                break;
+            case Task.EAT_GOOD_FOOD:
+                if (isHer)
+                    actualTask = Task.EAT_GOOD_FOOD_HER;
+                else
+                    actualTask = Task.EAT_GOOD_FOOD_HIM;
+                break;
+
+            case Task.EAT_BAD_FOOD:
+                if (isHer)
+                    actualTask = Task.EAT_BAD_FOOD_HER;
+                else
+                    actualTask = Task.EAT_BAD_FOOD_HIM;
+                break;
+            default:
+                actualTask = task;
+                break;
+        }
+
+        this.currTask = MainObject.Get().allTasks[actualTask];
     }
 }
