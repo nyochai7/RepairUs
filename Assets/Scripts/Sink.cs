@@ -9,7 +9,7 @@ public class Sink : MonoBehaviour
     {
         MainObject mainObject = MainObject.Get();
         mainObject.onSomethingHappened += this.listener;
-        //StartCoroutine(waiter());
+        StartCoroutine(waiter());
     }
 
     // Update is called once per frame
@@ -21,9 +21,9 @@ public class Sink : MonoBehaviour
     {
         MainObject mainObject = MainObject.Get();
         yield return new WaitForSeconds(2);
-        mainObject.InvokeEvent(OurEvent.EAT_STOP);
+        mainObject.InvokeEvent(OurEvent.DISHES_START);
         yield return new WaitForSeconds(2);
-        mainObject.InvokeEvent(OurEvent.EAT_STOP);
+        mainObject.InvokeEvent(OurEvent.DISHES_STOP);
         yield return new WaitForSeconds(2);
         mainObject.InvokeEvent(OurEvent.DISHES_STOP);
         yield return new WaitForSeconds(2);
@@ -55,11 +55,11 @@ public class Sink : MonoBehaviour
         switch(whatHappened)
         {
             case OurEvent.DISHES_START:
-                Debug.Log("Dishes are starting");
+                GetComponent<AudioSource>().Play();
                 break;
 
             case OurEvent.DISHES_STOP:
-                Debug.Log("Dishes are done");
+                GetComponent<AudioSource>().Stop();
                 this.numDishes = 0;
                 break;
 
