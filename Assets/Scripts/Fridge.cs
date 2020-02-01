@@ -5,7 +5,7 @@ using UnityEngine;
 public class Fridge : MonoBehaviour
 {
     // Start is called before the first frame update
-    int numFood = 0;
+    public int numFood = 0;
     void Start()
     {
         MainObject mainObject = MainObject.Get();

@@ -5,7 +5,7 @@ using UnityEngine;
 public class LaundryMachine : MonoBehaviour
 {
     // Start is called before the first frame update
-    bool isFull = false;
+    public bool isFull = false;
     void Start()
     {
         MainObject mainObject = MainObject.Get();

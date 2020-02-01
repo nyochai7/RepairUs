@@ -6,7 +6,7 @@ public class MakeupTable : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    bool isClean = false;
+    public bool isClean = false;
     void Start()
     {
         MainObject mainObject = MainObject.Get();

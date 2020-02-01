@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bed : MonoBehaviour
 {
-    bool isBedMade = true;
+    public bool isBedMade = true;
     // Start is called before the first frame update
     void Start()
     {

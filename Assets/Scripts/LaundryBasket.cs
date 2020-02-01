@@ -5,7 +5,7 @@ using UnityEngine;
 public class LaundryBasket : MonoBehaviour
 {
     // Start is called before the first frame update
-    bool isTaken = false;
+    public bool isTaken = false;
     void Start()
     {
         MainObject mainObject = MainObject.Get();
@@ -25,6 +25,8 @@ public class LaundryBasket : MonoBehaviour
             case OurEvent.TAKE_CLOTHES_STOP:
                 this.isTaken = true;
                 break;
+            case OurEvent.ADD_CLOTHES_TO_BASKET:
+                this.
             default:
                 return;
         }
