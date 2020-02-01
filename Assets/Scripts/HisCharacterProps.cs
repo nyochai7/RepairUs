@@ -9,33 +9,38 @@ public class HisCharacterProps : CharacterProps
         base.InitiateLocationListeners();
 
         MainObject.Get().locationManager.monitors.Add(new RadiusRelation(
-            "table", this, new FakeILocationMonitorable(GameObject.Find("table")), WhoToAlert.OnlyFirst));
+            "makeup_table", this, new FakeILocationMonitorable(GameObject.Find("makeup_table")), WhoToAlert.OnlyFirst));
         MainObject.Get().locationManager.monitors.Add(new RadiusRelation(
             "laundry_basket", this, new FakeILocationMonitorable(GameObject.Find("laundry_basket")), WhoToAlert.OnlyFirst));
-        MainObject.Get().locationManager.monitors.Add(new RadiusRelation(
-            "bed", this, new FakeILocationMonitorable(GameObject.Find("Bed")), WhoToAlert.OnlyFirst));
+
     }
     public override void onMonitorAlertFunc(string name, ILocationMonitorable otherObj)
     {
+        Debug.Log("Alert name=" + name);
         base.onMonitorAlertFunc(name, otherObj);
         if (name == "laundry_basket"){
             if (LaundryBasket.HasClothes()){
+                Debug.Log("Laundry basket has clothes");
                 MainObject.Get().InvokeEvent(OurEvent.SAY_TYPICAL, this.gameObject);
             } else {
+                Debug.Log("Laundry basket has NO clothes");
                 MainObject.Get().InvokeEvent(OurEvent.SAY_HAPPY, this.gameObject);
             }
         }
 
         if (name == "shoes"){
             if (!Shoes.IsClean()){
+                Debug.Log("SHOES DIRTY");
                 MainObject.Get().InvokeEvent(OurEvent.SAY_TYPICAL, this.gameObject);
             }
         }
 
         if (name == "makeup_table"){
             if(!MakeupTable.IsClean()){
+                Debug.Log("Makeup DIRTY");
                 MainObject.Get().InvokeEvent(OurEvent.SAY_TYPICAL, this.gameObject);
             } else {
+                Debug.Log("Makeup CLEAN");
                 MainObject.Get().InvokeEvent(OurEvent.SAY_HAPPY, this.gameObject);
             }
         }

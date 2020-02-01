@@ -118,7 +118,6 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
         navMeshAgent = GetComponent<NavMeshAgent2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         MainObject.Get().onSomethingHappened+= MainCharacter_onSomethingHappened;
-
     }
 
     private string RandomString(String[] words)
@@ -188,7 +187,6 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
         //angle += 3f * (float)Math.PI / 4.0f;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-        Debug.Log("Rotation:" + angle.ToString());
         prevPos = transform.position;
 
 

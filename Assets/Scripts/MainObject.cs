@@ -144,7 +144,7 @@ public class MainObject : MonoBehaviour
         //Eat
         allTasks.Add(Task.EAT, new GeneralTask[]{
             new SingleMove(Utils.getPositionByName("kitchen_counter"), OurEvent.GET_FOOD_START, OurEvent.GET_FOOD_STOP, defaultDuration),
-            new ConditionalTask(Counter.hasCookedFood, Task.EAT_GOOD_FOOD, Task.EAT_BAD_FOOD, OurEvent.EAT_COUNTER_FOOD, OurEvent.SAY_ANGRY)
+            new ConditionalTask(Counter.hasCookedFood, Task.EAT_GOOD_FOOD, Task.EAT_BAD_FOOD, OurEvent.EAT_COUNTER_FOOD, OurEvent.SAY_TYPICAL)
         });
 
         allTasks.Add(Task.EAT_GOOD_FOOD, new GeneralTask[]{
