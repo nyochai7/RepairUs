@@ -11,33 +11,44 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
     public GeneralTask currMove;
     int moveIndex;
 
+    private int happiness = 50;
+
+    public int Happiness
+    {
+        get
+        {
+            return happiness;
+        }
+
+        set
+        {
+            happiness = value;
+            if (happiness < 0)
+            {
+                happiness = 0;
+            }
+            if (happiness > 99)
+            {
+                happiness = 99;
+            }
+            face.CurrentSpriteIndex = happiness / 20;
+        }
+    }
+
     [SerializeField]
     DynamicFace face;
 
+    CharacterProps charProps;
+
     public void onMonitorAlertFunc(string name, ILocationMonitorable otherObj)
     {
-        if (name == "sink")
-        {
-            GetComponent<SpriteRenderer>().color = Color.green;
-        }
-        if (name == "bed")
-        {
-            MainObject.Get().InvokeEvent(OurEvent.EAT_STOP);
-            MainObject.Get().InvokeEvent(OurEvent.EAT_STOP);
-            MainObject.Get().InvokeEvent(OurEvent.EAT_STOP);
-            MainObject.Get().InvokeEvent(OurEvent.EAT_STOP);
-
-            this.DoTask(Task.DO_DISHES);
-        }
+        charProps.onMonitorAlertFunc(name, otherObj);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        MainObject.Get().locationManager.monitors.Add(new RadiusRelation(
-            "sink", this, new FakeILocationMonitorable(GameObject.Find("sink")), WhoToAlert.OnlyFirst));
-        MainObject.Get().locationManager.monitors.Add(new RadiusRelation(
-                "bed", this, new FakeILocationMonitorable(GameObject.Find("Bed")), WhoToAlert.OnlyFirst));
+        charProps = GetComponent<CharacterProps>();
     }
 
     // Update is called once per frame
