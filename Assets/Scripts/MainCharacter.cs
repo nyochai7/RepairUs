@@ -55,7 +55,7 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
         }
         if (name == "bed")
         {
-            this.DoTask(Task.USE_TOILET_HER);
+            this.DoTask(Task.DO_LAUNDRY);
 
         }
     }
@@ -63,6 +63,7 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
     // Start is called before the first frame update
     void Start()
     {
+        MainObject.Get().InvokeEvent(OurEvent.ADD_CLOTHES_TO_BASKET);
         charProps = GetComponent<CharacterProps>();
 
         MainObject.Get().locationManager.monitors.Add(new RadiusRelation(
@@ -104,9 +105,6 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
                             this.GetNextMove();
                         }
                     }
-
-
-
                 }
             }
             else if (this.currMove is ConditionalTask)
@@ -165,18 +163,16 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
 
     void GetNextMove(){
         Debug.Log("getting next move");
+        this.sentStartForMove = false;
+        this.sentStopForMove = false;
+        this.alreadyMoved = false;
         if (this.moveIndex < this.currTask.Length - 1){
             Debug.Log("Got next!");
-            this.sentStartForMove = false;
-            this.sentStopForMove = false;
-            this.alreadyMoved = false;
+
             this.moveIndex++;
             this.currMove = this.currTask[moveIndex];
         } else {
             Debug.Log("No more moves");
-            this.sentStartForMove = false;
-            this.sentStopForMove = false;
-            this.alreadyMoved = false;
             this.currMove = null;
             this.currTask = null;
         }

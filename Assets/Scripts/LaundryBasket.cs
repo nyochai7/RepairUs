@@ -5,7 +5,7 @@ using UnityEngine;
 public class LaundryBasket : MonoBehaviour
 {
     // Start is called before the first frame update
-    public bool isTaken = false;
+    public bool hasClothes = false;
     void Start()
     {
         MainObject mainObject = MainObject.Get();
@@ -22,19 +22,24 @@ public class LaundryBasket : MonoBehaviour
     {
         switch (whatHappened)
         {
-            case OurEvent.TAKE_CLOTHES_STOP:
-                this.isTaken = true;
+            case OurEvent.TAKE_CLOTHES:
+                this.hasClothes = false;
                 break;
             case OurEvent.ADD_CLOTHES_TO_BASKET:
-                this.
+                this.hasClothes = true;
+                break;
             default:
                 return;
         }
-        if (this.isTaken)
+        if (this.hasClothes)
         {
             Sprite basketSprite = Resources.Load<Sprite>("Sprites/laundry_basket1");
             this.GetComponent<SpriteRenderer>().sprite = basketSprite;
             this.GetComponent<SpriteRenderer>().sortingOrder = 1;
         }
+    }
+
+    public static bool HasClothes(){
+        return GameObject.Find("laundry_basket").GetComponent<LaundryBasket>().hasClothes;
     }
 }

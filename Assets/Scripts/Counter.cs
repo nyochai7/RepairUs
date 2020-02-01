@@ -45,8 +45,6 @@ public class Counter : MonoBehaviour
     }
 
     public static bool hasCookedFood(){
-        Debug.Log("HERE");
         return GameObject.Find("kitchen_counter").GetComponent<Counter>().numFood > 0;
-
     }
 }

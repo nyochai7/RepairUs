@@ -4,6 +4,7 @@ public enum Task{
     MAKE_BED,
     SLEEP,
     DO_LAUNDRY,
+    LAUNDER,
     EAT,
     EAT_GOOD_FOOD,
     EAT_BAD_FOOD,
