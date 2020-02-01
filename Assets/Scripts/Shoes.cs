@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MakeupTable : MonoBehaviour
+public class Shoes : MonoBehaviour
 {
     // Start is called before the first frame update
-
     bool isClean = false;
     void Start()
     {
+
         MainObject mainObject = MainObject.Get();
         mainObject.onSomethingHappened += this.listener;
     }
@@ -21,19 +21,17 @@ public class MakeupTable : MonoBehaviour
 
     public static bool IsClean()
     {
-        return GameObject.Find("makeup_table").GetComponent<MakeupTable>().isClean;
+        return GameObject.Find("shoes").GetComponent<Shoes>().isClean;
     }
 
     void listener(OurEvent whatHappened)
     {
         switch (whatHappened)
         {
-            case OurEvent.CLEAN_MAKEUP_TABLE_START:
-                GetComponent<AudioSource>().Play();
+            case OurEvent.CLEAN_SHOES_START:
                 break;
 
-            case OurEvent.CLEAN_MAKEUP_TABLE_STOP:
-                GetComponent<AudioSource>().Stop();
+            case OurEvent.CLEAN_SHOES_STOP:
                 this.isClean = true;
                 break;
             default:
@@ -42,11 +40,11 @@ public class MakeupTable : MonoBehaviour
         string toLoad;
         if (this.isClean)
         {
-            toLoad = "makeup_table0";
+            toLoad = "shoes0";
         }
         else
         {
-            toLoad = "makeup_table1";
+            toLoad = "shoes1";
         }
         Sprite sprite = Resources.Load<Sprite>("Sprites/" + toLoad);
         this.GetComponent<SpriteRenderer>().sprite = sprite;

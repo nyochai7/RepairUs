@@ -24,9 +24,11 @@ public class LaundryMachine : MonoBehaviour
         {
             case OurEvent.LAUNDRY_START: 
                 this.isFull = true;
+                GetComponent<AudioSource>().Play();
                 break;
             case OurEvent.LAUNDRY_STOP:
                 this.isFull = false;
+                GetComponent<AudioSource>().Stop();
                 break;
             default:
                 return;
