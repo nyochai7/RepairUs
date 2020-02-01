@@ -10,6 +10,20 @@ public class BlockObj : MonoBehaviour
     public bool IsDragged { get; set; }
     public Task task { get; set; }
 
+    SpriteRenderer lockSpriteRend;
+
+    public bool LockVisible
+    {
+        set
+        {
+            if (lockSpriteRend != null)
+            {
+                Color c = lockSpriteRend.color;
+                c.a = value ? 1f : 0f;
+                lockSpriteRend.color = c;
+            }
+        }
+    }
     private bool isUndeletable = false;
     public bool IsUndeletable
     {
@@ -20,6 +34,7 @@ public class BlockObj : MonoBehaviour
         set
         {
             this.isUndeletable = value;
+            LockVisible = value;
         }
     }
 
@@ -45,6 +60,9 @@ public class BlockObj : MonoBehaviour
     {
         TextMeshPro tm = transform.Find("A/Title").GetComponent<TextMeshPro>();
         tm.SetText(Utils.GetTaskTitle(task));
+
+        lockSpriteRend = transform.Find("lock").GetComponent<SpriteRenderer>();
+        LockVisible = this.IsUndeletable;
     }
 
     // Update is called once per frame
