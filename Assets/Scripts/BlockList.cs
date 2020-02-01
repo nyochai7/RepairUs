@@ -19,14 +19,18 @@ public class BlockList : MonoBehaviour
 
         set
         {
-            if (blocks[currentRunningTaskIndex] != null)
+            if (currentRunningTaskIndex >= 0 && 
+                currentRunningTaskIndex < blocks.Length &&
+                blocks[currentRunningTaskIndex] != null)
             {
                 blocks[currentRunningTaskIndex].IsActive = false;
             }
 
             currentRunningTaskIndex = value;
 
-            if (blocks[currentRunningTaskIndex] != null)
+            if (currentRunningTaskIndex >= 0 &&
+                currentRunningTaskIndex < blocks.Length &&
+                blocks[currentRunningTaskIndex] != null)
             {
                 blocks[currentRunningTaskIndex].IsActive = true;
             }
@@ -46,7 +50,7 @@ public class BlockList : MonoBehaviour
     {
         MainObject.Get().AllBlockLists.Add(this);
         blocks = new BlockObj[MAX_BLOCKS];
-        this.CurrentRunningTaskIndex = 0;
+        this.CurrentRunningTaskIndex = blocks.Length;
 
         /*blocks[0] = Instantiate(MainObject.Get().blockObjPrefab,
                    Vector3.zero,
@@ -54,12 +58,12 @@ public class BlockList : MonoBehaviour
         blocks[1] = Instantiate(MainObject.Get().blockObjPrefab,
                            Vector3.zero,
                            Quaternion.identity).GetComponent<BlockObj>();*/
-        blocks[2] = Instantiate(MainObject.Get().blockObjPrefab,
+        blocks[9] = Instantiate(MainObject.Get().blockObjPrefab,
                            Vector3.zero,
                            Quaternion.identity).GetComponent<BlockObj>();
 
-        blocks[2].IsUndeletable = true;
-        blocks[2].task = Task.EAT;
+        blocks[9].IsUndeletable = true;
+        blocks[9].task = Task.EAT;
 
         foreach (BlockObj block in blocks)
         {
@@ -94,8 +98,8 @@ public class BlockList : MonoBehaviour
 
     public Task? GetNextTask(){
         Debug.Log("task index = " + this.CurrentRunningTaskIndex);
-        if (this.CurrentRunningTaskIndex < this.blocks.Length - 1){
-            this.CurrentRunningTaskIndex++;
+        if (this.CurrentRunningTaskIndex > 0){
+            this.CurrentRunningTaskIndex--;
             Debug.Log("Next Task is " + this.blocks[this.CurrentRunningTaskIndex].task + ", index=" + this.CurrentRunningTaskIndex);
             return this.blocks[this.CurrentRunningTaskIndex].task;
         } else {

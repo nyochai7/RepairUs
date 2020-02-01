@@ -198,9 +198,6 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
             }
         }
 
-        this.face.CurrentSpriteIndex = (this.face.CurrentSpriteIndex + 1) % this.face.SpritesCount;
-
-
         // if (Input.GetMouseButton(0))
         // {
         //     Vector3 w = Camera.main.ScreenToWorldPoint(Input.mousePosition);
