@@ -5,11 +5,18 @@ using System;
 public class MainCharacter : MonoBehaviour, ILocationMonitorable
 {
 
-    public float radiusToObj = 1;
+    public float radiusToObj = 3f;
     public long timeStartedCurrTask;
     public GeneralTask[] currTask;
     public GeneralTask currMove;
     int moveIndex;
+    bool sentStartForMove = false;
+    bool sentStopForMove = false;
+
+    [SerializeField]
+    DynamicFace face;
+
+    CharacterProps charProps;
 
     private int happiness = 50;
 
@@ -35,65 +42,92 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
         }
     }
 
-    [SerializeField]
-    DynamicFace face;
-
-    CharacterProps charProps;
-
     public void onMonitorAlertFunc(string name, ILocationMonitorable otherObj)
     {
         charProps.onMonitorAlertFunc(name, otherObj);
+
+        if (name == "sink")
+        {
+            GetComponent<SpriteRenderer>().color = Color.green;
+            this.DoTask(Task.EAT);
+
+        }
+        if (name == "bed")
+        {
+            this.DoTask(Task.USE_TOILET);
+
+        }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        charProps = GetComponent<CharacterProps>();
+        MainObject.Get().locationManager.monitors.Add(new RadiusRelation(
+            "sink", this, new FakeILocationMonitorable(GameObject.Find("sink")), WhoToAlert.OnlyFirst));
+        MainObject.Get().locationManager.monitors.Add(new RadiusRelation(
+                "bed", this, new FakeILocationMonitorable(GameObject.Find("Bed")), WhoToAlert.OnlyFirst));
     }
 
     // Update is called once per frame
     void Update()
     {
-        Happiness++;
-
-        if (this.currTask != null && this.currMove != null){
+        if (this.currTask != null && this.currMove != null)
+        {
             MainObject mainObject = MainObject.Get();
-            
-            if (this.currMove is SingleMove){
+
+            if (this.currMove is SingleMove)
+            {
                 SingleMove currSingleMove = (SingleMove)this.currMove;
 
                 if (Vector3.Distance(this.gameObject.transform.position, currSingleMove.goTo) < radiusToObj)
                 {
-                    mainObject.InvokeEvent(currSingleMove.startEvent);
-                    Debug.Log("Sent Start Event");
-
-                    if (new System.DateTimeOffset(System.DateTime.UtcNow).ToUnixTimeSeconds() - this.timeStartedCurrTask > currSingleMove.duration){
-                        mainObject.InvokeEvent(currSingleMove.stopEvent);
-                        Debug.Log("Sent Stop Event for move index " + this.moveIndex);
-                        this.GetNextMove();
+                    if (!this.sentStartForMove)
+                    {
+                        this.sentStartForMove = true;
+                        mainObject.InvokeEvent(currSingleMove.startEvent);
                     }
 
+                    if (new System.DateTimeOffset(System.DateTime.UtcNow).ToUnixTimeSeconds() - this.timeStartedCurrTask > currSingleMove.duration)
+                    {
+                        if (!this.sentStopForMove)
+                        {
+                            this.sentStopForMove = true;
+                            mainObject.InvokeEvent(currSingleMove.stopEvent);
+                            this.GetNextMove();
+                        }
+                    }
+
+
                 }
-            } else if (this.currMove is ConditionalTask){
-                
+            }
+            else if (this.currMove is ConditionalTask)
+            {
                 ConditionalTask currConditionalTask = (ConditionalTask)this.currMove;
-                if (currConditionalTask.conditionFunc()){
+                if (currConditionalTask.conditionFunc())
+                {
                     Debug.Log("Condition was true");
                     mainObject.InvokeEvent(currConditionalTask.trueEvent);
-                    if (currConditionalTask.trueTask != null){
+                    if (currConditionalTask.trueTask != null)
+                    {
                         this.DoTask(currConditionalTask.trueTask.Value);
-                    } else {
+                    }
+                    else
+                    {
                         this.currTask = null;
                         this.currMove = null;
                     }
-                    
-                } else {
-                    Debug.Log("Condition was FALSE");
-                    
+
+                }
+                else
+                {
+
                     mainObject.InvokeEvent(currConditionalTask.falseEvent);
-                    if (currConditionalTask.falseTask!= null){
+                    if (currConditionalTask.falseTask != null)
+                    {
                         this.DoTask(currConditionalTask.falseTask.Value);
-                    } else {
+                    }
+                    else
+                    {
                         this.currTask = null;
                         this.currMove = null;
                     }
@@ -111,25 +145,35 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
         }
     }
 
-    public void DoTask(Task task){
+    public void DoTask(Task task)
+    {
 
         this.timeStartedCurrTask = new System.DateTimeOffset(System.DateTime.UtcNow).ToUnixTimeSeconds();
         MainObject mainObject = MainObject.Get();
+        Debug.Log("Task is " + task);
         this.currTask = mainObject.allTasks[task];
         this.currMove = this.currTask[0];
         this.moveIndex = 0;
-        if (this.currMove is SingleMove){
-
+        if (this.currMove is SingleMove)
+        {
             SingleMove currSingleMove = (SingleMove)this.currMove;
             GetComponent<NavMeshAgent2D>().destination = currSingleMove.goTo;
         }
     }
 
-    void GetNextMove(){
-        if (this.moveIndex < this.currTask.Length - 1){
+    void GetNextMove()
+    {
+        if (this.moveIndex < this.currTask.Length - 1)
+        {
+            this.sentStartForMove = false;
+            this.sentStopForMove = false;
             this.moveIndex++;
             this.currMove = this.currTask[moveIndex];
-        } else {
+        }
+        else
+        {
+            this.sentStartForMove = false;
+            this.sentStopForMove = false;
             this.currMove = null;
             this.currTask = null;
         }

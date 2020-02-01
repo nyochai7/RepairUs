@@ -19,9 +19,8 @@ public class Toilet : MonoBehaviour
         
     }
 
-    public bool IsTaken()
-    {
-        return isTaken;
+    public static bool IsTaken(){
+        return GameObject.Find("Toilet_Down").GetComponent<Toilet>().isTaken;
     }
 
     void listener(OurEvent whatHappened)

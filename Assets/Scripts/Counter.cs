@@ -29,7 +29,8 @@ public class Counter : MonoBehaviour
                 this.numFood = 2;
                 break;
 
-            case OurEvent.EAT_START:
+            case OurEvent.EAT_COUNTER_FOOD:
+                MainObject.Get().InvokeEvent(OurEvent.SAY_HAPPY);
                 if(this.numFood != 0) //if this is 0 some other action needs to happen (eat cornflakes?)
                 {
                     this.numFood--;
@@ -41,5 +42,11 @@ public class Counter : MonoBehaviour
         Sprite counterSprite = Resources.Load<Sprite>("Sprites/counter" + this.numFood.ToString());
         this.GetComponent<SpriteRenderer>().sprite = counterSprite;
         this.GetComponent<SpriteRenderer>().sortingOrder = 1;
+    }
+
+    public static bool hasCookedFood(){
+        Debug.Log("HERE");
+        return GameObject.Find("kitchen_counter").GetComponent<Counter>().numFood > 0;
+
     }
 }

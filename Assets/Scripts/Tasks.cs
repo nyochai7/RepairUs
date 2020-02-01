@@ -5,9 +5,13 @@ public enum Task{
     SLEEP,
     DO_LAUNDRY,
     EAT,
+    EAT_GOOD_FOOD,
+    EAT_BAD_FOOD,
     RAISE_TOILET_SEAT,
     LOWER_TOILET_SEAT,
-    GO_BATHROOM,
+    USE_TOILET,
+    ACTUALLY_USE_TOILET,
     COOK,
-    SHOWER
+    SHOWER,
+    USE_SHOWER
 }

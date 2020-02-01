@@ -5,8 +5,8 @@ using UnityEngine;
 public class Shower : MonoBehaviour
 {
     // Start is called before the first frame update
-    bool isTaken = false;
-    bool isInUse = false;
+    public bool isTaken = false;
+    public bool isInUse = false;
     void Start()
     {
         MainObject mainObject = MainObject.Get();
@@ -19,26 +19,19 @@ public class Shower : MonoBehaviour
         
     }
 
-    public bool IsTaken()
-    {
-        return isTaken;
-    }
-
     void listener(OurEvent whatHappened)
     {
         switch (whatHappened)
         {
-            case OurEvent.LOWER_TOILET_SEAT: //change me to GO_SHOWER_START
+            case OurEvent.SHOWER_IS_TAKEN: 
                 this.isTaken = true;
                 break;
-            case OurEvent.RAISE_TOILET_SEAT: //change me to USE_SHOWER_STOP
+            case OurEvent.USE_SHOWER_STOP: 
                 this.isTaken = false;
-                break;
-            case OurEvent.USE_BATHROOM_START: //change me to USE_SHOWER_START
-                this.isInUse = true;
-                break;
-            case OurEvent.USE_BATHROOM_STOP: //change me to USE_SHOWER_STOP
                 this.isInUse = false;
+                break;
+            case OurEvent.USE_SHOWER_START: 
+                this.isInUse = true;
                 break;
             default:
                 return;
@@ -50,10 +43,15 @@ public class Shower : MonoBehaviour
         }
         else
         {
-            toLoad = "toilet0";
+            toLoad = "shower0";
         }
         Sprite bedSprite = Resources.Load<Sprite>("Sprites/" + toLoad);
         this.GetComponent<SpriteRenderer>().sprite = bedSprite;
         this.GetComponent<SpriteRenderer>().sortingOrder = 1;
+    }
+
+    public static bool IsTaken(){
+
+        return !GameObject.Find("shower").GetComponent<Shower>().isTaken;
     }
 }
