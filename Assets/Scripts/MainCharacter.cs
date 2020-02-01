@@ -6,6 +6,7 @@ using TMPro;
 
 public class MainCharacter : MonoBehaviour, ILocationMonitorable
 {
+    System.Random rnd = new System.Random();
 
     public float radiusToObj = 3f;
     public long timeStartedCurrTask;
@@ -31,6 +32,7 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
     public GameObject speechBubblePrefab;
 
     CharacterProps charProps;
+    NavMeshAgent2D navMeshAgent;
 
     private int happiness = 50;
 
@@ -110,22 +112,69 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
     {
         // MainObject.Get().InvokeEvent(OurEvent.ADD_CLOTHES_TO_BASKET, this);
         charProps = GetComponent<CharacterProps>();
+        navMeshAgent = GetComponent<NavMeshAgent2D>();
+    }
 
-        MainObject.Get().locationManager.monitors.Add(new RadiusRelation(
-            "sink", this, new FakeILocationMonitorable(GameObject.Find("sink")), WhoToAlert.OnlyFirst));
-        MainObject.Get().locationManager.monitors.Add(new RadiusRelation(
-            "bed", this, new FakeILocationMonitorable(GameObject.Find("Bed")), WhoToAlert.OnlyFirst));
-        MainObject.Get().locationManager.monitors.Add(new RadiusRelation(
-            "laundry_basket", this, new FakeILocationMonitorable(GameObject.Find("laundry_basket")), WhoToAlert.OnlyFirst));                
-        MainObject.Get().locationManager.monitors.Add(new RadiusRelation(
-            "laundry_basket", this, new FakeILocationMonitorable(GameObject.Find("laundry_basket")), WhoToAlert.OnlyFirst));
-        MainObject.Get().locationManager.monitors.Add(new RadiusRelation(
-            "laundry_basket", this, new FakeILocationMonitorable(GameObject.Find("laundry_basket")), WhoToAlert.OnlyFirst));    
+    private string RandomString(String[] words)
+    {
+        return words[rnd.Next(words.Length)];
+    }
+
+    private void MainCharacter_onSomethingHappened(OurEvent whatHappened, GameObject invoker)
+    {
+        string[] ANGRY_WORDS = new string[]
+        {
+            "WTF!",
+            "This sucks",
+            "Screw him"
+        };
+
+        string[] HAPPY_WORDS = new string[]
+        {
+            "Beautiful",
+            "Yay",
+            "Woohoo",
+            "Love this"
+        };
+
+        string[] TYPICAL_WORDS = new string[]
+        {
+            "Typical",
+            "Bah",
+            "Meh",
+            "Man.."
+        };
+
+        if (invoker.gameObject.GetInstanceID() == this.gameObject.GetInstanceID())
+        {
+            if (whatHappened == OurEvent.SAY_ANGRY)
+            {
+                this.Speak(RandomString(ANGRY_WORDS));
+                this.happiness -= 8;
+            }
+            else if (whatHappened == OurEvent.SAY_HAPPY)
+            {
+                this.Speak(RandomString(HAPPY_WORDS));
+                this.happiness += 4;
+            }
+            else if (whatHappened == OurEvent.SAY_TYPICAL)
+            {
+                this.Speak(RandomString(TYPICAL_WORDS));
+                this.happiness -= 4;
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        const float FAST_SPEED = 10;
+        const float NORMAL_SPEED = 2.5f;
+
+        navMeshAgent.speed = Utils.IsFastForward() ? FAST_SPEED : NORMAL_SPEED;
+        navMeshAgent.angularSpeed = Utils.IsFastForward() ? 200 : 120;
+        navMeshAgent.acceleration = Utils.IsFastForward() ? 25 : 8;
+
         if (this.currTask != null && this.currMove != null)
         {
             MainObject mainObject = MainObject.Get();
@@ -147,7 +196,9 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
                         mainObject.InvokeEvent(currSingleMove.startEvent, this.gameObject);
                     }
 
-                    if (new System.DateTimeOffset(System.DateTime.UtcNow).ToUnixTimeSeconds() - this.timeStartedCurrTask > currSingleMove.duration)
+                    float duration = Utils.IsFastForward() ? currSingleMove.duration / 4.0f : currSingleMove.duration;
+
+                    if (new System.DateTimeOffset(System.DateTime.UtcNow).ToUnixTimeSeconds() - this.timeStartedCurrTask > duration)
                     {
                         if (!this.sentStopForMove)
                         {
@@ -192,13 +243,16 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
                     }
                 }
             }
-        } else if (this.currTask == null){
+        }
+        else if (this.currTask == null)
+        {
 
             Debug.Log("Getting next Task");
             Task? nextTask = blockList.GetNextTask();
-            if (nextTask != null){
+            if (nextTask != null)
+            {
                 this.SetCurrTask(nextTask.Value);
-                Debug.Log("Next task is not null");    
+                Debug.Log("Next task is not null");
                 Debug.Log("Task is " + nextTask.Value);
                 this.DoTask();
             }
@@ -240,11 +294,13 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
         }
     }
 
-    public void SetCurrTask(GeneralTask[] gt){
+    public void SetCurrTask(GeneralTask[] gt)
+    {
         this.currTask = gt;
     }
 
-    public void SetCurrTask(Task task){
+    public void SetCurrTask(Task task)
+    {
         this.currTask = MainObject.Get().allTasks[task];
     }
 }

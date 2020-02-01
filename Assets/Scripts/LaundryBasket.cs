@@ -28,6 +28,9 @@ public class LaundryBasket : MonoBehaviour
             case OurEvent.ADD_CLOTHES_TO_BASKET:
                 this.hasClothes = true;
                 break;
+            case OurEvent.RESET_ALL:
+                this.hasClothes = true;
+                break;
             default:
                 return;
         }

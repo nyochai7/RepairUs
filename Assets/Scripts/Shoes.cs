@@ -34,6 +34,9 @@ public class Shoes : MonoBehaviour
             case OurEvent.CLEAN_SHOES_STOP:
                 this.isClean = true;
                 break;
+            case OurEvent.RESET_ALL:
+                this.isClean = false;
+                break;
             default:
                 return;
         }

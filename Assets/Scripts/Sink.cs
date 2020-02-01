@@ -21,8 +21,8 @@ public class Sink : MonoBehaviour
     IEnumerator waiter()
     {
         MainObject mainObject = MainObject.Get();
-        yield return new WaitForSeconds(2);
-        mainObject.InvokeEvent(OurEvent.LAUNDRY_START, null);
+        yield return new WaitForSeconds(20);
+        mainObject.InvokeEvent(OurEvent.RESET_ALL, null);
         yield return new WaitForSeconds(8);
         mainObject.InvokeEvent(OurEvent.LAUNDRY_STOP, null);
     }
@@ -45,14 +45,15 @@ public class Sink : MonoBehaviour
                 {
                     this.numDishes++;
                 }
-                Debug.Log("More dirt in sink! Num is " + numDishes.ToString());
                 break;
             case OurEvent.COOK_STOP:
                 if (this.numDishes != 4)
                 {
                     this.numDishes++;
                 }
-                Debug.Log("Cooking done! There are more dishes");
+                break;
+            case OurEvent.RESET_ALL:
+                this.numDishes = 1;
                 break;
             default:
                 return;

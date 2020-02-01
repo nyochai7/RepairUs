@@ -3,6 +3,11 @@ using UnityEngine;
 
 public class Utils{
 
+    public static bool IsFastForward()
+    {
+        return Input.GetKey(KeyCode.Space);
+    }
+
     public static Vector3 getPositionByName(string name){
         GameObject go = GameObject.Find(name);
 
