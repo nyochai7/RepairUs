@@ -142,5 +142,45 @@ public class MainObject : MonoBehaviour
         allTasks.Add(Task.COOK, new GeneralTask[]{
             new SingleMove(Utils.getPositionByName("kitchen_counter"), OurEvent.COOK_START, OurEvent.COOK_STOP, defaultDuration)
         });
+
+        //Water Flower
+        allTasks.Add(Task.WATER_FLOWER, new GeneralTask[]{
+            new SingleMove(Utils.getPositionByName("flowers"), OurEvent.WATER_FLOWER_START, OurEvent.WATER_FLOWER_STOP, defaultDuration)
+        });
+        // Water Plant
+        allTasks.Add(Task.WATER_PLANT, new GeneralTask[]{
+            new SingleMove(Utils.getPositionByName("flowers"), OurEvent.WATER_PLANT_START, OurEvent.WATER_PLANT_STOP, defaultDuration)
+        });
+
+        // Clean Shoes
+        allTasks.Add(Task.CLEAN_SHOES, new GeneralTask[]{
+            new SingleMove(Utils.getPositionByName("shoes"), OurEvent.CLEAN_SHOES_START, OurEvent.CLEAN_SHOES_STOP, defaultDuration)
+        });
+        // Read Book
+        allTasks.Add(Task.READ_BOOK, new GeneralTask[]{
+            new SingleMove(Utils.getPositionByName("book"), OurEvent.TAKE_BOOK_START, OurEvent.TAKE_BOOK_STOP, 0),
+            new SingleMove(Utils.getPositionByName("desk"), OurEvent.READ_BOOK_START, OurEvent.READ_BOOK_STOP, defaultDuration)
+        });
+
+        // Watch TV
+        allTasks.Add(Task.WATCH_TV, new GeneralTask[]{
+            new SingleMove(Utils.getPositionByName("couch"), OurEvent.WATCH_TV_START, OurEvent.WATCH_TV_STOP, defaultDuration)
+        });
+
+        // Clean Coffee Table
+        allTasks.Add(Task.CLEAN_COFFEE_TABLE, new GeneralTask[]{
+            new SingleMove(Utils.getPositionByName("coffee_table"), OurEvent.CLEAN_COFFEE_TABLE_START, OurEvent.CLEAN_COFFEE_TABLE_STOP, defaultDuration)
+        });
+
+        // Clean Dining Table
+        allTasks.Add(Task.CLEAN_DINING_TABLE, new GeneralTask[]{
+            new SingleMove(Utils.getPositionByName("table"), OurEvent.CLEAN_DINING_TABLE_START, OurEvent.CLEAN_DINING_TABLE_STOP, defaultDuration)
+        });
+
+        // Clean Makeup Table
+        allTasks.Add(Task.CLEAN_MAKEUP_TABLE, new GeneralTask[]{
+            new SingleMove(Utils.getPositionByName("makeup_table"), OurEvent.CLEAN_MAKEUP_TABLE_START, OurEvent.CLEAN_MAKEUP_TABLE_STOP, defaultDuration)
+        });
+
     }
 }
