@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Text : MonoBehaviour
 {
@@ -34,9 +35,10 @@ public class Text : MonoBehaviour
 
     void OnMouseUp()
     {
+        Debug.Log("A");
         if (isStart)
         {
-            Application.LoadLevel(1);
+            SceneManager.LoadScene("Main");
         }
         if (isQuit)
         {
