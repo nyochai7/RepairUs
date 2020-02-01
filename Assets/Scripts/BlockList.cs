@@ -7,7 +7,15 @@ public class BlockList : MonoBehaviour
     private const int MAX_BLOCKS = 10;
     private const float BLOCK_HEIGHT = 0.5f;
     BlockObj[] blocks;
-
+    public Task? CurrTask{
+        get{
+            BlockObj thisBlock = this.blocks[this.currentRunningTaskIndex];
+            if (thisBlock!= null){
+                return thisBlock.task;
+            }
+            return null;
+        }
+    }
     private int currentRunningTaskIndex;
 
     public int CurrentRunningTaskIndex
@@ -123,8 +131,12 @@ public class BlockList : MonoBehaviour
         Debug.Log("task index = " + this.CurrentRunningTaskIndex);
         if (this.CurrentRunningTaskIndex > 0){
             this.CurrentRunningTaskIndex--;
-            Debug.Log("Next Task is " + this.blocks[this.CurrentRunningTaskIndex].task + ", index=" + this.CurrentRunningTaskIndex);
-            return this.blocks[this.CurrentRunningTaskIndex].task;
+            BlockObj nextTask = this.blocks[this.CurrentRunningTaskIndex];
+            if (nextTask != null){
+                Debug.Log("Next Task is " + nextTask.task + ", index=" + this.CurrentRunningTaskIndex);
+                return this.blocks[this.CurrentRunningTaskIndex].task;
+            }
+            return null;
         } else {
             return Task.SLEEP;
         }

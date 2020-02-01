@@ -21,28 +21,43 @@ public class CharacterProps : MonoBehaviour, ILocationMonitorable
 
     public virtual void InitiateLocationListeners()
     {
+        
         MainObject.Get().locationManager.monitors.Add(new RadiusRelation(
             "table", this, new FakeILocationMonitorable(GameObject.Find("table")), WhoToAlert.OnlyFirst));
         MainObject.Get().locationManager.monitors.Add(new RadiusRelation(
             "plant", this, new FakeILocationMonitorable(GameObject.Find("plant")), WhoToAlert.OnlyFirst));
         MainObject.Get().locationManager.monitors.Add(new RadiusRelation(
             "bed", this, new FakeILocationMonitorable(GameObject.Find("Bed")), WhoToAlert.OnlyFirst));
+        MainObject.Get().locationManager.monitors.Add(new RadiusRelation(
+            "both_eating", (ILocationMonitorable)GameObject.Find("Sabrina").GetComponent<MainCharacter>(), 
+            GameObject.Find("Chad").GetComponent<MainCharacter>(), WhoToAlert.Both));
+        MainObject.Get().locationManager.monitors.Add(new RadiusRelation(
+            "both_tving", (ILocationMonitorable)GameObject.Find("Sabrina").GetComponent<MainCharacter>(), 
+            GameObject.Find("Chad").GetComponent<MainCharacter>(), WhoToAlert.Both));
+        
     }
     public virtual void onMonitorAlertFunc(string name, ILocationMonitorable otherObj)
     {
-        //Debug.Log(name);
-        /*if (name == "table")
-        {
-            //GetComponent<SpriteRenderer>().color = Color.green;
-            mc.Happiness--;
-            mc.Speak("Fuck tables");
+        if (name == "both_eating"){
+
+            MainCharacter sab = GameObject.Find("Sabrina").GetComponent<MainCharacter>();
+            MainCharacter chad = GameObject.Find("Chad").GetComponent<MainCharacter>();
+            if ((sab.blockList.CurrTask == Task.EAT || sab.blockList.CurrTask == Task.EAT_GOOD_FOOD || sab.blockList.CurrTask == Task.EAT_BAD_FOOD) && 
+                (chad.blockList.CurrTask == Task.EAT || chad.blockList.CurrTask == Task.EAT_GOOD_FOOD || chad.blockList.CurrTask == Task.EAT_BAD_FOOD)){
+                
+                MainObject.Get().InvokeEvent(OurEvent.SAY_HAPPY, this.gameObject);
+            }
         }
-        if (name == "plant")
-        {
-            //GetComponent<SpriteRenderer>().color = Color.green;
-            mc.Happiness--;
+
+        if (name == "both_tving"){
+
+            MainCharacter sab = GameObject.Find("Sabrina").GetComponent<MainCharacter>();
+            MainCharacter chad = GameObject.Find("Chad").GetComponent<MainCharacter>();
+            if ((sab.blockList.CurrTask == Task.WATCH_TV) && 
+                (chad.blockList.CurrTask == Task.WATCH_TV)){
+                
+                MainObject.Get().InvokeEvent(OurEvent.SAY_HAPPY, this.gameObject);
+            }
         }
-        if (name == "bed"){
-        }*/
     }
 }

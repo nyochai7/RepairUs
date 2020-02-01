@@ -120,7 +120,6 @@ public class BlockObj : MonoBehaviour
 
         if (possiblePos != null && (!IsUndeletable || selectedList == myList))
         {
-            Debug.Log("A");
             this.transform.position = possiblePos.Value;
 
             int? index = selectedList.PositionToIndex(this.transform.position);
@@ -133,7 +132,6 @@ public class BlockObj : MonoBehaviour
         }
         else
         {
-            Debug.Log("B" + possiblePos.ToString());
             if (IsUndeletable)
             {
                 ResetPosByIndex();

@@ -18,7 +18,7 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
     bool alreadyMoved = false;
 
     [SerializeField]
-    BlockList blockList;
+    public BlockList blockList;
     [SerializeField]
     DynamicFace face;
 
@@ -117,13 +117,8 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
         charProps = GetComponent<CharacterProps>();
         navMeshAgent = GetComponent<NavMeshAgent2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        MainObject.Get().onSomethingHappened+= MainCharacter_onSomethingHappened;
 
-        MainObject.Get().locationManager.monitors.Add(new RadiusRelation(
-            "sink", this, new FakeILocationMonitorable(GameObject.Find("sink")), WhoToAlert.OnlyFirst));
-        MainObject.Get().locationManager.monitors.Add(new RadiusRelation(
-                "bed", this, new FakeILocationMonitorable(GameObject.Find("Bed")), WhoToAlert.OnlyFirst));
-
-        MainObject.Get().onSomethingHappened += MainCharacter_onSomethingHappened;
     }
 
     private string RandomString(String[] words)

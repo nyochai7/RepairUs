@@ -104,7 +104,7 @@ public class MainObject : MonoBehaviour
         //Dishes
         allTasks.Add(Task.DO_DISHES, new GeneralTask[]{
             new SingleMove(Utils.getPositionByName("sink"), OurEvent.GO_TO_SINK, OurEvent.DO_NOTHING, defaultDuration),
-            new ConditionalTask(Sink.CheckSink, Task.WASH_DISHES, null, null, null)
+            new ConditionalTask(Sink.CheckSink, Task.WASH_DISHES, null, OurEvent.SAY_TYPICAL, null)
         });
 
         allTasks.Add(Task.WASH_DISHES, new GeneralTask[]{
@@ -134,7 +134,7 @@ public class MainObject : MonoBehaviour
         //Laundry
         allTasks.Add(Task.DO_LAUNDRY, new GeneralTask[]{
             new SingleMove(Utils.getPositionByName("laundry_basket"), OurEvent.TAKE_CLOTHES, OurEvent.DO_NOTHING, 0),
-            new ConditionalTask(LaundryBasket.HasClothes, Task.LAUNDER, Task.LAUNDER, null, null)
+            new ConditionalTask(LaundryBasket.HasClothes, Task.LAUNDER, Task.LAUNDER, OurEvent.SAY_ANGRY, null)
         });
 
         allTasks.Add(Task.LAUNDER, new GeneralTask[]{
