@@ -9,7 +9,7 @@ public class Sink : MonoBehaviour
     {
         MainObject mainObject = MainObject.Get();
         mainObject.onSomethingHappened += this.listener;
-        //StartCoroutine(waiter());
+        StartCoroutine(waiter());
     }
 
     // Update is called once per frame
@@ -21,33 +21,9 @@ public class Sink : MonoBehaviour
     {
         MainObject mainObject = MainObject.Get();
         yield return new WaitForSeconds(2);
-        mainObject.InvokeEvent(OurEvent.DISHES_START);
-        yield return new WaitForSeconds(2);
-        mainObject.InvokeEvent(OurEvent.DISHES_STOP);
-        yield return new WaitForSeconds(2);
-        mainObject.InvokeEvent(OurEvent.DISHES_STOP);
-        yield return new WaitForSeconds(2);
-        mainObject.InvokeEvent(OurEvent.COOK_STOP);
-        yield return new WaitForSeconds(2);
-        mainObject.InvokeEvent(OurEvent.EAT_START);
-        yield return new WaitForSeconds(7);
-        mainObject.InvokeEvent(OurEvent.COOK_START);
-        yield return new WaitForSeconds(2);
-        mainObject.InvokeEvent(OurEvent.COOK_STOP);
-        yield return new WaitForSeconds(2);
-        mainObject.InvokeEvent(OurEvent.EAT_START);
-        yield return new WaitForSeconds(2);
-        mainObject.InvokeEvent(OurEvent.EAT_STOP);
-        yield return new WaitForSeconds(2);
-        mainObject.InvokeEvent(OurEvent.EAT_START);
-        yield return new WaitForSeconds(2);
-        mainObject.InvokeEvent(OurEvent.EAT_STOP);
-        yield return new WaitForSeconds(5);
-        mainObject.InvokeEvent(OurEvent.MAKE_BED_START);
-        yield return new WaitForSeconds(2);
-        mainObject.InvokeEvent(OurEvent.MAKE_BED_STOP);
-        yield return new WaitForSeconds(2);
-        mainObject.InvokeEvent(OurEvent.SLEEP_STOP);
+        mainObject.InvokeEvent(OurEvent.LAUNDRY_START);
+        yield return new WaitForSeconds(8);
+        mainObject.InvokeEvent(OurEvent.LAUNDRY_STOP);
     }
 
     void listener(OurEvent whatHappened)

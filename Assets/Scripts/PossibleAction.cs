@@ -45,7 +45,7 @@ public class PossibleAction : MonoBehaviour
         BlockObj bo = Instantiate(MainObject.Get().blockObjPrefab,
                            Vector3.zero,
                            Quaternion.identity).GetComponent<BlockObj>();
-        bo.transform.position = bo.centerPos(w);
+        bo.transform.position = w;
         bo.IsDragged = true;
     }
 
