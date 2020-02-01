@@ -15,6 +15,8 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
     bool alreadyMoved = false;
 
     [SerializeField]
+    BlockList blockList;
+    [SerializeField]
     DynamicFace face;
 
     [SerializeField]
@@ -123,7 +125,8 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
                     mainObject.InvokeEvent(currConditionalTask.trueEvent);
                     if (currConditionalTask.trueTask != null)
                     {
-                        this.DoTask(currConditionalTask.trueTask.Value);
+                        this.SetCurrTask(currConditionalTask.trueTask.Value);
+                        this.DoTask();
                     }
                     else
                     {
@@ -136,7 +139,8 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
                     mainObject.InvokeEvent(currConditionalTask.falseEvent);
                     if (currConditionalTask.falseTask != null)
                     {
-                        this.DoTask(currConditionalTask.falseTask.Value);
+                        this.SetCurrTask(currConditionalTask.falseTask.Value);
+                        this.DoTask();
                     }
                     else
                     {
@@ -145,25 +149,32 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
                     }
                 }
             }
+        } else if (this.currTask == null){
+
+            Debug.Log("Getting next Task");
+            Task? nextTask = blockList.GetNextTask();
+            if (nextTask != null){
+                this.SetCurrTask(nextTask.Value);
+                Debug.Log("Next task is not null");    
+                Debug.Log("Task is " + nextTask.Value);
+                this.DoTask();
+            }
         }
 
         this.face.CurrentSpriteIndex = (this.face.CurrentSpriteIndex + 1) % this.face.SpritesCount;
 
 
-        if (Input.GetMouseButton(0))
-        {
-            Vector3 w = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            GetComponent<NavMeshAgent2D>().destination = w;
-        }
+        // if (Input.GetMouseButton(0))
+        // {
+        //     Vector3 w = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //     GetComponent<NavMeshAgent2D>().destination = w;
+        // }
     }
 
-    public void DoTask(Task task)
+    public void DoTask()
     {
-
         this.timeStartedCurrTask = new System.DateTimeOffset(System.DateTime.UtcNow).ToUnixTimeSeconds();
         MainObject mainObject = MainObject.Get();
-        Debug.Log("Task is " + task);
-        this.currTask = mainObject.allTasks[task];
         this.currMove = this.currTask[0];
         this.moveIndex = 0;
     }
@@ -183,5 +194,13 @@ public class MainCharacter : MonoBehaviour, ILocationMonitorable
             this.currMove = null;
             this.currTask = null;
         }
+    }
+
+    public void SetCurrTask(GeneralTask[] gt){
+        this.currTask = gt;
+    }
+
+    public void SetCurrTask(Task task){
+        this.currTask = MainObject.Get().allTasks[task];
     }
 }

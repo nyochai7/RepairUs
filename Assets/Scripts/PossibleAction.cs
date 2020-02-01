@@ -47,6 +47,7 @@ public class PossibleAction : MonoBehaviour
                            Quaternion.identity).GetComponent<BlockObj>();
         bo.transform.position = w;
         bo.IsDragged = true;
+        bo.task = task;
     }
 
 }

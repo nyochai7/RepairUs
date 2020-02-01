@@ -1531,6 +1531,7 @@ GameObject:
   - component: {fileID: 489992178}
   - component: {fileID: 489992181}
   - component: {fileID: 489992180}
+  - component: {fileID: 489992182}
   m_Layer: 0
   m_Name: shower
   m_TagString: Untagged
@@ -1641,6 +1642,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   task: 16
+--- !u!114 &489992182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489992177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b168a57cead254a983521d2020f0f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTaken: 0
+  isInUse: 0
 --- !u!1 &513704844
 GameObject:
   m_ObjectHideFlags: 0
@@ -1739,6 +1754,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radiusToObj: 1
   timeStartedCurrTask: 0
+  blockList: {fileID: 518870485}
   face: {fileID: 166544199}
   happyFacesPrefab: {fileID: 0}
 --- !u!114 &513704848
@@ -1804,6 +1820,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c54998983c155547a85a6866c2c518c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentRunningTaskIndex: 0
 --- !u!212 &518870486
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3534,6 +3551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c54998983c155547a85a6866c2c518c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentRunningTaskIndex: 0
 --- !u!212 &1046947927
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6108,7 +6126,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: cd82ab94f7a09274d887176ee64f045a, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

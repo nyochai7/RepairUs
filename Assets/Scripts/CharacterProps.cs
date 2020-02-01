@@ -35,7 +35,6 @@ public class CharacterProps : MonoBehaviour, ILocationMonitorable
             mc.Happiness++;
         }
         if (name == "bed"){
-            mc.DoTask(Task.DO_LAUNDRY);
         }
     }
 }

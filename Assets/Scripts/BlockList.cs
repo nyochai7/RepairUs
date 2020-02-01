@@ -7,7 +7,7 @@ public class BlockList : MonoBehaviour
     private const int MAX_BLOCKS = 10;
     private const float BLOCK_HEIGHT = 0.5f;
     BlockObj[] blocks;
-
+    public int currentRunningTaskIndex;
 
     void Awake()
     {
@@ -20,6 +20,7 @@ public class BlockList : MonoBehaviour
     {
         MainObject.Get().AllBlockLists.Add(this);
         blocks = new BlockObj[MAX_BLOCKS];
+        this.currentRunningTaskIndex = 0;
 
         /*blocks[0] = Instantiate(MainObject.Get().blockObjPrefab,
                    Vector3.zero,
@@ -64,8 +65,21 @@ public class BlockList : MonoBehaviour
         //Debug.Log("h" + this.GetComponent<SpriteRenderer>().bounds.size.y);
     }
 
+    public Task? GetNextTask(){
+        Debug.Log("task index = " + this.currentRunningTaskIndex);
+        if (this.currentRunningTaskIndex < this.blocks.Length - 1){
+            this.currentRunningTaskIndex++;
+            Debug.Log("Next Task is " + this.blocks[this.currentRunningTaskIndex].task + ", index=" + this.currentRunningTaskIndex);
+            return this.blocks[this.currentRunningTaskIndex].task;
+        } else {
+            return Task.SLEEP;
+        }
+        
+    }
+
     public void SetBlock(int index, BlockObj block)
     {
+        Debug.Log("Setting block at index " + index);
         this.blocks[index] = block;
     }
 
