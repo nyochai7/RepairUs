@@ -39,13 +39,13 @@ public class Shower : MonoBehaviour
         string toLoad;
         if (this.isInUse)
         {
-            toLoad = "shower1";
+            toLoad = "Shower_Occupied";
         }
         else
         {
-            toLoad = "shower0";
+            toLoad = "Shower_Empty";
         }
-        Sprite bedSprite = Resources.Load<Sprite>("Sprites/" + toLoad);
+        Sprite bedSprite = Resources.Load<Sprite>("ScottsSprites/" + toLoad);
         this.GetComponent<SpriteRenderer>().sprite = bedSprite;
         this.GetComponent<SpriteRenderer>().sortingOrder = 1;
     }

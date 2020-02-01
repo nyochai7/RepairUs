@@ -42,13 +42,13 @@ public class MakeupTable : MonoBehaviour
         string toLoad;
         if (this.isClean)
         {
-            toLoad = "makeup_table0";
+            toLoad = "BathroomSink_Clean";
         }
         else
         {
-            toLoad = "makeup_table1";
+            toLoad = "BathroomSink_Dirty";
         }
-        Sprite sprite = Resources.Load<Sprite>("Sprites/" + toLoad);
+        Sprite sprite = Resources.Load<Sprite>("ScottsSprites/" + toLoad);
         this.GetComponent<SpriteRenderer>().sprite = sprite;
         this.GetComponent<SpriteRenderer>().sortingOrder = 1;
     }

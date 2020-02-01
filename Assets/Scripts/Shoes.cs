@@ -40,13 +40,13 @@ public class Shoes : MonoBehaviour
         string toLoad;
         if (this.isClean)
         {
-            toLoad = "shoes0";
+            toLoad = "";
         }
         else
         {
-            toLoad = "shoes1";
+            toLoad = "Shoes";
         }
-        Sprite sprite = Resources.Load<Sprite>("Sprites/" + toLoad);
+        Sprite sprite = Resources.Load<Sprite>("ScottsSprites/" + toLoad);
         this.GetComponent<SpriteRenderer>().sprite = sprite;
         this.GetComponent<SpriteRenderer>().sortingOrder = 1;
     }

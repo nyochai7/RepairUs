@@ -40,13 +40,13 @@ public class DiningTable : MonoBehaviour
         string toLoad;
         if (this.isClean)
         {
-            toLoad = "dining_table0";
+            toLoad = "DinigTable_Clean";
         }
         else
         {
-            toLoad = "dining_table1";
+            toLoad = "DinigTable_Messy";
         }
-        Sprite sprite = Resources.Load<Sprite>("Sprites/" + toLoad);
+        Sprite sprite = Resources.Load<Sprite>("ScottsSprites/" + toLoad);
         this.GetComponent<SpriteRenderer>().sprite = sprite;
         this.GetComponent<SpriteRenderer>().sortingOrder = 1;
     }

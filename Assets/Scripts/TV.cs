@@ -40,11 +40,11 @@ public class TV : MonoBehaviour
         string toLoad;
         if (this.isInUse)
         {
-            toLoad = "tv1";
+            toLoad = "Tv_on";
         }
         else
         {
-            toLoad = "tv0";
+            toLoad = "Tv_off";
         }
         Sprite sprite = Resources.Load<Sprite>("Sprites/" + toLoad);
         this.GetComponent<SpriteRenderer>().sprite = sprite;

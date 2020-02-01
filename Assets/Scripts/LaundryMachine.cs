@@ -36,13 +36,13 @@ public class LaundryMachine : MonoBehaviour
         string toLoad;
         if (this.isFull)
         {
-            toLoad = "laundry_machine1";
+            toLoad = "WashineMach_Closed";
         }
         else
         {
-            toLoad = "laundry_machine0";
+            toLoad = "WashineMach_Open";
         }
-        Sprite bedSprite = Resources.Load<Sprite>("Sprites/" + toLoad);
+        Sprite bedSprite = Resources.Load<Sprite>("ScottsSprites/" + toLoad);
         this.GetComponent<SpriteRenderer>().sprite = bedSprite;
         this.GetComponent<SpriteRenderer>().sortingOrder = 1;
     }
